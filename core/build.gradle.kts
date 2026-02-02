@@ -18,7 +18,7 @@ dependencies {
     {
         exclude(group = "com.google.code.gson", module = "gson")
     }
-    implementation("redis.clients:jedis:7.0.0")
+    implementation("redis.clients:jedis:7.2.1")
     {
         exclude(group = "com.google.code.gson", module = "gson")
         exclude(group = "com.google.guava")
