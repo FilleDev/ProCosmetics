@@ -40,7 +40,7 @@ dependencies {
         exclude(group = "io.papermc.paper")
     }
     compileOnly("com.github.Zrips:CMI-API:9.7.14.3")
-    compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.14") {
+    compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.15") {
         exclude(group = "com.google.guava")
     }
     compileOnly("org.black_ixx:playerpoints:3.3.3")
