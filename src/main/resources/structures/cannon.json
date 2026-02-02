@@ -1,0 +1,116 @@
+{
+  "blocks": [
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 3.0
+      },
+      "data": "minecraft:basalt"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 1.0
+      },
+      "data": "minecraft:spruce_slab"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:lever[face=wall,facing=north]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:basalt"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 5.0
+      },
+      "data": "minecraft:polished_blackstone_button[face=wall,facing=south]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 3.0
+      },
+      "data": "minecraft:spruce_stairs[facing=north,half=top]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": 0.0,
+        "z": 1.0
+      },
+      "data": "minecraft:oak_trapdoor[facing=west,half=top,open=true]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": 1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:spruce_trapdoor[facing=west,open=true]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 2.0
+      },
+      "data": "minecraft:spruce_slab"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:basalt"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 4.0
+      },
+      "data": "minecraft:basalt"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 2.0,
+        "z": 2.0
+      },
+      "data": "minecraft:spruce_trapdoor[facing=north]"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 1.0
+      },
+      "data": "minecraft:oak_trapdoor[facing=east,half=top,open=true]"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:spruce_trapdoor[facing=east,open=true]"
+    }
+  ]
+}

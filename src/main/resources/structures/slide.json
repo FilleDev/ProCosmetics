@@ -1,0 +1,164 @@
+{
+  "blocks": [
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5.0
+      },
+      "data": "minecraft:prismarine_slab"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": 3.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[east=true]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 3.0
+      },
+      "data": "minecraft:prismarine_stairs[facing=north]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 3.0,
+        "z": 0.0
+      },
+      "data": "minecraft:ladder[facing=north]"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": 3.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=true]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=false]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": 4.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=false]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 4.0
+      },
+      "data": "minecraft:prismarine_slab[type=top]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:ladder[facing=north]"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=false]"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": 4.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=false]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 3.0,
+        "z": 1.0
+      },
+      "data": "minecraft:prismarine"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": 0.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=false]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": 2.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=false]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "data": "minecraft:ladder[facing=north]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 2.0,
+        "z": 0.0
+      },
+      "data": "minecraft:ladder[facing=north]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 2.0,
+        "z": 2.0
+      },
+      "data": "minecraft:prismarine_stairs[facing=north]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 4.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_pressure_plate"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=false]"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": 2.0,
+        "z": 1.0
+      },
+      "data": "minecraft:birch_fence[west=false]"
+    }
+  ]
+}

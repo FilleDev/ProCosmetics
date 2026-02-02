@@ -1,0 +1,99 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.cosmetic.particleeffect.type;
+
+import org.bukkit.Location;
+import org.bukkit.Particle;
+import se.filledev.procosmetics.api.cosmetic.CosmeticContext;
+import se.filledev.procosmetics.api.cosmetic.particleeffect.ParticleEffectBehavior;
+import se.filledev.procosmetics.api.cosmetic.particleeffect.ParticleEffectType;
+import se.filledev.procosmetics.util.FastMathUtil;
+import se.filledev.procosmetics.util.material.Materials;
+
+public class PartyTime implements ParticleEffectBehavior {
+
+    private static final double MOVING_HEIGHT_OFFSET = 0.6d;
+    private static final double MOVING_OFFSET_X = 0.1d;
+    private static final double MOVING_OFFSET_Y = 0.1d;
+    private static final double MOVING_OFFSET_Z = 0.1d;
+    private static final double MOVING_SPEED = 0.0d;
+    private static final int MOVING_PARTICLE_COUNT = 3;
+
+    private static final double STATIC_HEIGHT_OFFSET = 2.4d;
+    private static final float STATIC_ROTATION_SPEED = 14.0f;
+    private static final float STATIC_ORBIT_RADIUS = 0.8f;
+    private static final double STATIC_OFFSET_X = 0.2d;
+    private static final double STATIC_OFFSET_Y = 0.2d;
+    private static final double STATIC_OFFSET_Z = 0.2d;
+    private static final double STATIC_SPEED = 0.0d;
+    private static final int STATIC_PARTICLE_COUNT = 2;
+    private static final int STATIC_PARTICLE_BURSTS = 3;
+
+    private int ticks;
+
+    @Override
+    public void onEquip(CosmeticContext<ParticleEffectType> context) {
+    }
+
+    @Override
+    public void onUpdate(CosmeticContext<ParticleEffectType> context, Location location) {
+        if (context.getUser().isMoving()) {
+            spawnMovingEffect(location);
+        } else {
+            spawnStaticEffect(location);
+        }
+    }
+
+    @Override
+    public void onUnequip(CosmeticContext<ParticleEffectType> context) {
+    }
+
+    private void spawnMovingEffect(Location location) {
+        location.add(0.0d, MOVING_HEIGHT_OFFSET, 0.0d);
+        spawnItemParticle(location, MOVING_PARTICLE_COUNT, MOVING_OFFSET_X, MOVING_OFFSET_Y, MOVING_OFFSET_Z, MOVING_SPEED);
+    }
+
+    private void spawnStaticEffect(Location location) {
+        float angle = STATIC_ROTATION_SPEED * FastMathUtil.toRadians(ticks);
+        float offsetX = STATIC_ORBIT_RADIUS * FastMathUtil.cos(angle);
+        float offsetZ = STATIC_ORBIT_RADIUS * FastMathUtil.sin(angle);
+
+        location.add(offsetX, STATIC_HEIGHT_OFFSET, offsetZ);
+
+        for (int i = 0; i < STATIC_PARTICLE_BURSTS; i++) {
+            spawnItemParticle(location, STATIC_PARTICLE_COUNT, STATIC_OFFSET_X, STATIC_OFFSET_Y, STATIC_OFFSET_Z, STATIC_SPEED);
+        }
+
+        if (ticks++ >= 360) {
+            ticks = 0;
+        }
+    }
+
+    private void spawnItemParticle(Location location, int count, double offsetX, double offsetY, double offsetZ, double speed) {
+        location.getWorld().spawnParticle(
+                Particle.ITEM,
+                location,
+                count,
+                offsetX,
+                offsetY,
+                offsetZ,
+                speed,
+                Materials.getRandomInkItem()
+        );
+    }
+}

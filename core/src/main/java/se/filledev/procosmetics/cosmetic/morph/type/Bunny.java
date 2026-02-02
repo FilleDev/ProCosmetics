@@ -1,0 +1,77 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.cosmetic.morph.type;
+
+import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.util.Vector;
+import se.filledev.procosmetics.api.cosmetic.CosmeticContext;
+import se.filledev.procosmetics.api.cosmetic.morph.MorphBehavior;
+import se.filledev.procosmetics.api.cosmetic.morph.MorphType;
+import se.filledev.procosmetics.api.nms.NMSEntity;
+
+public class Bunny implements MorphBehavior {
+
+    private static final Vector UP_FORCE = new Vector(0.0d, 0.4d, 0.0d);
+
+    @Override
+    public void onEquip(CosmeticContext<MorphType> context) {
+    }
+
+    @Override
+    public void setupEntity(CosmeticContext<MorphType> context, NMSEntity nmsEntity) {
+    }
+
+    @Override
+    public InteractionResult onInteract(CosmeticContext<MorphType> context, PlayerInteractEvent event, NMSEntity nmsEntity) {
+        return InteractionResult.noAction();
+    }
+
+    @Override
+    public InteractionResult onToggleSneak(CosmeticContext<MorphType> context, PlayerToggleSneakEvent event, NMSEntity nmsEntity) {
+        return InteractionResult.noAction();
+    }
+
+    @Override
+    public void onUpdate(CosmeticContext<MorphType> context, NMSEntity nmsEntity) {
+        Player player = context.getPlayer();
+
+        if (player.isSneaking()) {
+            if (player.isOnGround()) {
+                Location location = player.getLocation();
+
+                nmsEntity.sendEntityEventPacket((byte) 1);
+
+                // Set pitch to 0 for horizontal jump
+                location.setPitch(0.0f);
+                player.setVelocity(location.getDirection().multiply(0.8d).add(UP_FORCE));
+
+                player.getWorld().playSound(player, Sound.ENTITY_RABBIT_JUMP, 1.0f, 1.0f);
+                player.getWorld().spawnParticle(Particle.FIREWORK, location, 5, 0.3d, 0.2d, 0.3d, 0.0d);
+            }
+        }
+    }
+
+    @Override
+    public void onUnequip(CosmeticContext<MorphType> context) {
+    }
+}

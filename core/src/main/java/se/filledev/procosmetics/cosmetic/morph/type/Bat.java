@@ -1,0 +1,91 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.cosmetic.morph.type;
+
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.inventory.ItemStack;
+import se.filledev.procosmetics.api.cosmetic.CosmeticContext;
+import se.filledev.procosmetics.api.cosmetic.morph.MorphBehavior;
+import se.filledev.procosmetics.api.cosmetic.morph.MorphType;
+import se.filledev.procosmetics.api.nms.NMSEntity;
+
+public class Bat implements MorphBehavior {
+
+    private static final ItemStack COCO_BEANS_ITEM = new ItemStack(Material.COCOA_BEANS);
+
+    private boolean flyable;
+
+    @Override
+    public void onEquip(CosmeticContext<MorphType> context) {
+        flyable = context.getType().getCategory().getConfig().getBoolean("morphs.settings.flyable");
+    }
+
+    @Override
+    public void setupEntity(CosmeticContext<MorphType> context, NMSEntity nmsEntity) {
+        if (nmsEntity.getBukkitEntity() instanceof org.bukkit.entity.Bat bat) {
+            bat.setAwake(true);
+        }
+    }
+
+    @Override
+    public InteractionResult onInteract(CosmeticContext<MorphType> context, PlayerInteractEvent event, NMSEntity nmsEntity) {
+        Action action = event.getAction();
+
+        if ((action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) && flyable) {
+            Player player = context.getPlayer();
+            Location location = player.getLocation();
+
+            player.setVelocity(location.getDirection().multiply(0.4d).setY(0.6d));
+            player.getWorld().playSound(location, Sound.ENTITY_BAT_TAKEOFF, 0.6f, 1.5f);
+
+            return InteractionResult.success();
+        }
+        return InteractionResult.noAction();
+    }
+
+    @Override
+    public InteractionResult onToggleSneak(CosmeticContext<MorphType> context, PlayerToggleSneakEvent event, NMSEntity nmsEntity) {
+        Player player = context.getPlayer();
+        Location location = player.getLocation();
+
+        player.getWorld().playSound(location, Sound.ENTITY_BAT_AMBIENT, 0.6f, 1.0f);
+
+        NMSEntity droppedItem = context.getPlugin().getNMSManager().createEntity(location.getWorld(), EntityType.ITEM);
+        droppedItem.setEntityItemStack(COCO_BEANS_ITEM);
+        droppedItem.setPositionRotation(location.add(0.0d, 0.1d, 0.0d));
+        droppedItem.getTracker().startTracking();
+        droppedItem.getTracker().destroyAfter(80);
+
+        return InteractionResult.success();
+    }
+
+    @Override
+    public void onUpdate(CosmeticContext<MorphType> context, NMSEntity nmsEntity) {
+    }
+
+    @Override
+    public void onUnequip(CosmeticContext<MorphType> context) {
+    }
+}

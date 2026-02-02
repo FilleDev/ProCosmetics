@@ -1,0 +1,372 @@
+{
+  "blocks": [
+    {
+      "vector": {
+        "x": -3.0,
+        "y": -1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:spruce_stairs[facing=north]"
+    },
+    {
+      "vector": {
+        "x": -3.0,
+        "y": -1.0,
+        "z": -2.0
+      },
+      "data": "minecraft:spruce_stairs[facing=south]"
+    },
+    {
+      "vector": {
+        "x": 3.0,
+        "y": -1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:spruce_stairs[facing=north]"
+    },
+    {
+      "vector": {
+        "x": -3.0,
+        "y": -1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=z]"
+    },
+    {
+      "vector": {
+        "x": -2.0,
+        "y": -1.0,
+        "z": -3.0
+      },
+      "data": "minecraft:spruce_stairs[facing=east]"
+    },
+    {
+      "vector": {
+        "x": 2.0,
+        "y": -1.0,
+        "z": 3.0
+      },
+      "data": "minecraft:spruce_stairs[facing=west]"
+    },
+    {
+      "vector": {
+        "x": -2.0,
+        "y": -1.0,
+        "z": 3.0
+      },
+      "data": "minecraft:spruce_stairs[facing=east]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": -3.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=x]"
+    },
+    {
+      "vector": {
+        "x": 3.0,
+        "y": -1.0,
+        "z": -2.0
+      },
+      "data": "minecraft:spruce_stairs[facing=south]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": 3.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=x]"
+    },
+    {
+      "vector": {
+        "x": 3.0,
+        "y": -1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=z]"
+    },
+    {
+      "vector": {
+        "x": 2.0,
+        "y": -1.0,
+        "z": -3.0
+      },
+      "data": "minecraft:spruce_stairs[facing=west]"
+    },
+    {
+      "vector": {
+        "x": -2.0,
+        "y": -1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": -2.0,
+        "y": -1.0,
+        "z": -2.0
+      },
+      "data": "minecraft:spruce_stairs[facing=east,shape=inner_right]"
+    },
+    {
+      "vector": {
+        "x": -2.0,
+        "y": -1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:spruce_stairs[facing=north,shape=inner_right]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": -2.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:sea_lantern"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 2.0,
+        "y": -1.0,
+        "z": -2.0
+      },
+      "data": "minecraft:spruce_stairs[facing=west,shape=inner_left]"
+    },
+    {
+      "vector": {
+        "x": 2.0,
+        "y": -1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 2.0,
+        "y": -1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:spruce_stairs[facing=north,shape=inner_left]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": -1.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": -1.0,
+        "z": -1.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": -1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": -3.0,
+        "y": -1.0,
+        "z": -1.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=z]"
+    },
+    {
+      "vector": {
+        "x": -3.0,
+        "y": -1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=z]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": -3.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=x]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": 3.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=x]"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": -1.0,
+        "z": -3.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=x]"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": -1.0,
+        "z": 3.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=x]"
+    },
+    {
+      "vector": {
+        "x": 3.0,
+        "y": -1.0,
+        "z": -1.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=z]"
+    },
+    {
+      "vector": {
+        "x": 3.0,
+        "y": -1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:stripped_spruce_wood[axis=z]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": -2.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": -2.0,
+        "y": -1.0,
+        "z": -1.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": -2.0,
+        "y": -1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 2.0,
+        "y": -1.0,
+        "z": -1.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": -1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:oak_stairs[facing=west]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:oak_stairs[facing=south]"
+    },
+    {
+      "vector": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": 2.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": -1.0,
+        "z": -2.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 2.0,
+        "y": -1.0,
+        "z": 1.0
+      },
+      "data": "minecraft:oak_planks"
+    },
+    {
+      "vector": {
+        "x": 1.0,
+        "y": -1.0,
+        "z": 0.0
+      },
+      "data": "minecraft:oak_stairs[facing=east]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": -1.0
+      },
+      "data": "minecraft:oak_stairs[facing=north]"
+    },
+    {
+      "vector": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "data": "minecraft:chest[facing=south]"
+    }
+  ]
+}

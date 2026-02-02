@@ -1,0 +1,102 @@
+# Enable/disable this entire category.
+# When disabled, players cannot equip any cosmetics from this category as they will NOT be loaded into cache.
+enabled: true
+
+# Enable/disable the disco floor below the DJ booth.
+disco_floor: true
+
+menu:
+  rows: 3
+
+  # Items use vanilla Minecraft format for flexible customization.
+  # Supports resource packs and custom data components.
+  #
+  # Custom Model Data Format (Spigot version):
+  # minecraft:stone[minecraft:custom_model_data={floats:[0.0f]}]
+  #
+  # For more information: https://minecraft.wiki/w/Data_component_format
+  items:
+    fill_empty_slots:
+      enabled: true
+      item: "minecraft:gray_stained_glass_pane[tooltip_display={hide_tooltip:true}]"
+      count: 1
+
+    next_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -3
+
+    previous_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -7
+
+    go_back:
+      enabled: true
+      item: "minecraft:red_bed"
+      count: 1
+      slot: -5
+      on_click:
+        # If the command is empty, players will be returned to the main menu.
+        # Placeholders: <player_name>, <player_uuid>
+        command: ""
+        execute_as_player: false
+
+    sorting:
+      enabled: true
+      item: "minecraft:hopper"
+      count: 1
+      slot: -1
+
+    locked_cosmetic:
+      # This specifies if another item should replace the original cosmetic item while it is locked.
+      # This is useful to easily visualize which cosmetics the player has access to or not.
+      enabled: true
+      item: "minecraft:firework_star"
+      count: 1
+
+# You can add as many custom songs as you like!
+# Simply follow the format of any existing below.
+# Don't forget to add the corresponding language translations for the ones you add.
+cosmetics:
+  fur_elise:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:music_disc_13[!minecraft:jukebox_playable]"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  in_the_hall_of_the_mountain_king:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:music_disc_strad[!minecraft:jukebox_playable]"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  sweden:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:music_disc_wait[!minecraft:jukebox_playable]"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+# Do not edit this!
+config_version: 1

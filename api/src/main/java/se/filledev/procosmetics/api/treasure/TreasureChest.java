@@ -1,0 +1,147 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.api.treasure;
+
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import se.filledev.procosmetics.api.locale.Translator;
+import se.filledev.procosmetics.api.treasure.animation.TreasureChestAnimationRegistry;
+import se.filledev.procosmetics.api.treasure.loot.LootTable;
+import se.filledev.procosmetics.api.user.User;
+import se.filledev.procosmetics.api.util.item.ItemBuilder;
+import se.filledev.procosmetics.api.util.structure.StructureData;
+
+import java.util.List;
+
+/**
+ * Represents a treasure chest definition.
+ * <p>
+ * Treasure chests allow players to open animated sequences that reward
+ * them with cosmetics or other items.
+ */
+public interface TreasureChest {
+
+    /**
+     * Gets the loot table for this treasure chest.
+     *
+     * @return the loot table
+     */
+    LootTable getLootTable();
+
+    /**
+     * Checks if the player has permission to purchase this treasure chest.
+     *
+     * @param player the player to check
+     * @return {@code true} if the player has permission, otherwise {@code false}
+     */
+    boolean hasPurchasePermission(Player player);
+
+    /**
+     * Gets the unique key that identifies this treasure chest.
+     *
+     * @return the unique chest key
+     */
+    String getKey();
+
+    /**
+     * Gets the translated display name of this treasure chest.
+     *
+     * @param translator the translator used to localize the name
+     * @return the localized display name
+     */
+    String getName(Translator translator);
+
+    /**
+     * Gets the MiniMessage tag resolvers used when formatting treasure messages.
+     *
+     * @param user the user for whom the placeholders are resolved
+     * @return the {@link TagResolver} for MiniMessage formatting
+     */
+    TagResolver getResolvers(User user);
+
+    /**
+     * Checks whether this treasure chest is enabled.
+     *
+     * @return {@code true} if enabled, otherwise {@code false}
+     */
+    boolean isEnabled();
+
+    /**
+     * Gets the priority of this treasure chest.
+     *
+     * @return the priority
+     */
+    int getPriority();
+
+    /**
+     * Checks whether this treasure chest can be purchased.
+     *
+     * @return {@code true} if purchasable, otherwise {@code false}
+     */
+    boolean isPurchasable();
+
+    /**
+     * Gets the cost of purchasing this treasure chest.
+     *
+     * @return the chest cost
+     */
+    int getCost();
+
+    /**
+     * Gets how many chests are opened simultaneously when this treasure is activated.
+     *
+     * @return the number of chests to open
+     */
+    int getChestsToOpen();
+
+    /**
+     * Gets the animation factory used when opening this chest.
+     *
+     * @return the {@link TreasureChestAnimationRegistry.AnimationFactory} defining the opening animation
+     */
+    TreasureChestAnimationRegistry.AnimationFactory getAnimationFactory();
+
+    /**
+     * Checks whether a broadcast message should be sent when a player opens this chest.
+     *
+     * @return {@code true} if an opening broadcast should be sent, otherwise {@code false}
+     */
+    boolean isOpeningBroadcast();
+
+    /**
+     * Gets the {@link ItemBuilder} representation of this treasure chest.
+     *
+     * @return the chest’s {@link ItemBuilder} representation
+     */
+    ItemBuilder getItemBuilder();
+
+    /**
+     * Gets the {@link ItemStack} representation of this treasure chest.
+     *
+     * @return the chest’s {@link ItemStack}
+     */
+    ItemStack getItemStack();
+
+    /**
+     * Gets the structures used for this treasure chest’s layout.
+     *
+     * @return a list of {@link StructureData} representing the structure
+     */
+    List<StructureData> getStructures();
+}

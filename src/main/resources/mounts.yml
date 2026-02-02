@@ -1,0 +1,274 @@
+# Enable/disable this entire category.
+# When disabled, players cannot equip any cosmetics from this category as they will NOT be loaded into cache.
+enabled: true
+
+# This feature makes some entities toss items in different directions.
+tossing_items: true
+# This feature makes some entities spawn blocks underneath them.
+block_trail: true
+# This feature forces the player to ride the mount when it spawns.
+ride_on_spawn: false
+# This feature despawns the mount once a player stops riding it.
+despawn_on_dismount: false
+
+menu:
+  rows: 5
+
+  # Items use vanilla Minecraft format for flexible customization.
+  # Supports resource packs and custom data components.
+  #
+  # Custom Model Data Format (Spigot version):
+  # minecraft:stone[minecraft:custom_model_data={floats:[0.0f]}]
+  #
+  # For more information: https://minecraft.wiki/w/Data_component_format
+  items:
+    fill_empty_slots:
+      enabled: true
+      item: "minecraft:gray_stained_glass_pane[tooltip_display={hide_tooltip:true}]"
+      count: 1
+
+    next_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -3
+
+    previous_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -7
+
+    go_back:
+      enabled: true
+      item: "minecraft:red_bed"
+      count: 1
+      slot: -5
+      on_click:
+        # If the command is empty, players will be returned to the main menu.
+        # Placeholders: <player_name>, <player_uuid>
+        command: ""
+        execute_as_player: false
+
+    sorting:
+      enabled: true
+      item: "minecraft:hopper"
+      count: 1
+      slot: -1
+
+    locked_cosmetic:
+      # This specifies if another item should replace the original cosmetic item while it is locked.
+      # This is useful to easily visualize which cosmetics the player has access to or not.
+      enabled: true
+      item: "minecraft:firework_star"
+      count: 1
+
+cosmetics:
+  baby_reindeer:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:snow_block"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  cave_spider:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:spider_eye"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  clumsy_mule:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:chest"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  crazy_chicken:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  decrepit_warhorse:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:rotten_flesh"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  ethereal_dragon:
+    enabled: true
+    rarity: "legendary"
+    purchasable:
+      enabled: true
+      cost: 50000
+    item: "minecraft:dragon_egg[!minecraft:rarity]"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  frosty_snowman:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:snowball"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  glacial_steed:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:packed_ice"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  hype_train:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:minecart"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  infernal_horror:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:bone"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  lovely_sheep:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:pink_stained_glass"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  molten_snake:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:netherrack"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  pirate_ship:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:oak_boat"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  rudolf:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:dead_bush"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  slime:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:slime_block"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  unicorn:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:blaze_rod"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+# Do not edit this!
+config_version: 1

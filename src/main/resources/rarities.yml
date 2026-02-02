@@ -1,0 +1,96 @@
+#
+# Rarities represent how special a cosmetic item is, such as common, rare, or legendary.
+#
+# Rarities are used to influence the odds of obtaining cosmetics in treasure chests.
+# Higher rarities should appear less frequently, and lower rarities should be more common
+# Higher rarities often appear only in more expensive treasure chests.
+#
+# You can customize existing rarities and add new ones as needed.
+# IMPORTANT:
+# If you rename a default rarity (e.g., "common"), remember to update all references to it in the cosmetics config files.
+# Use the replace-all function to simplify this process.
+#
+# FIREWORK TYPES: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/FireworkEffect.Type.html
+
+rarities:
+  common:
+    priority: 1
+    colors:
+      primary: "#999999"     # Light gray
+      secondary: "#555555"   # Dark gray
+    firework:
+      detonations: 0
+      tick_interval: 3
+      type: BURST
+      color: 999999
+      fade: 555555
+      flicker: false
+      trail: false
+  uncommon:
+    priority: 10
+    colors:
+      primary: "#33ff33"     # Bright green
+      secondary: "#00b300"   # Darker green
+    firework:
+      detonations: 1
+      tick_interval: 3
+      type: BURST
+      color: "#33ff33"
+      fade: "#00b300"
+      flicker: false
+      trail: false
+  rare:
+    priority: 20
+    colors:
+      primary: "#1ad1ff"     # Bright blue
+      secondary: "#008fb3"   # Darker blue
+    firework:
+      detonations: 4
+      tick_interval: 3
+      type: BURST
+      color: "#1ad1ff"
+      fade: "#008fb3"
+      flicker: false
+      trail: false
+  epic:
+    priority: 30
+    colors:
+      primary: "#ff80ff"     # Bright purple
+      secondary: "#cc00cc"   # Darker purple
+    firework:
+      detonations: 4
+      tick_interval: 3
+      type: BALL
+      color: "#ff80ff"
+      fade: "#cc00cc"
+      flicker: false
+      trail: true
+  legendary:
+    priority: 40
+    colors:
+      primary: "#e6b800"     # Gold / orange
+      secondary: "#ff9900"   # Darker orange
+    firework:
+      detonations: 5
+      tick_interval: 10
+      type: BALL_LARGE
+      color: "#e6b800"
+      fade: "#ff9900"
+      flicker: false
+      trail: true
+  limited:
+    priority: 50
+    colors:
+      primary: "#e600e6"     # Purple
+      secondary: "#b300b3"   # Darker purple
+    firework:
+      detonations: 10
+      tick_interval: 10
+      type: BALL_LARGE
+      color: "#e600e6"
+      fade: "#b300b3"
+      flicker: true
+      trail: true
+
+# Do not edit this!
+config_version: 1

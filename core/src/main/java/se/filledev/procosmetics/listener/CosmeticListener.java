@@ -1,0 +1,123 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.listener;
+
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import se.filledev.procosmetics.ProCosmeticsPlugin;
+import se.filledev.procosmetics.api.cosmetic.Cosmetic;
+import se.filledev.procosmetics.api.cosmetic.balloon.Balloon;
+import se.filledev.procosmetics.api.cosmetic.gadget.Gadget;
+import se.filledev.procosmetics.api.cosmetic.miniature.Miniature;
+import se.filledev.procosmetics.api.cosmetic.morph.Morph;
+import se.filledev.procosmetics.api.cosmetic.mount.Mount;
+import se.filledev.procosmetics.api.cosmetic.pet.Pet;
+import se.filledev.procosmetics.api.cosmetic.registry.CosmeticCategory;
+import se.filledev.procosmetics.api.cosmetic.status.Status;
+import se.filledev.procosmetics.api.user.User;
+
+public class CosmeticListener implements Listener {
+
+    private static final int MAX_DISTANCE_SQUARED = 128 * 128;
+
+    private final ProCosmeticsPlugin plugin;
+
+    public CosmeticListener(ProCosmeticsPlugin plugin) {
+        this.plugin = plugin;
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent event) {
+        User user = plugin.getUserManager().getConnected(event.getEntity());
+
+        if (user != null) {
+            for (Cosmetic<?, ?> cosmetic : user.getCosmetics().values()) {
+                CosmeticCategory<?, ?, ?> category = cosmetic.getType().getCategory();
+
+                if (category.equals(plugin.getCategoryRegistries().arrowEffects())
+                        || category.equals(plugin.getCategoryRegistries().deathEffects())) {
+                    continue;
+                }
+
+                if (category.equals(plugin.getCategoryRegistries().music())) {
+                    user.removeCosmetic(plugin.getCategoryRegistries().music(), true, false);
+                } else {
+                    user.unequipCosmetic(category, true, false);
+                }
+            }
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
+    public void onTeleport(PlayerTeleportEvent event) {
+        Location from = event.getFrom();
+        Location to = event.getTo();
+
+        if (to == null || from.getWorld().equals(to.getWorld()) && from.distanceSquared(to) < MAX_DISTANCE_SQUARED) {
+            return;
+        }
+        to = to.clone(); // Keep this for safety reasons as event.getTo() is not a copy of the loc
+
+        Player player = event.getPlayer();
+        User user = plugin.getUserManager().getConnected(player);
+
+        if (user == null) {
+            return;
+        }
+        Balloon balloon = (Balloon) user.getCosmetic(plugin.getCategoryRegistries().balloons());
+        Gadget gadget = (Gadget) user.getCosmetic(plugin.getCategoryRegistries().gadgets());
+        Miniature miniature = (Miniature) user.getCosmetic(plugin.getCategoryRegistries().miniatures());
+        Mount mount = (Mount) user.getCosmetic(plugin.getCategoryRegistries().mounts());
+        Morph morph = (Morph) user.getCosmetic(plugin.getCategoryRegistries().morphs());
+        Pet pet = (Pet) user.getCosmetic(plugin.getCategoryRegistries().pets());
+        Status status = (Status) user.getCosmetic(plugin.getCategoryRegistries().statuses());
+
+        if (balloon != null && balloon.isEquipped()) {
+            balloon.getTracker().respawnAt(to);
+        }
+
+        if (gadget != null && gadget.isEquipped() && gadget.getBehavior().shouldUnequipOnTeleport()) {
+            gadget.unequip(false, true);
+        }
+
+        if (miniature != null && miniature.isEquipped()) {
+            miniature.getNMSEntity().getTracker().respawnAt(to);
+        }
+
+        if (mount != null && mount.isEquipped()) {
+            mount.spawn(to);
+        }
+
+        if (morph != null && morph.isEquipped() && user.hasSelfViewMorph()) {
+            morph.getNMSEntity().getTracker().respawnAt(to);
+        }
+
+        if (pet != null && pet.isEquipped()) {
+            pet.spawn(to);
+        }
+
+        if (status != null && status.isEquipped() && user.hasSelfViewStatus()) {
+            status.getNMSEntity().getTracker().respawnAt(to);
+        }
+    }
+}

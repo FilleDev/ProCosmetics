@@ -1,0 +1,176 @@
+# Enable/disable this entire category.
+# When disabled, players cannot equip any cosmetics from this category as they will NOT be loaded into cache.
+enabled: true
+
+# This allows you to adjust the height of the status tag.
+# Above player name-tag: 0.525
+# Below player name-tag: 0.025
+height_offset: 0.025
+
+self_view:
+  default_enabled: false
+
+menu:
+  rows: 3
+
+  # Items use vanilla Minecraft format for flexible customization.
+  # Supports resource packs and custom data components.
+  #
+  # Custom Model Data Format (Spigot version):
+  # minecraft:stone[minecraft:custom_model_data={floats:[0.0f]}]
+  #
+  # For more information: https://minecraft.wiki/w/Data_component_format
+  items:
+    fill_empty_slots:
+      enabled: true
+      item: "minecraft:gray_stained_glass_pane[tooltip_display={hide_tooltip:true}]"
+      count: 1
+
+    next_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -3
+
+    previous_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -7
+
+    go_back:
+      enabled: true
+      item: "minecraft:red_bed"
+      count: 1
+      slot: -5
+      on_click:
+        # If the command is empty, players will be returned to the main menu.
+        # Placeholders: <player_name>, <player_uuid>
+        command: ""
+        execute_as_player: false
+
+    sorting:
+      enabled: true
+      item: "minecraft:hopper"
+      count: 1
+      slot: -1
+
+    locked_cosmetic:
+      # This specifies if another item should replace the original cosmetic item while it is locked.
+      # This is useful to easily visualize which cosmetics the player has access to or not.
+      enabled: true
+      item: "minecraft:firework_star"
+      count: 1
+
+    toggle_self_view:
+      enabled: true
+      item: "minecraft:book"
+      count: 1
+      slot: -2
+
+# You can add as many custom statuses as you like!
+# Simply follow the format of any existing below.
+# Don't forget to add the corresponding language translations for the ones you add.
+# Note: refresh_interval is defined in ticks (20 ticks = 1 second), -1 = no update (static text)
+#
+# PlaceholderAPI is supported!
+# List of placeholders: https://wiki.placeholderapi.com/users/placeholder-list
+cosmetics:
+  afk:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:name_tag"
+    count: 1
+    refresh_interval: -1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  coins:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:name_tag"
+    count: 1
+    refresh_interval: 120
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  do_not_disturb:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:name_tag"
+    count: 1
+    refresh_interval: -1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  just_chilling:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:name_tag"
+    count: 1
+    refresh_interval: -1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  looking_to_chat:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:name_tag"
+    count: 1
+    refresh_interval: -1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  looking_to_team_up:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:name_tag"
+    count: 1
+    refresh_interval: -1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  ping:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:name_tag"
+    count: 1
+    refresh_interval: 120
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+# Do not edit this!
+config_version: 1

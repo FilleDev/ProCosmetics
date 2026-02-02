@@ -1,0 +1,781 @@
+# Enable/disable this entire category.
+# When disabled, players cannot equip any cosmetics from this category as they will NOT be loaded into cache.
+enabled: true
+
+menu:
+  rows: 6
+
+  # Items use vanilla Minecraft format for flexible customization.
+  # Supports resource packs and custom data components.
+  #
+  # Custom Model Data Format (Spigot version):
+  # minecraft:stone[minecraft:custom_model_data={floats:[0.0f]}]
+  #
+  # For more information: https://minecraft.wiki/w/Data_component_format
+  items:
+    fill_empty_slots:
+      enabled: true
+      item: "minecraft:gray_stained_glass_pane[tooltip_display={hide_tooltip:true}]"
+      count: 1
+
+    next_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -3
+
+    previous_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -7
+
+    go_back:
+      enabled: true
+      item: "minecraft:red_bed"
+      count: 1
+      slot: -5
+      on_click:
+        # If the command is empty, players will be returned to the main menu.
+        # Placeholders: <player_name>, <player_uuid>
+        command: ""
+        execute_as_player: false
+
+    sorting:
+      enabled: true
+      item: "minecraft:hopper"
+      count: 1
+      slot: -1
+
+    locked_cosmetic:
+      # This specifies if another item should replace the original cosmetic item while it is locked.
+      # This is useful to easily visualize which cosmetics the player has access to or not.
+      enabled: true
+      item: "minecraft:firework_star"
+      count: 1
+
+# You can add as many custom pets as you like!
+# Simply follow the format of any existing below.
+# Don't forget to add the corresponding language translations for the ones you add.
+# List of entity types: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
+cosmetics:
+  allay:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "ALLAY"
+    baby: false
+    scale: 1.0
+    spawn_sound: "ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM"
+    toss_item:
+      enabled: false
+      item: "minecraft:diamond"
+    item: "minecraft:allay_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  armadillo:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "ARMADILLO"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_ARMADILLO_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:diamond"
+    item: "minecraft:armadillo_scute"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  axolotl:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "AXOLOTL"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_AXOLOTL_SWIM"
+    toss_item:
+      enabled: false
+      item: "minecraft:diamond"
+    item: "minecraft:axolotl_bucket"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  bee:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "BEE"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_BEE_LOOP"
+    toss_item:
+      enabled: true
+      item: "minecraft:honeycomb"
+    item: "minecraft:bee_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  body_guard:
+    enabled: true
+    rarity: "legendary"
+    purchasable:
+      enabled: true
+      cost: 50000
+    entity: "IRON_GOLEM"
+    baby: false
+    scale: 0.5
+    spawn_sound: "ENTITY_SNOW_GOLEM_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:iron_ingot"
+    item: "minecraft:iron_golem_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  breeze:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "BREEZE"
+    baby: false
+    scale: 0.6
+    spawn_sound: "ENTITY_BREEZE_CHARGE"
+    toss_item:
+      enabled: true
+      item: "minecraft:wind_charge"
+    item: "minecraft:breeze_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  calf:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "COW"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_COW_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:milk_bucket"
+    item: "minecraft:cow_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  camel:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "CAMEL"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_CAMEL_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:sand"
+    item: "minecraft:camel_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  cave_spider:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "CAVE_SPIDER"
+    baby: false
+    scale: 1.0
+    spawn_sound: "ENTITY_SPIDER_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:cobweb"
+    item: "minecraft:cave_spider_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  chicken:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "CHICKEN"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_CHICKEN_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:egg"
+    item: "minecraft:chicken_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  colorful_lamb:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "SHEEP"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_SHEEP_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:white_wool"
+    item: "minecraft:sheep_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  copper_golem:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    entity: "COPPER_GOLEM"
+    baby: false
+    scale: 0.8
+    spawn_sound: "ENTITY_COPPER_GOLEM_SPAWN"
+    toss_item:
+      enabled: true
+      item: "minecraft:copper_nugget"
+    item: "minecraft:copper_golem_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  creaking:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    entity: "CREAKING"
+    baby: false
+    scale: 0.5
+    spawn_sound: "ENTITY_CREAKING_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:creaking_heart"
+    item: "minecraft:creaking_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  easter_bunny:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "RABBIT"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_RABBIT_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:egg"
+    item: "minecraft:rabbit_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  elf:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    entity: "ZOMBIE"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_WITCH_CELEBRATE"
+    toss_item:
+      enabled: false
+      item: "minecraft:emerald"
+    item: "minecraft:emerald"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  endermite:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "ENDERMITE"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_ENDERMITE_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:endermite_spawn_egg"
+    item: "minecraft:endermite_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  fox:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "FOX"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_FOX_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:tropical_fish"
+    item: "minecraft:fox_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  frog:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "FROG"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_FROG_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:slime_ball"
+    item: "minecraft:frog_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  goat:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "GOAT"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_GOAT_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:short_grass"
+    item: "minecraft:goat_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  hoglin:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "HOGLIN"
+    baby: true
+    scale: 0.8
+    spawn_sound: "ENTITY_HOGLIN_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:raw_gold"
+    item: "minecraft:hoglin_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  kitten:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "CAT"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_CAT_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:tropical_fish"
+    item: "minecraft:cat_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  llama:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "LLAMA"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_LLAMA_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:diamond"
+    item: "minecraft:llama_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  mushroom_calf:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "MOOSHROOM"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_COW_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:red_mushroom"
+    item: "minecraft:red_mushroom"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  panda:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "PANDA"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_PANDA_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:bamboo"
+    item: "minecraft:panda_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  parrot:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "PARROT"
+    baby: false
+    scale: 1.0
+    spawn_sound: "ENTITY_PARROT_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:feather"
+    item: "minecraft:parrot_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  piggy:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "PIG"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_PIG_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:porkchop"
+    item: "minecraft:pig_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  piglin:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "PIGLIN"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_PIGLIN_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:gold_ingot"
+    item: "minecraft:piglin_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  polar_bear:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "POLAR_BEAR"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_POLAR_BEAR_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:packed_ice"
+    item: "minecraft:polar_bear_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  puppy:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "WOLF"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_WOLF_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:bone"
+    item: "minecraft:bone"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  santa_claus:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    entity: "ZOMBIE"
+    baby: false
+    scale: 1.0
+    spawn_sound: "ENTITY_WITCH_CELEBRATE"
+    toss_item:
+      enabled: false
+      item: "minecraft:diamond"
+    item: "minecraft:redstone"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  silverfish:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "SILVERFISH"
+    baby: false
+    scale: 1.0
+    spawn_sound: "ENTITY_SILVERFISH_AMBIENT"
+    toss_item:
+      enabled: false
+      item: "minecraft:stone_button"
+    item: "minecraft:silverfish_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  sniffer:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "SNIFFER"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_SNIFFER_SNIFFING"
+    toss_item:
+      enabled: false
+      item: "minecraft:sniffer_egg[!minecraft:rarity]"
+    item: "minecraft:sniffer_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  turtle:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "TURTLE"
+    baby: true
+    scale: 3.0
+    spawn_sound: "ENTITY_TURTLE_EGG_HATCH"
+    toss_item:
+      enabled: false
+      item: "minecraft:diamond"
+    item: "minecraft:turtle_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  villager:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "VILLAGER"
+    baby: true
+    scale: 1.0
+    spawn_sound: "ENTITY_VILLAGER_YES"
+    toss_item:
+      enabled: false
+      item: "minecraft:emerald"
+    item: "minecraft:villager_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  warden:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    entity: "WARDEN"
+    baby: false
+    scale: 0.3
+    spawn_sound: "ENTITY_WARDEN_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:disc_fragment_5"
+    item: "minecraft:warden_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  zombie_villager:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    entity: "ZOMBIE_VILLAGER"
+    baby: true
+    scale: 0.8
+    spawn_sound: "ENTITY_ZOMBIE_AMBIENT"
+    toss_item:
+      enabled: true
+      item: "minecraft:rotten_flesh"
+    item: "minecraft:zombie_villager_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+# Do not edit this!
+config_version: 1

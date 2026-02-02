@@ -1,0 +1,57 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.command.commands.procosmetics;
+
+
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.command.CommandSender;
+import se.filledev.procosmetics.ProCosmeticsPlugin;
+import se.filledev.procosmetics.api.event.PluginReloadEvent;
+import se.filledev.procosmetics.command.SubCommand;
+
+public class ReloadCommand extends SubCommand<CommandSender> {
+
+    public ReloadCommand(ProCosmeticsPlugin plugin) {
+        super(plugin, "procosmetics.command.reload", true);
+        addFlat("reload");
+    }
+
+    @Override
+    public void onExecute(CommandSender sender, String[] args) {
+        long before = System.currentTimeMillis();
+        audience(sender).sendMessage(Component.text().append(
+                Component.text("Reloading ", NamedTextColor.YELLOW),
+                Component.text(plugin.getDescription().getName(), NamedTextColor.GOLD),
+                Component.text("...", NamedTextColor.YELLOW)
+        ));
+        plugin.onDisable();
+        plugin.onLoad();
+        plugin.onEnable();
+        plugin.getServer().getPluginManager().callEvent(new PluginReloadEvent(plugin));
+
+        long took = System.currentTimeMillis() - before;
+        audience(sender).sendMessage(Component.text().append(
+                Component.text(plugin.getDescription().getName(), NamedTextColor.GREEN),
+                Component.text(" has been reloaded and it took ", NamedTextColor.GREEN),
+                Component.text(took + "ms", NamedTextColor.GOLD),
+                Component.text("! ", NamedTextColor.GREEN),
+                Component.text("If your changes do not take effect, restart the server!", NamedTextColor.YELLOW)
+        ));
+    }
+}

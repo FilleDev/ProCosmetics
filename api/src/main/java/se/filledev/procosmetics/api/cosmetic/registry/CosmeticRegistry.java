@@ -1,0 +1,109 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.api.cosmetic.registry;
+
+import se.filledev.procosmetics.api.cosmetic.CosmeticBehavior;
+import se.filledev.procosmetics.api.cosmetic.CosmeticType;
+
+import java.util.Collection;
+
+/**
+ * Represents a registry that manages all cosmetic types within a specific category.
+ * <p>
+ * Each {@link CosmeticCategory}
+ * has its own {@code CosmeticRegistry} instance that manages its cosmetics.
+ *
+ * @param <T> the cosmetic type contained within this registry
+ * @param <B> the behavior type associated with the cosmetic
+ * @param <U> the builder type used to construct cosmetic types
+ * @see CosmeticCategory
+ * @see CosmeticType
+ * @see CosmeticBehavior
+ */
+public interface CosmeticRegistry<T extends CosmeticType<T, B>,
+        B extends CosmeticBehavior<T>,
+        U extends CosmeticType.Builder<T, B, U>> {
+
+    /**
+     * Registers a new cosmetic type.
+     *
+     * @param type the cosmetic type to register
+     * @return the registered cosmetic type
+     */
+    T register(T type);
+
+    /**
+     * Creates a new builder for this cosmetic type.
+     * Builder can optionally read base data from config.
+     *
+     * @param key the unique key for this cosmetic type
+     * @return a new builder instance
+     */
+    U builder(String key);
+
+    /**
+     * Gets a cosmetic type by its key.
+     *
+     * @param key the cosmetic key to look up
+     * @return the cosmetic type, or {@code null} if not found
+     */
+    T getType(String key);
+
+    /**
+     * Retrieves a cosmetic type by its key only if it is currently enabled.
+     *
+     * @param key the cosmetic key to look up
+     * @return the enabled cosmetic type, or {@code null} if not found or disabled
+     */
+    T getEnabledType(String key);
+
+    /**
+     * Gets all registered cosmetic types in this registry.
+     *
+     * @return a collection of all registered cosmetic types
+     */
+    Collection<T> getTypes();
+
+    /**
+     * Gets all registered and currently enabled cosmetic types in this registry.
+     *
+     * @return a collection of all enabled cosmetic types
+     */
+    Collection<T> getEnabledTypes();
+
+    /**
+     * Checks whether a cosmetic type with the given key is registered.
+     *
+     * @param key the cosmetic key to check
+     * @return {@code true} if a cosmetic with the given key is registered
+     */
+    boolean isRegistered(String key);
+
+    /**
+     * Unregisters a cosmetic type
+     *
+     * @param key the key of the cosmetic type to unregister
+     * @return {@code true} if the cosmetic type was found and removed
+     */
+    boolean unregister(String key);
+
+    /**
+     * Clears all registered cosmetic types from this registry.
+     */
+    void clear();
+}

@@ -1,0 +1,103 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.cosmetic.mount.type;
+
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.entity.*;
+import org.bukkit.util.Vector;
+import org.joml.Matrix4f;
+import se.filledev.procosmetics.api.cosmetic.CosmeticContext;
+import se.filledev.procosmetics.api.cosmetic.mount.MountBehavior;
+import se.filledev.procosmetics.api.cosmetic.mount.MountType;
+import se.filledev.procosmetics.api.nms.NMSEntity;
+import se.filledev.procosmetics.nms.EntityTrackerImpl;
+
+public class MoltenSnake implements MountBehavior {
+
+    private static final int TAILS = 20;
+    private static final BlockData BLOCK_DATA = Material.NETHERRACK.createBlockData();
+
+    private final EntityTrackerImpl tracker = new EntityTrackerImpl();
+    private final Location reusableEntityLocation = new Location(null, 0.0d, 0.0d, 0.0d);
+
+    @Override
+    public void onEquip(CosmeticContext<MountType> context) {
+    }
+
+    @Override
+    public void setupEntity(CosmeticContext<MountType> context, Entity entity, NMSEntity nmsEntity) {
+        if (entity instanceof MagmaCube cube) {
+            cube.setSize(2);
+        }
+        Location location = context.getPlayer().getLocation();
+        Vector vector = location.getDirection().multiply(-0.5d);
+
+        Matrix4f transformationMatrix = new Matrix4f();
+        transformationMatrix.identity()
+                .scale(0.5f)
+                //.rotateY(radians)
+                .translate(-0.5f, 0.5f, -0.5f);
+
+        for (int i = 0; i < TAILS; i++) {
+            NMSEntity tailEntity = context.getPlugin().getNMSManager().createEntity(location.getWorld(), EntityType.BLOCK_DISPLAY, tracker);
+
+            if (tailEntity.getBukkitEntity() instanceof BlockDisplay blockDisplay) {
+                blockDisplay.setBlock(BLOCK_DATA);
+                blockDisplay.setTransformationMatrix(transformationMatrix);
+                blockDisplay.setTeleportDuration(2);
+            }
+            tailEntity.setPositionRotation(location.add(vector));
+        }
+        tracker.startTracking();
+    }
+
+    @Override
+    public void onUpdate(CosmeticContext<MountType> context, Entity entity, NMSEntity nmsEntity) {
+        entity.getLocation(reusableEntityLocation);
+        Player player = context.getPlayer();
+
+        if (player.getVehicle() == entity) {
+            // TODO: Temporary fix, rework in the future
+            // Velocity cannot be applied if AI is set to false.
+            if (entity instanceof LivingEntity livingEntity) {
+                livingEntity.setAI(true);
+            }
+            Location location = player.getLocation();
+            nmsEntity.setYaw(location.getYaw());
+            entity.setVelocity(location.getDirection().multiply(0.7d));
+        }
+        Location location = reusableEntityLocation;
+
+        for (NMSEntity tailEntity : tracker.getEntities()) {
+            Location temp = tailEntity.getPreviousLocation().clone();
+
+            if (temp != reusableEntityLocation) {
+                tailEntity.sendPositionRotationPacket(location);
+                location = temp;
+            }
+        }
+    }
+
+    @Override
+    public void onUnequip(CosmeticContext<MountType> context) {
+        context.getUser().setFallDamageProtection(10);
+        tracker.destroy();
+    }
+}

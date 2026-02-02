@@ -1,0 +1,36 @@
+/*
+ * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
+ * Copyright (C) 2025 FilleDev and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package se.filledev.procosmetics.api.cosmetic.morph;
+
+import se.filledev.procosmetics.api.cosmetic.Cosmetic;
+import se.filledev.procosmetics.api.nms.NMSEntity;
+
+/**
+ * Represents a morph cosmetic instance associated with a user.
+ * Morphs transform the player's appearance into a different entity,
+ * allowing them to look like various creatures or mobs with optional special abilities.
+ */
+public interface Morph extends Cosmetic<MorphType, MorphBehavior> {
+
+    /**
+     * Gets the NMS entity representing the morphed appearance.
+     *
+     * @return the NMS entity for this morph
+     */
+    NMSEntity getNMSEntity();
+}

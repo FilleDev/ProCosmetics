@@ -1,0 +1,528 @@
+# Enable/disable this entire category.
+# When disabled, players cannot equip any cosmetics from this category as they will NOT be loaded into cache.
+enabled: true
+
+# This feature allows you to temporary pause the particle effects while holding sneak.
+sneak_to_pause: false
+
+menu:
+  rows: 6
+
+  # Items use vanilla Minecraft format for flexible customization.
+  # Supports resource packs and custom data components.
+  #
+  # Custom Model Data Format (Spigot version):
+  # minecraft:stone[minecraft:custom_model_data={floats:[0.0f]}]
+  #
+  # For more information: https://minecraft.wiki/w/Data_component_format
+  items:
+    fill_empty_slots:
+      enabled: true
+      item: "minecraft:gray_stained_glass_pane[tooltip_display={hide_tooltip:true}]"
+      count: 1
+
+    next_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -3
+
+    previous_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -7
+
+    go_back:
+      enabled: true
+      item: "minecraft:red_bed"
+      count: 1
+      slot: -5
+      on_click:
+        # If the command is empty, players will be returned to the main menu.
+        # Placeholders: <player_name>, <player_uuid>
+        command: ""
+        execute_as_player: false
+
+    sorting:
+      enabled: true
+      item: "minecraft:hopper"
+      count: 1
+      slot: -1
+
+    locked_cosmetic:
+      # This specifies if another item should replace the original cosmetic item while it is locked.
+      # This is useful to easily visualize which cosmetics the player has access to or not.
+      enabled: true
+      item: "minecraft:firework_star"
+      count: 1
+
+cosmetics:
+  angel_wings:
+    enabled: true
+    rarity: "legendary"
+    purchasable:
+      enabled: true
+      cost: 50000
+    item: "minecraft:light_gray_dye"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  aura_of_flame:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:gold_nugget"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  big_heart:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:poppy"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  black_hole:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:coal_block"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  blood_helix:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:redstone"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  bunny:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:rabbit_spawn_egg"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  christmas_tree:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:spruce_sapling"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  colorful_trail:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:magenta_dye"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  confetti:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:blaze_rod"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  crushed_candy_cane:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:sugar"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  demon_twist:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:charcoal"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  emerald_twirl:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:emerald"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  enchanted:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:book"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  flame_fairy:
+    enabled: true
+    rarity: "legendary"
+    purchasable:
+      enabled: true
+      cost: 50000
+    item: "minecraft:blaze_powder"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  flame_of_magic:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:blaze_rod"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  flame_of_the_demons:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:blaze_powder"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  flame_rings:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:orange_dye"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  frost_lord:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:snowball"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  in_love:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:poppy"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  jack_o_lantern:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:jack_o_lantern"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  legendary_aura:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:ender_eye"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  music:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:note_block"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  party_time:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:purple_dye"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  protective_shield:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:cyan_dye"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  rain_cloud:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:lapis_lazuli"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  rainbow_wings:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:yellow_dye"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  santa:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:player_head[profile={properties:[{name:'textures',value:'e3RleHR1cmVzOntTS0lOOnt1cmw6Imh0dHBzOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzJkNjFjY2JmZGNkZjg5NDFhZGFmNzZjNmMwZTAxODJkMmM4YmJiNWRjMThmMzc0ODk1NjUyYmM2NjFiNmVkIn19fQ=='}]},!minecraft:rarity]"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  shadow_walk:
+    enabled: true
+    rarity: "uncommon"
+    purchasable:
+      enabled: true
+      cost: 2500
+    item: "minecraft:coal"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  skull:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:skeleton_skull[!minecraft:rarity]"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  snow_cloud:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:snow"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  snowflake:
+    enabled: true
+    rarity: "legendary"
+    purchasable:
+      enabled: true
+      cost: 50000
+    item: "minecraft:wind_charge"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  star:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:nether_star[!minecraft:rarity]"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  tornado:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:cobweb"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  umbrella:
+    enabled: true
+    rarity: "rare"
+    purchasable:
+      enabled: true
+      cost: 10000
+    item: "minecraft:hopper"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  vampire_wings:
+    enabled: true
+    rarity: "epic"
+    purchasable:
+      enabled: true
+      cost: 20000
+    item: "minecraft:firework_star"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+  yin_and_yang:
+    enabled: true
+    rarity: "legendary"
+    purchasable:
+      enabled: true
+      cost: 50000
+    item: "minecraft:melon_seeds"
+    count: 1
+    treasure_chests:
+      - common
+      - rare
+      - legendary
+
+# Do not edit this!
+config_version: 2
