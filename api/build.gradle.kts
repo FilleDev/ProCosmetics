@@ -20,8 +20,8 @@ dependencies {
     // Spigot API
     compileOnly("org.spigotmc:spigot-api:1.21.10-R0.1-SNAPSHOT")
 
-    compileOnly("net.kyori:adventure-api:4.25.0")
-    compileOnly("net.kyori:adventure-text-minimessage:4.25.0")
+    compileOnly("net.kyori:adventure-api:4.26.1")
+    compileOnly("net.kyori:adventure-text-minimessage:4.26.1")
     compileOnly("it.unimi.dsi:fastutil:8.5.18")
     compileOnly("io.netty:netty-handler:4.2.7.Final")
 
