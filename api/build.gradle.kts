@@ -23,7 +23,7 @@ dependencies {
     compileOnly("net.kyori:adventure-api:4.26.1")
     compileOnly("net.kyori:adventure-text-minimessage:4.26.1")
     compileOnly("it.unimi.dsi:fastutil:8.5.18")
-    compileOnly("io.netty:netty-handler:4.2.7.Final")
+    compileOnly("io.netty:netty-handler:4.2.9.Final")
 
     // Annotations
     compileOnly("org.jetbrains:annotations:26.0.2-1")
