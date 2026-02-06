@@ -87,9 +87,6 @@ public class GadgetImpl extends CosmeticImpl<GadgetType, GadgetBehavior> impleme
 
     @Override
     public boolean canEquip() {
-        if (user.hasCosmetic(cosmeticType.getCategory())) {
-            return true;
-        }
         ItemStack itemStack = player.getInventory().getItem(GADGET_SLOT);
 
         if (itemStack == null) {
