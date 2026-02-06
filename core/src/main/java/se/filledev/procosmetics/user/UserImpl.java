@@ -281,7 +281,8 @@ public class UserImpl implements User {
 
     @Override
     public void equipSavedCosmetics(boolean silent) {
-        for (Cosmetic<?, ?> cosmeticCategory : cosmetics.values()) {
+        // We want to make a copy of the list as some cosmetics onEquip can unequip other categories
+        for (Cosmetic<?, ?> cosmeticCategory : List.copyOf(cosmetics.values())) {
             if (!cosmeticCategory.isEquipped()) {
                 cosmeticCategory.equip(silent, false);
             }
@@ -299,7 +300,7 @@ public class UserImpl implements User {
 
     @Override
     public void unequipCosmetics(boolean silent, boolean saveToDatabase) {
-        for (CosmeticCategory<?, ?, ?> cosmeticCategory : cosmetics.keySet()) {
+        for (CosmeticCategory<?, ?, ?> cosmeticCategory : List.copyOf(cosmetics.keySet())) {
             unequipCosmetic(cosmeticCategory, silent, saveToDatabase);
         }
     }
