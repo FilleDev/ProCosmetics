@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     // Spigot API
-    compileOnly("org.spigotmc:spigot-api:1.21.10-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.21.11-R0.2-SNAPSHOT")
 
     compileOnly("net.kyori:adventure-api:4.26.1")
     compileOnly("net.kyori:adventure-text-minimessage:4.26.1")
