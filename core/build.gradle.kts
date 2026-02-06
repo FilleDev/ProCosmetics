@@ -13,7 +13,7 @@ dependencies {
         exclude(group = "org.jetbrains.annotations")
     }
     implementation("com.github.FilleDev:NoteBlockAPI:1c5500b038")
-    implementation("org.mongodb:mongodb-driver-sync:5.6.1")
+    implementation("org.mongodb:mongodb-driver-sync:5.6.3")
     implementation("com.zaxxer:HikariCP:7.0.2")
     {
         exclude(group = "com.google.code.gson", module = "gson")
