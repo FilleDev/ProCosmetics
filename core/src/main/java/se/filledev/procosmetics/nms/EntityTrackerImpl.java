@@ -147,13 +147,7 @@ public class EntityTrackerImpl extends AbstractRunnable implements EntityTracker
 
     @Override
     public void removeViewer(Player player) {
-        if (viewers.remove(player)) {
-            Collection<Player> players = Collections.singleton(player);
-
-            for (NMSEntity entity : entities) {
-                entity.despawn(players);
-            }
-        }
+        removeViewers(Collections.singleton(player));
     }
 
     @Override
@@ -161,12 +155,11 @@ public class EntityTrackerImpl extends AbstractRunnable implements EntityTracker
         if (players.isEmpty()) {
             return;
         }
-        viewers.removeAll(players);
-
         // Despawn all entities for these viewers in batch
         for (NMSEntity entity : entities) {
             entity.despawn(players);
         }
+        viewers.removeAll(players);
     }
 
     @Override
