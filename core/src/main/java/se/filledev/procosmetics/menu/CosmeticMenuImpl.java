@@ -129,7 +129,7 @@ public class CosmeticMenuImpl<T extends CosmeticType<T, ?>> extends PaginatedMen
         }
 
         // Add go back button
-        if (goBackItem != null && getPreviousMenu() != null) {
+        if (goBackItem != null) {
             String path = "menu.items.go_back.on_click.";
             String command = category.getConfig().getString(path + "command")
                     .replace("<player>", player.getName())
@@ -139,7 +139,7 @@ public class CosmeticMenuImpl<T extends CosmeticType<T, ?>> extends PaginatedMen
             goBackItem.setDisplayName(user.translate("menu." + category.getKey() + ".go_back.name"));
             goBackItem.setLore(user.translateList(
                     "menu." + category.getKey() + ".go_back.desc",
-                    Placeholder.component("menu", getPreviousMenu().getTitle())
+                    Placeholder.component("menu", getPreviousMenu() == null ? Component.empty() : getPreviousMenu().getTitle())
             ));
 
             if (command.isEmpty()) {
