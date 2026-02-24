@@ -90,6 +90,7 @@ public class BalloonImpl extends CosmeticImpl<BalloonType, BalloonBehavior> impl
         if (leashEntity != null) {
             entity.getBukkitEntity().addPassenger(leashEntity.getBukkitEntity());
         }
+        entityTracker.setOwner(player);
         entityTracker.startTracking();
         runTaskTimerAsynchronously(plugin, 5L, 1L);
     }

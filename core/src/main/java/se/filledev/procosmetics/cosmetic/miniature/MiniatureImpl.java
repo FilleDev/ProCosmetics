@@ -132,6 +132,7 @@ public class MiniatureImpl extends CosmeticImpl<MiniatureType, MiniatureBehavior
             configureDisplayEntity(display);
         }
         behavior.setupEntity(this, entity);
+        entity.getTracker().setOwner(player);
         entity.getTracker().startTracking();
     }
 

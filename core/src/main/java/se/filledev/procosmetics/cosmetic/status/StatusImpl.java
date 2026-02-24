@@ -64,6 +64,7 @@ public class StatusImpl extends CosmeticImpl<StatusType, StatusBehavior> impleme
             nmsEntity.getTracker().addAntiViewer(player);
         }
         nmsEntity.setPositionRotation(getUpdatedLocation());
+        nmsEntity.getTracker().setOwner(player);
         nmsEntity.getTracker().startTracking();
 
         runTaskTimerAsynchronously(plugin, 1L, 0L);
