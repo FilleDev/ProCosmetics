@@ -29,7 +29,7 @@ public class EconomyManagerImpl implements EconomyManager {
 
     private final ProCosmeticsPlugin plugin;
     private EconomyType type;
-    private EconomyProvider economy;
+    private static EconomyProvider economy;
     private boolean shouldHook;
 
     public EconomyManagerImpl(ProCosmeticsPlugin plugin) {
@@ -54,6 +54,7 @@ public class EconomyManagerImpl implements EconomyManager {
 
     @Override
     public void register(EconomyProvider economyProvider) {
+        type = EconomyType.CUSTOM;
         economy = economyProvider;
         plugin.getLogger().log(Level.INFO, "Successfully hooked into the " + economy.getPlugin() + " economy.");
     }
