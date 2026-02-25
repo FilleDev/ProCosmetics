@@ -72,7 +72,7 @@ public class BannerImpl extends CosmeticImpl<BannerType, BannerBehavior> impleme
 
         // Start the animation
         animationController.start();
-        runTaskTimerAsynchronously(plugin, 0L, cosmeticType.getTickInterval());
+        runTaskTimer(plugin, 0L, cosmeticType.getTickInterval());
     }
 
     @Override

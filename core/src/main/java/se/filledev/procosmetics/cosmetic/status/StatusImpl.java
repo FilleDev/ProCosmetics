@@ -67,7 +67,7 @@ public class StatusImpl extends CosmeticImpl<StatusType, StatusBehavior> impleme
         nmsEntity.getTracker().setOwner(player);
         nmsEntity.getTracker().startTracking();
 
-        runTaskTimerAsynchronously(plugin, 1L, 0L);
+        runTaskTimer(plugin, 1L, 0L);
     }
 
     @Override

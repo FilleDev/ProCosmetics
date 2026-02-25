@@ -92,7 +92,7 @@ public class BalloonImpl extends CosmeticImpl<BalloonType, BalloonBehavior> impl
         }
         entityTracker.setOwner(player);
         entityTracker.startTracking();
-        runTaskTimerAsynchronously(plugin, 5L, 1L);
+        runTaskTimer(plugin, 5L, 1L);
     }
 
     @Override
