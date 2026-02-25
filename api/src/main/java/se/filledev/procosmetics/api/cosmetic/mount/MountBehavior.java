@@ -31,13 +31,23 @@ import se.filledev.procosmetics.api.nms.NMSEntity;
 public interface MountBehavior extends CosmeticBehavior<MountType> {
 
     /**
-     * Sets up the mount entity when it is initialized.
+     * Sets up the mount entity during entity spawn.
      *
      * @param context   the context containing information about the mount cosmetic
      * @param entity    the Bukkit entity representing the mount
      * @param nmsEntity the underlying NMS entity representing the mount
      */
     void setupEntity(CosmeticContext<MountType> context, Entity entity, NMSEntity nmsEntity);
+
+    /**
+     * Sets up the mount entity after it is spawned.
+     *
+     * @param context   the context containing information about the mount cosmetic
+     * @param entity    the Bukkit entity representing the mount
+     * @param nmsEntity the underlying NMS entity representing the mount
+     */
+    default void postSetupEntity(CosmeticContext<MountType> context, Entity entity, NMSEntity nmsEntity) {
+    }
 
     /**
      * Called every tick to update the mount entity.

@@ -20,6 +20,7 @@ package se.filledev.procosmetics.cosmetic.mount.type;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import se.filledev.procosmetics.api.cosmetic.CosmeticContext;
 import se.filledev.procosmetics.api.cosmetic.mount.MountBehavior;
 import se.filledev.procosmetics.api.cosmetic.mount.MountType;
@@ -40,8 +41,16 @@ public class EtherealDragon implements MountBehavior {
         nmsEntity.setNoClip(false);
         nmsEntity.setHurtTicks(-1);
 
-        entity.addPassenger(context.getPlayer());
         entity.setSilent(true);
+    }
+
+    @Override
+    public void postSetupEntity(CosmeticContext<MountType> context, Entity entity, NMSEntity nmsEntity) {
+        entity.addPassenger(context.getPlayer());
+
+        if (entity instanceof LivingEntity livingEntity) {
+            livingEntity.setAI(true);
+        }
     }
 
     @Override

@@ -112,18 +112,21 @@ public class PetImpl extends CosmeticImpl<PetType, PetBehavior> implements Pet {
                     ageable.setBreed(false);
                 }
             }
+            nmsEntity = plugin.getNMSManager().entityToNMSEntity(entity);
             MetadataUtil.setCustomEntity(entity);
             behavior.onSetupEntity(this, entity);
         });
-        nmsEntity = plugin.getNMSManager().entityToNMSEntity(entity);
 
-        setupEntity();
-
+        // Ensure that the entity has been spawned and was not blocked by other plugins
+        if (!entity.isValid()) {
+            unequip(false, false);
+            return;
+        }
         Sound spawnSound = cosmeticType.getSpawnSound();
         if (spawnSound != null) {
             entity.getWorld().playSound(location, spawnSound, 0.5f, 1.0f);
         }
-        plugin.getNMSManager().entityToNMSEntity(entity).removePathfinder();
+        nmsEntity.removePathfinder();
 
         CosmeticEntitySpawnEvent event = new CosmeticEntitySpawnEvent(plugin, user, player, entity);
         plugin.getServer().getPluginManager().callEvent(event);
@@ -150,8 +153,5 @@ public class PetImpl extends CosmeticImpl<PetType, PetBehavior> implements Pet {
         nmsEntity.setPositionRotation(entity.getLocation(location).add(0.0d, 0.2d, 0.0d));
         nmsEntity.getTracker().startTracking();
         nmsEntity.getTracker().destroyAfter(70);
-    }
-
-    protected void setupEntity() {
     }
 }

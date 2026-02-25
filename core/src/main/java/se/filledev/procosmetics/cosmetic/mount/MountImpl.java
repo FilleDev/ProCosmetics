@@ -66,7 +66,7 @@ public class MountImpl extends CosmeticImpl<MountType, MountBehavior> implements
         user.removeCosmetic(plugin.getCategoryRegistries().morphs(), false, true);
         spawn();
 
-        if (rideOnSpawn && entity.getPassengers().contains(player)) {
+        if (rideOnSpawn && entity.isValid()) {
             entity.addPassenger(player);
         }
         runTaskTimer(plugin, 0L, 1L);
@@ -180,6 +180,13 @@ public class MountImpl extends CosmeticImpl<MountType, MountBehavior> implements
             MetadataUtil.setCustomEntity(entity);
             behavior.setupEntity(this, entity, nmsEntity);
         });
+
+        // Ensure that the entity has been spawned and was not blocked by other plugins
+        if (!entity.isValid()) {
+            unequip(false, false);
+            return;
+        }
+        behavior.postSetupEntity(this, entity, nmsEntity);
 
         CosmeticEntitySpawnEvent event = new CosmeticEntitySpawnEvent(plugin, user, player, entity);
         plugin.getServer().getPluginManager().callEvent(event);

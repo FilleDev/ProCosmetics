@@ -79,12 +79,16 @@ public class HypeTrain implements MountBehavior, Listener {
 
         if (entity instanceof BlockDisplay blockDisplay) {
             setProperties(blockDisplay, BLOCK_DATA);
-            entity.addPassenger(player);
 
             carriagesByPlayers.put(player, new TrainData(nmsEntity, player));
             carriages.add(blockDisplay);
         }
         train = entity;
+    }
+
+    @Override
+    public void postSetupEntity(CosmeticContext<MountType> context, Entity entity, NMSEntity nmsEntity) {
+        entity.addPassenger(context.getPlayer());
     }
 
     @Override
