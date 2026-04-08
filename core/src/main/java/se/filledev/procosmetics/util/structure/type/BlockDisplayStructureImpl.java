@@ -54,18 +54,21 @@ public class BlockDisplayStructureImpl extends StructureImpl<NMSEntity> implemen
 
         for (Map.Entry<Vector, BlockData> entry : data.getPlacement().entrySet()) {
             Vector vector = MathUtil.rotateAroundAxisY(entry.getKey().clone(), angle);
-            BlockData blockData = entry.getValue().clone();
+            BlockData blockData = entry.getValue();
+            NMSEntity nmsFallingBlock = PLUGIN.getNMSManager().createEntity(location.getWorld(), EntityType.BLOCK_DISPLAY, tracker);
 
             rotate(blockData, location.getYaw());
 
-            NMSEntity nmsFallingBlock = PLUGIN.getNMSManager().createEntity(location.getWorld(), EntityType.BLOCK_DISPLAY, tracker);
             if (nmsFallingBlock.getBukkitEntity() instanceof BlockDisplay blockDisplay) {
                 blockDisplay.setBlock(blockData);
                 blockDisplay.setTeleportDuration(2);
                 blockDisplay.setTransformationMatrix(transformationMatrix);
             }
             location.add(vector);
-            nmsFallingBlock.setPositionRotation(location);
+            Location clone = location.clone();
+            clone.setYaw(0.0f);
+            clone.setPitch(0.0f);
+            nmsFallingBlock.setPositionRotation(clone);
             location.subtract(vector);
 
             placedEntries.add(nmsFallingBlock);

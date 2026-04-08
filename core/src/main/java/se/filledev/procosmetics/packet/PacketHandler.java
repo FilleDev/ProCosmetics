@@ -26,9 +26,9 @@ public abstract class PacketHandler {
     protected final ProCosmeticsPlugin plugin;
     protected final Class<?> clazz;
 
-    public PacketHandler(ProCosmeticsPlugin plugin, String path, String clazz) {
+    public PacketHandler(ProCosmeticsPlugin plugin, String classPath) {
         this.plugin = plugin;
-        this.clazz = ReflectionUtil.getNMSClass(path, clazz);
+        this.clazz = ReflectionUtil.getNMSClass(classPath);
     }
 
     public abstract void onPacket(Player player, Object packet);

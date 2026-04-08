@@ -38,8 +38,6 @@ import se.filledev.procosmetics.ProCosmeticsPlugin;
 import se.filledev.procosmetics.api.config.Config;
 import se.filledev.procosmetics.api.util.item.ItemBuilder;
 import se.filledev.procosmetics.util.LogUtil;
-import se.filledev.procosmetics.util.mapping.Mapping;
-import se.filledev.procosmetics.util.mapping.MappingType;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -52,7 +50,7 @@ public class ItemBuilderImpl implements ItemBuilder {
     private static final String TEXTURE_URL = "https://textures.minecraft.net/texture/%s";
 
     public static final ItemFlag[] ITEM_FLAGS = Arrays.stream(ItemFlag.values())
-            .filter(flag -> Mapping.MAPPING_TYPE == MappingType.SPIGOT && flag != ItemFlag.HIDE_LORE)
+            .filter(flag -> !flag.name().toLowerCase().contains("lore")) // HIDE_LORE does not exist on Paper
             .toArray(ItemFlag[]::new);
 
     private static final LegacyComponentSerializer SERIALIZER = LegacyComponentSerializer.legacySection();

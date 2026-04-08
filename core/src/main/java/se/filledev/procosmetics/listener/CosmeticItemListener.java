@@ -34,6 +34,7 @@ import org.bukkit.inventory.PlayerInventory;
 import se.filledev.procosmetics.ProCosmeticsPlugin;
 import se.filledev.procosmetics.api.config.Config;
 import se.filledev.procosmetics.api.cosmetic.Cosmetic;
+import se.filledev.procosmetics.api.cosmetic.registry.CategoryRegistries;
 import se.filledev.procosmetics.api.cosmetic.registry.CosmeticCategory;
 import se.filledev.procosmetics.api.user.User;
 import se.filledev.procosmetics.api.util.item.ItemBuilder;
@@ -173,16 +174,18 @@ public class CosmeticItemListener implements Listener {
         User user = plugin.getUserManager().getConnected(event.getEntity());
 
         if (user != null) {
-            for (Cosmetic<?, ?> cosmetic : user.getCosmetics().values()) {
+            CategoryRegistries categoryRegistries = plugin.getCategoryRegistries();
+
+            for (Cosmetic<?, ?> cosmetic : List.copyOf(user.getCosmetics().values())) {
                 CosmeticCategory<?, ?, ?> category = cosmetic.getType().getCategory();
 
-                if (category.equals(plugin.getCategoryRegistries().arrowEffects())
-                        || category.equals(plugin.getCategoryRegistries().deathEffects())) {
+                if (category.equals(categoryRegistries.arrowEffects())
+                        || category.equals(categoryRegistries.deathEffects())) {
                     continue;
                 }
 
-                if (category.equals(plugin.getCategoryRegistries().music())) {
-                    user.removeCosmetic(plugin.getCategoryRegistries().music(), true, false);
+                if (category.equals(categoryRegistries.music())) {
+                    user.removeCosmetic(categoryRegistries.music(), true, false);
                 } else {
                     user.unequipCosmetic(category, true, false);
                 }

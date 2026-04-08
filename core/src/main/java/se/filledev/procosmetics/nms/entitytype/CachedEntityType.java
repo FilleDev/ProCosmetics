@@ -18,11 +18,9 @@
 package se.filledev.procosmetics.nms.entitytype;
 
 import org.bukkit.entity.EntityType;
+import org.jetbrains.annotations.Nullable;
 import se.filledev.procosmetics.ProCosmeticsPlugin;
 import se.filledev.procosmetics.util.ReflectionUtil;
-import se.filledev.procosmetics.util.mapping.MappingRegistry;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -45,19 +43,13 @@ public class CachedEntityType {
         }
 
         try {
-            Class<?> entityTypesClass = ReflectionUtil.getNMSClass("world.entity", MappingRegistry.getMappedFieldName(MappingRegistry.ENTITY_TYPES));
+            Class<?> entityTypesClass = ReflectionUtil.getNMSClass("world.entity.EntityType");
 
             if (entityTypesClass == null) {
                 logger.log(Level.WARNING, PREFIX + " EntityTypesClass is null.");
                 return;
             }
-            String mappedMethodName = MappingRegistry.getMappedFieldName(MappingRegistry.ENTITY_TYPE_BY_STRING);
-
-            if (mappedMethodName == null) {
-                logger.log(Level.WARNING, PREFIX + " Mapped method name is null.");
-                return;
-            }
-            Method method = ReflectionUtil.getMethod(entityTypesClass, mappedMethodName, String.class);
+            Method method = ReflectionUtil.getMethod(entityTypesClass, "byString", String.class);
 
             if (method == null) {
                 logger.log(Level.WARNING, PREFIX + " Method is null.");

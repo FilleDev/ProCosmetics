@@ -23,7 +23,6 @@ import se.filledev.procosmetics.ProCosmeticsPlugin;
 import se.filledev.procosmetics.cosmetic.gadget.type.MerryGoRound;
 import se.filledev.procosmetics.packet.PacketHandler;
 import se.filledev.procosmetics.util.ReflectionUtil;
-import se.filledev.procosmetics.util.mapping.MappingRegistry;
 
 import java.lang.reflect.Field;
 import java.util.logging.Level;
@@ -33,8 +32,8 @@ public class EntityInUse extends PacketHandler {
     private final Field getIDField;
 
     public EntityInUse(ProCosmeticsPlugin plugin) {
-        super(plugin, "network.protocol.game", MappingRegistry.getMappedFieldName(MappingRegistry.SERVERBOUND_INTERACT_PACKET));
-        getIDField = ReflectionUtil.getDeclaredField(clazz, MappingRegistry.getMappedFieldName(MappingRegistry.SERVERBOUND_INTERACT_PACKET_ID));
+        super(plugin, "network.protocol.game.ServerboundInteractPacket");
+        getIDField = ReflectionUtil.getDeclaredField(clazz, "entityId");
     }
 
     @Override

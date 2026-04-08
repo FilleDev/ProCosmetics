@@ -17,16 +17,6 @@
  */
 package se.filledev.procosmetics.util;
 
-import org.bukkit.Bukkit;
-import se.filledev.procosmetics.ProCosmeticsPlugin;
-import se.filledev.procosmetics.util.mapping.Mapping;
-import se.filledev.procosmetics.util.mapping.MappingType;
-import se.filledev.procosmetics.util.version.VersionUtil;
-
-import javax.annotation.Nonnull;
-
-import org.jetbrains.annotations.Nullable;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -34,64 +24,34 @@ import java.lang.reflect.Method;
 
 public class ReflectionUtil {
 
-    private static final String serverVersion;
-    public static final String VERSION_CLASS_PATH;
-
-    static {
-        if (Mapping.MAPPING_TYPE == MappingType.SPIGOT) {
-            serverVersion = Bukkit.getServer().getClass().getPackage().getName().substring(23);
-        } else {
-            serverVersion = null;
-        }
-        VERSION_CLASS_PATH = ProCosmeticsPlugin.class.getPackage().getName() + "." + VersionUtil.VERSION.toString() + ".";
-    }
-
-    public static Object getHandle(@Nonnull Class<?> clazz, @Nonnull Object object) {
+    public static Object getHandle(Class<?> clazz, Object object) {
         try {
             return clazz.getMethod("getHandle").invoke(object);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException exception) {
-            exception.printStackTrace();
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    public static Object getHandle(@Nonnull Object object) {
+    public static Object getHandle(Object object) {
         return getHandle(object.getClass(), object);
     }
 
-    public static Class<?> getClass(@Nonnull String name) {
+    public static Class<?> getClass(String name) {
         try {
             return Class.forName(name);
-        } catch (ClassNotFoundException exception) {
-            exception.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    public static Class<?> getNMSClass(@Nonnull String className) {
-        return getNMSClass(null, className);
+    public static Class<?> getNMSClass(String classPath) {
+        return getClass("net.minecraft." + classPath);
     }
 
-    public static Class<?> getNMSClass(@Nullable String preClassPath, @Nonnull String className) {
-        String classPath = "net.minecraft.";
-
-        if (preClassPath != null) {
-            classPath += preClassPath + ".";
-        }
-        classPath += className;
-
-        return getClass(classPath);
-    }
-
-    public static Class<?> getBukkitClass(@Nonnull String classPath) {
-        String fullClassPath = "org.bukkit.craftbukkit.";
-
-        if (serverVersion != null) {
-            fullClassPath += serverVersion + "." + classPath;
-        } else {
-            fullClassPath += classPath;
-        }
-        return getClass(fullClassPath);
+    public static Class<?> getBukkitClass(String classPath) {
+        return getClass("org.bukkit.craftbukkit." + classPath);
     }
 
     public static Method getMethod(Class<?> clazz, String name, Class<?>... args) {

@@ -28,6 +28,7 @@ import se.filledev.procosmetics.api.nms.NMSManager;
 import se.filledev.procosmetics.nms.entitytype.CachedEntityType;
 import se.filledev.procosmetics.nms.entitytype.EntityTypeRegistry;
 import se.filledev.procosmetics.util.ReflectionUtil;
+import se.filledev.procosmetics.util.version.VersionUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -44,7 +45,7 @@ public class NMSManagerImpl implements NMSManager {
 
     public NMSManagerImpl(ProCosmeticsPlugin plugin) {
         this.plugin = plugin;
-        String path = ReflectionUtil.VERSION_CLASS_PATH;
+        String path = ProCosmeticsPlugin.class.getPackage().getName() + "." + VersionUtil.VERSION.toString() + ".";
         Class<?> packetEntityClass = ReflectionUtil.getClass(path + "NMSEntity");
         Class<?> equipmentClass = ReflectionUtil.getClass(path + "NMSEquipment");
 
