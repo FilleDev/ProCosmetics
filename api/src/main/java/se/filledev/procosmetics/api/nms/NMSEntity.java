@@ -43,7 +43,7 @@ public interface NMSEntity {
      * Spawns the entity for a specific collection of players.
      * Only the specified players will be able to see this entity.
      *
-     * @param players The collection of players who should see the entity
+     * @param players the collection of players who should see the entity
      */
     void spawn(Collection<Player> players);
 
@@ -57,7 +57,7 @@ public interface NMSEntity {
      * Despawns the entity for a specific collection of players.
      * The entity will be removed from view for these players only.
      *
-     * @param players The collection of players for whom to despawn the entity
+     * @param players the collection of players for whom to despawn the entity
      */
     void despawn(Collection<Player> players);
 
@@ -71,7 +71,7 @@ public interface NMSEntity {
      * Sends entity metadata packet to specific players.
      * This updates properties like custom name visibility, flags, and entity-specific data.
      *
-     * @param players The collection of players to send the packet to
+     * @param players the collection of players to send the packet to
      */
     void sendEntityMetadataPacket(Collection<Player> players);
 
@@ -85,7 +85,7 @@ public interface NMSEntity {
      * Sends entity attribute update packet to specific players.
      * This updates attributes like movement speed, max health, and attack damage.
      *
-     * @param players The collection of players to send the packet to
+     * @param players the collection of players to send the packet to
      */
     void sendUpdateAttributesPacket(Collection<Player> players);
 
@@ -99,7 +99,7 @@ public interface NMSEntity {
      * Sends entity equipment packet to specific players.
      * This updates the items held in hands and armor pieces.
      *
-     * @param players The collection of players to send the packet to
+     * @param players the collection of players to send the packet to
      */
     void sendEntityEquipmentPacket(Collection<Player> players);
 
@@ -113,8 +113,8 @@ public interface NMSEntity {
      * Sends an entity event packet to specific players.
      * Events include hurt animation, death animation, and entity-specific events.
      *
-     * @param players The collection of players to send the packet to
-     * @param eventId The event ID to trigger
+     * @param players the collection of players to send the packet to
+     * @param eventId the event ID to trigger
      */
     void sendEntityEventPacket(Collection<Player> players, byte eventId);
 
@@ -122,7 +122,7 @@ public interface NMSEntity {
      * Sends an entity event packet to all tracked players.
      * Events include hurt animation, death animation, and entity-specific events.
      *
-     * @param eventId The event ID to trigger
+     * @param eventId the event ID to trigger
      */
     void sendEntityEventPacket(byte eventId);
 
@@ -130,8 +130,8 @@ public interface NMSEntity {
      * Sends an animation packet to specific players.
      * This triggers animations like swinging arm or taking damage.
      *
-     * @param players  The collection of players to send the packet to
-     * @param actionId The animation action ID
+     * @param players  the collection of players to send the packet to
+     * @param actionId the animation action ID
      */
     void sendAnimatePacket(Collection<Player> players, int actionId);
 
@@ -139,7 +139,7 @@ public interface NMSEntity {
      * Sends an animation packet to all tracked players.
      * This triggers animations like swinging arm or taking damage.
      *
-     * @param actionId The animation action ID
+     * @param actionId the animation action ID
      */
     void sendAnimatePacket(int actionId);
 
@@ -147,7 +147,7 @@ public interface NMSEntity {
      * Sends velocity update packet to specific players.
      * This applies the current velocity vector to the entity on client side.
      *
-     * @param players The collection of players to send the packet to
+     * @param players the collection of players to send the packet to
      */
     void sendVelocityPacket(Collection<Player> players);
 
@@ -161,7 +161,7 @@ public interface NMSEntity {
      * Sends passenger update packet to specific players.
      * This synchronizes which entities are riding this entity.
      *
-     * @param players The collection of players to send the packet to
+     * @param players the collection of players to send the packet to
      */
     void sendSetPassengersPacket(Collection<Player> players);
 
@@ -175,7 +175,7 @@ public interface NMSEntity {
      * Sends entity link packet to specific players.
      * This establishes relationships between entities like leash connections.
      *
-     * @param players The collection of players to send the packet to
+     * @param players the collection of players to send the packet to
      */
     void sendSetEntityLinkPacket(Collection<Player> players);
 
@@ -195,7 +195,7 @@ public interface NMSEntity {
      * Sends head rotation packet to specific players.
      * This updates only the head yaw without affecting body rotation.
      *
-     * @param players The collection of players to send the packet to
+     * @param players the collection of players to send the packet to
      */
     void sendRotateHeadPacket(Collection<Player> players);
 
@@ -203,21 +203,21 @@ public interface NMSEntity {
      * Sends position and rotation update packet to all tracked players.
      * This teleports the entity to the specified location on client side.
      *
-     * @param location The target location including position and rotation
+     * @param location the target location including position and rotation
      */
     void sendPositionRotationPacket(Location location);
 
     /**
      * Sets the entity's position and rotation.
      *
-     * @param location The new location
+     * @param location the new location
      */
     void setPositionRotation(Location location);
 
     /**
      * Gets the entity's previous location.
      *
-     * @return The previous location, or null if not set
+     * @return the previous location, or null if not set
      */
     @Nullable
     Location getPreviousLocation();
@@ -225,22 +225,22 @@ public interface NMSEntity {
     /**
      * Sets entity's yaw rotation.
      *
-     * @param yaw The yaw value in degrees
+     * @param yaw the yaw value in degrees
      */
     void setYaw(float yaw);
 
     /**
      * Sets entity's pitch rotation.
      *
-     * @param pitch The pitch value in degrees
+     * @param pitch the pitch value in degrees
      */
     void setPitch(float pitch);
 
     /**
      * Gets the previous location and copies it to the provided location.
      *
-     * @param loc The location to copy to
-     * @return The location parameter with copied values
+     * @param loc the location to copy to
+     * @return the location parameter with copied values
      */
     Location getPreviousLocation(Location loc);
 
@@ -248,7 +248,7 @@ public interface NMSEntity {
      * Sets the previous location.
      * This is used for interpolation and movement tracking.
      *
-     * @param location The location to set as previous
+     * @param location the location to set as previous
      */
     void setPreviousLocation(Location location);
 
@@ -256,7 +256,7 @@ public interface NMSEntity {
      * Makes the entity follow a player.
      * The entity will navigate towards and track the player's position.
      *
-     * @param player The player to follow
+     * @param player the player to follow
      */
     void follow(Player player);
 
@@ -264,8 +264,8 @@ public interface NMSEntity {
      * Makes the entity navigate to a specific location with a set speed.
      * The entity will use pathfinding to reach the destination.
      *
-     * @param location The target location
-     * @param speed    The movement speed multiplier
+     * @param location the target location
+     * @param speed    the movement speed multiplier
      */
     void navigateTo(Location location, double speed);
 
@@ -273,7 +273,7 @@ public interface NMSEntity {
      * Moves the entity by a vector.
      * This applies an immediate position offset.
      *
-     * @param vector The movement vector
+     * @param vector the movement vector
      */
     void move(Vector vector);
 
@@ -281,21 +281,21 @@ public interface NMSEntity {
      * Moves the entity as a rideable mount.
      * This handles movement input from a player riding the entity.
      *
-     * @param player The player riding the entity
+     * @param player the player riding the entity
      */
     void moveRide(Player player);
 
     /**
      * Gets the default ride speed.
      *
-     * @return The ride speed multiplier
+     * @return the ride speed multiplier
      */
     float getRideSpeed();
 
     /**
      * Sets the default ride speed.
      *
-     * @param speed The ride speed multiplier
+     * @param speed the ride speed multiplier
      */
     void setRideSpeed(float speed);
 
@@ -311,7 +311,7 @@ public interface NMSEntity {
     /**
      * Sets the entity's velocity.
      *
-     * @param velocity The velocity vector
+     * @param velocity the velocity vector
      */
     default void setVelocity(Vector velocity) {
         setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
@@ -321,7 +321,7 @@ public interface NMSEntity {
      * Adds collision with a player.
      * The entity will physically interact with the specified player.
      *
-     * @param player The player to add collision with
+     * @param player the player to add collision with
      */
     void addCollision(Player player);
 
@@ -329,49 +329,49 @@ public interface NMSEntity {
      * Removes collision with a player.
      * The entity will pass through the specified player.
      *
-     * @param player The player to remove collision with
+     * @param player the player to remove collision with
      */
     void removeCollision(Player player);
 
     /**
      * Sets the item in the entity's main hand.
      *
-     * @param itemStack The item to set, or null to clear
+     * @param itemStack the item to set, or null to clear
      */
     void setMainHand(@Nullable ItemStack itemStack);
 
     /**
      * Sets the item in the entity's offhand.
      *
-     * @param itemStack The item to set, or null to clear
+     * @param itemStack the item to set, or null to clear
      */
     void setOffHand(@Nullable ItemStack itemStack);
 
     /**
      * Sets the entity's helmet.
      *
-     * @param itemStack The helmet item, or null to clear
+     * @param itemStack the helmet item, or null to clear
      */
     void setHelmet(@Nullable ItemStack itemStack);
 
     /**
      * Sets the entity's chestplate.
      *
-     * @param itemStack The chestplate item, or null to clear
+     * @param itemStack the chestplate item, or null to clear
      */
     void setChestplate(@Nullable ItemStack itemStack);
 
     /**
      * Sets the entity's leggings.
      *
-     * @param itemStack The leggings item, or null to clear
+     * @param itemStack the leggings item, or null to clear
      */
     void setLeggings(@Nullable ItemStack itemStack);
 
     /**
      * Sets the entity's boots.
      *
-     * @param itemStack The boots item, or null to clear
+     * @param itemStack the boots item, or null to clear
      */
     void setBoots(@Nullable ItemStack itemStack);
 
@@ -379,9 +379,9 @@ public interface NMSEntity {
      * Sets the head pose of an armor stand.
      * All angles are in degrees.
      *
-     * @param x X rotation (pitch)
-     * @param y Y rotation (yaw)
-     * @param z Z rotation (roll)
+     * @param x x rotation (pitch)
+     * @param y y rotation (yaw)
+     * @param z z rotation (roll)
      */
     void setHeadPose(float x, float y, float z);
 
@@ -389,9 +389,9 @@ public interface NMSEntity {
      * Sets the body pose of an armor stand.
      * All angles are in degrees.
      *
-     * @param x X rotation (pitch)
-     * @param y Y rotation (yaw)
-     * @param z Z rotation (roll)
+     * @param x x rotation (pitch)
+     * @param y y rotation (yaw)
+     * @param z z rotation (roll)
      */
     void setBodyPose(float x, float y, float z);
 
@@ -399,9 +399,9 @@ public interface NMSEntity {
      * Sets the left arm pose of an armor stand.
      * All angles are in degrees.
      *
-     * @param x X rotation (pitch)
-     * @param y Y rotation (yaw)
-     * @param z Z rotation (roll)
+     * @param x x rotation (pitch)
+     * @param y y rotation (yaw)
+     * @param z z rotation (roll)
      */
     void setLeftArmPose(float x, float y, float z);
 
@@ -409,9 +409,9 @@ public interface NMSEntity {
      * Sets the right arm pose of an armor stand.
      * All angles are in degrees.
      *
-     * @param x X rotation (pitch)
-     * @param y Y rotation (yaw)
-     * @param z Z rotation (roll)
+     * @param x x rotation (pitch)
+     * @param y y rotation (yaw)
+     * @param z z rotation (roll)
      */
     void setRightArmPose(float x, float y, float z);
 
@@ -419,9 +419,9 @@ public interface NMSEntity {
      * Sets the left leg pose of an armor stand.
      * All angles are in degrees.
      *
-     * @param x X rotation (pitch)
-     * @param y Y rotation (yaw)
-     * @param z Z rotation (roll)
+     * @param x x rotation (pitch)
+     * @param y y rotation (yaw)
+     * @param z z rotation (roll)
      */
     void setLeftLegPose(float x, float y, float z);
 
@@ -429,9 +429,9 @@ public interface NMSEntity {
      * Sets the right leg pose of an armor stand.
      * All angles are in degrees.
      *
-     * @param x X rotation (pitch)
-     * @param y Y rotation (yaw)
-     * @param z Z rotation (roll)
+     * @param x x rotation (pitch)
+     * @param y y rotation (yaw)
+     * @param z z rotation (roll)
      */
     void setRightLegPose(float x, float y, float z);
 
@@ -439,7 +439,7 @@ public interface NMSEntity {
      * Sets the entity's custom name.
      * The custom name appears above the entity when visible.
      *
-     * @param component The custom name component, or null to remove
+     * @param component the custom name component, or null to remove
      */
     void setCustomName(@Nullable Component component);
 
@@ -447,7 +447,7 @@ public interface NMSEntity {
      * Sets the leash holder for this entity.
      * Creates a visual leash connection between this entity and the holder.
      *
-     * @param holder The entity to hold the leash, or null to remove leash
+     * @param holder the entity to hold the leash, or null to remove leash
      */
     void setLeashHolder(@Nullable Entity holder);
 
@@ -455,7 +455,7 @@ public interface NMSEntity {
      * Sets whether a creeper is powered.
      * When powered, the aura shield is visible.
      *
-     * @param powered True to power the creeper
+     * @param powered true to power the creeper
      */
     void setCreeperPowered(boolean powered);
 
@@ -463,42 +463,42 @@ public interface NMSEntity {
      * Sets whether a creeper is ignited.
      * When ignited, the creeper begins its explosion countdown.
      *
-     * @param ignited True to ignite the creeper
+     * @param ignited true to ignite the creeper
      */
     void setCreeperIgnited(boolean ignited);
 
     /**
      * Sets hurt ticks for the entity.
      *
-     * @param hurtTicks The number of hurt ticks
+     * @param hurtTicks the number of hurt ticks
      */
     void setHurtTicks(int hurtTicks);
 
     /**
      * Sets a pose for the entity.
      *
-     * @param pose The pose
+     * @param pose the pose
      */
     void setPose(Pose pose);
 
     /**
      * Sets whether the entity clips through blocks.
      *
-     * @param noClip True to disable block collision
+     * @param noClip true to disable block collision
      */
     void setNoClip(boolean noClip);
 
     /**
      * Sets the entity's item stack (for item entities).
      *
-     * @param itemStack The item stack
+     * @param itemStack the item stack
      */
     void setEntityItemStack(ItemStack itemStack);
 
     /**
      * Sets whether a horse is standing (rearing).
      *
-     * @param standing True to make the horse stand
+     * @param standing true to make the horse stand
      */
     void setHorseStanding(boolean standing);
 
@@ -506,7 +506,7 @@ public interface NMSEntity {
      * Sets a guardian's attack target.
      * This creates the laser beam effect pointing at the target.
      *
-     * @param targetId The target entity ID, or 0 to remove target
+     * @param targetId the target entity ID, or 0 to remove target
      */
     void setGuardianTarget(int targetId);
 
@@ -520,21 +520,21 @@ public interface NMSEntity {
      * Gets the underlying NMS entity object.
      * This returns the version-specific Minecraft server entity instance.
      *
-     * @return The NMS entity object
+     * @return the nMS entity object
      */
     Object getNMSEntity();
 
     /**
      * Gets the entity's unique network ID.
      *
-     * @return The entity ID used in packets
+     * @return the entity ID used in packets
      */
     int getId();
 
     /**
      * Gets the Bukkit entity wrapper if this NMS entity is backed by a real entity.
      *
-     * @return The Bukkit entity, or null if this is a virtual entity
+     * @return the bukkit entity, or null if this is a virtual entity
      */
     @Nullable
     Entity getBukkitEntity();
@@ -543,7 +543,7 @@ public interface NMSEntity {
      * Gets the entity's group tracker.
      * The tracker manages automatic spawning and despawning based on player proximity.
      *
-     * @return The group tracker, or null if not tracked
+     * @return the group tracker, or null if not tracked
      */
     @Nullable
     EntityTracker getTracker();

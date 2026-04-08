@@ -30,7 +30,7 @@ public interface Status extends Cosmetic<StatusType, StatusBehavior> {
     /**
      * Gets the NMS entity used to display the status text.
      *
-     * @return the NMS entity for this status display
+     * @return the nMS entity for this status display
      */
     NMSEntity getNMSEntity();
 }

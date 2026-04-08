@@ -42,7 +42,7 @@ public interface Translatable {
     /**
      * Gets the applied {@link Style}, if any.
      *
-     * @return the Adventure style, or {@code null} if none is applied
+     * @return the adventure style, or {@code null} if none is applied
      */
     @Nullable
     Style style();

@@ -109,7 +109,7 @@ public interface EconomyProvider {
      *
      * @param user   the user to add coins to
      * @param amount the amount of coins to add
-     * @return a CompletableFuture containing true if the operation was successful
+     * @return a completableFuture containing true if the operation was successful
      */
     CompletableFuture<Boolean> addCoinsAsync(User user, int amount);
 

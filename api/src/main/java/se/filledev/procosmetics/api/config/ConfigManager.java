@@ -40,7 +40,7 @@ public interface ConfigManager {
      * Gets a registered config by name.
      *
      * @param name the name/path of the config
-     * @return the Config instance, or null if not found
+     * @return the config instance, or null if not found
      */
     @Nullable
     Config getConfig(String name);

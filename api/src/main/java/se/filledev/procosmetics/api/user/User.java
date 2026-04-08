@@ -70,7 +70,7 @@ public interface User extends Translator {
     void sendMessage(Component component);
 
     /**
-     * Gets the database ID of this user..
+     * Gets the database ID of this user.
      *
      * @return the database ID
      */

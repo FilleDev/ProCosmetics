@@ -38,9 +38,9 @@ public interface LanguageManager extends Translator {
      * Translates a key to a list of strings in the specified locale.
      * Falls back to the default locale if translation is not found.
      *
-     * @param key    The translation key
-     * @param locale The target locale
-     * @return A list of translated strings, or a list containing an unknown key message if not found
+     * @param key    the translation key
+     * @param locale the target locale
+     * @return a list of translated strings, or a list containing an unknown key message if not found
      */
     List<String> translateList(String key, String locale);
 
@@ -48,77 +48,77 @@ public interface LanguageManager extends Translator {
      * Translates a key to a single string in the specified locale.
      * Falls back to the default locale if translation is not found.
      *
-     * @param key    The translation key
-     * @param locale The target locale
-     * @return The translated string, or an unknown key message if not found
+     * @param key    the translation key
+     * @param locale the target locale
+     * @return the translated string, or an unknown key message if not found
      */
     String translate(String key, String locale);
 
     /**
      * Renders a translation key as a list of Adventure Components with optional styling and resolvers.
      *
-     * @param key       The translation key
-     * @param locale    The target locale
-     * @param style     Optional style to apply to the components
-     * @param resolvers Tag resolvers for placeholder replacement
-     * @return A list of rendered components
+     * @param key       the translation key
+     * @param locale    the target locale
+     * @param style     optional style to apply to the components
+     * @param resolvers tag resolvers for placeholder replacement
+     * @return a list of rendered components
      */
     List<Component> renderList(String key, String locale, @Nullable Style style, TagResolver... resolvers);
 
     /**
      * Renders a translation key as a list of Adventure Components with resolvers.
      *
-     * @param key       The translation key
-     * @param locale    The target locale
-     * @param resolvers Tag resolvers for placeholder replacement
-     * @return A list of rendered components
+     * @param key       the translation key
+     * @param locale    the target locale
+     * @param resolvers tag resolvers for placeholder replacement
+     * @return a list of rendered components
      */
     List<Component> renderList(String key, String locale, TagResolver... resolvers);
 
     /**
      * Renders a Translatable object as a list of Adventure Components.
      *
-     * @param translatable The translatable object containing key, style, and resolvers
-     * @param locale       The target locale
-     * @return A list of rendered components
+     * @param translatable the translatable object containing key, style, and resolvers
+     * @param locale       the target locale
+     * @return a list of rendered components
      */
     List<Component> renderList(Translatable translatable, String locale);
 
     /**
      * Renders a translation key as a single Adventure Component with optional styling and resolvers.
      *
-     * @param key       The translation key
-     * @param locale    The target locale
-     * @param style     Optional style to apply to the component
-     * @param resolvers Tag resolvers for placeholder replacement
-     * @return A rendered component
+     * @param key       the translation key
+     * @param locale    the target locale
+     * @param style     optional style to apply to the component
+     * @param resolvers tag resolvers for placeholder replacement
+     * @return a rendered component
      */
     Component render(String key, String locale, @Nullable Style style, TagResolver... resolvers);
 
     /**
      * Renders a translation key as a single Adventure Component with resolvers.
      *
-     * @param key       The translation key
-     * @param locale    The target locale
-     * @param resolvers Tag resolvers for placeholder replacement
-     * @return A rendered component
+     * @param key       the translation key
+     * @param locale    the target locale
+     * @param resolvers tag resolvers for placeholder replacement
+     * @return a rendered component
      */
     Component render(String key, String locale, TagResolver... resolvers);
 
     /**
      * Renders a Translatable object as a single Adventure Component.
      *
-     * @param translatable The translatable object containing key, style, and resolvers
-     * @param locale       The target locale
-     * @return A rendered component
+     * @param translatable the translatable object containing key, style, and resolvers
+     * @param locale       the target locale
+     * @return a rendered component
      */
     Component render(Translatable translatable, String locale);
 
     /**
      * Retrieves a language by its code.
      *
-     * @param code The language code
-     * @return The language object, or null if not found
+     * @param code the language code
+     * @return the language object, or null if not found
      */
     @Nullable
     Language getLanguage(String code);
@@ -126,7 +126,7 @@ public interface LanguageManager extends Translator {
     /**
      * Gets all available languages.
      *
-     * @return An immutable list of all loaded languages
+     * @return an immutable list of all loaded languages
      */
     List<Language> getLanguages();
 }

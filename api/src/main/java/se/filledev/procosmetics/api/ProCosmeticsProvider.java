@@ -46,7 +46,7 @@ public final class ProCosmeticsProvider {
     /**
      * Gets the ProCosmetics API instance.
      *
-     * @return The ProCosmetics instance
+     * @return the ProCosmetics instance
      * @throws IllegalStateException if ProCosmetics has not been registered yet
      */
     public static ProCosmetics get() {

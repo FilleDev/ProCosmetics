@@ -42,7 +42,7 @@ public class AnimationFrame {
     /**
      * Gets the ItemStack to display for this frame.
      *
-     * @return the ItemStack to display
+     * @return the itemStack to display
      */
     public ItemStack getItemStack() {
         return itemStack;

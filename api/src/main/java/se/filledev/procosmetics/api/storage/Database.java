@@ -44,15 +44,15 @@ public interface Database {
     /**
      * Gets the database type identifier.
      *
-     * @return The database type (e.g., "MySQL")
+     * @return the database type (e.g., "MySQL")
      */
     String getType();
 
     /**
      * Loads a user by their UUID synchronously.
      *
-     * @param uuid The user's UUID
-     * @return The loaded user, or null if not found
+     * @param uuid the user's UUID
+     * @return the loaded user, or null if not found
      */
     @Nullable
     User loadUser(UUID uuid);
@@ -60,8 +60,8 @@ public interface Database {
     /**
      * Loads a user by their name synchronously.
      *
-     * @param name The user's name
-     * @return The loaded user, or null if not found
+     * @param name the user's name
+     * @return the loaded user, or null if not found
      */
     @Nullable
     User loadUser(String name);
@@ -69,8 +69,8 @@ public interface Database {
     /**
      * Loads a user by their internal ID synchronously.
      *
-     * @param id The user's internal ID
-     * @return The loaded user, or null if not found
+     * @param id the user's internal ID
+     * @return the loaded user, or null if not found
      */
     @Nullable
     User loadUser(int id);
@@ -78,8 +78,8 @@ public interface Database {
     /**
      * Loads a user by their UUID asynchronously.
      *
-     * @param uuid The user's UUID
-     * @return A CompletableFuture containing the loaded user, or null if not found
+     * @param uuid the user's UUID
+     * @return a completableFuture containing the loaded user, or null if not found
      */
     default CompletableFuture<@Nullable User> loadUserAsync(UUID uuid) {
         return CompletableFuture.supplyAsync(() -> loadUser(uuid));
@@ -88,8 +88,8 @@ public interface Database {
     /**
      * Loads a user by their Player object synchronously.
      *
-     * @param player The player
-     * @return The loaded user, or null if not found
+     * @param player the player
+     * @return the loaded user, or null if not found
      */
     @Nullable
     default User loadUser(Player player) {
@@ -99,8 +99,8 @@ public interface Database {
     /**
      * Loads a user by their Player object asynchronously.
      *
-     * @param player The player
-     * @return A CompletableFuture containing the loaded user, or null if not found
+     * @param player the player
+     * @return a completableFuture containing the loaded user, or null if not found
      */
     default CompletableFuture<@Nullable User> loadUserAsync(Player player) {
         return loadUserAsync(player.getUniqueId());
@@ -109,8 +109,8 @@ public interface Database {
     /**
      * Loads a user by their name asynchronously.
      *
-     * @param name The user's name
-     * @return A CompletableFuture containing the loaded user, or null if not found
+     * @param name the user's name
+     * @return a completableFuture containing the loaded user, or null if not found
      */
     default CompletableFuture<@Nullable User> loadUserAsync(String name) {
         return CompletableFuture.supplyAsync(() -> loadUser(name));
@@ -119,8 +119,8 @@ public interface Database {
     /**
      * Loads a user by their internal ID asynchronously.
      *
-     * @param id The user's internal ID
-     * @return A CompletableFuture containing the loaded user, or null if not found
+     * @param id the user's internal ID
+     * @return a completableFuture containing the loaded user, or null if not found
      */
     default CompletableFuture<@Nullable User> loadUserAsync(int id) {
         return CompletableFuture.supplyAsync(() -> loadUser(id));
@@ -129,9 +129,9 @@ public interface Database {
     /**
      * Creates a new user entry in the database.
      *
-     * @param uuid The user's UUID
-     * @param name The user's name
-     * @return The created user, or null if creation failed
+     * @param uuid the user's UUID
+     * @param name the user's name
+     * @return the created user, or null if creation failed
      */
     @Nullable
     User insertUser(UUID uuid, String name);
@@ -139,17 +139,17 @@ public interface Database {
     /**
      * Updates a user's name in the database.
      *
-     * @param user The user to update
-     * @param name The new name
+     * @param user the user to update
+     * @param name the new name
      */
     void updateName(User user, String name);
 
     /**
      * Updates a user's name in the database asynchronously.
      *
-     * @param user The user to update
-     * @param name The new name
-     * @return A CompletableFuture that completes when the update is done
+     * @param user the user to update
+     * @param name the new name
+     * @return a completableFuture that completes when the update is done
      */
     default CompletableFuture<Void> updateNameAsync(User user, String name) {
         return CompletableFuture.runAsync(() -> updateName(user, name));
@@ -158,15 +158,15 @@ public interface Database {
     /**
      * Updates a user's last seen timestamp in the database.
      *
-     * @param user The user to update
+     * @param user the user to update
      */
     void updateLastSeen(User user);
 
     /**
      * Updates a user's last seen timestamp in the database asynchronously.
      *
-     * @param user The user to update
-     * @return A CompletableFuture that completes when the update is done
+     * @param user the user to update
+     * @return a completableFuture that completes when the update is done
      */
     default CompletableFuture<Void> updateLastSeenAsync(User user) {
         return CompletableFuture.runAsync(() -> updateLastSeen(user));
@@ -179,9 +179,9 @@ public interface Database {
      * currently equipped cosmetic for the given category in persistent storage.
      * Any previously equipped cosmetic in the same category is automatically replaced.
      *
-     * @param user         The user whose equipped cosmetic should be updated
-     * @param cosmeticType The cosmetic type to store as equipped
-     * @return A {@link CompletableFuture} that completes with {@code true} if the operation succeeded,
+     * @param user         the user whose equipped cosmetic should be updated
+     * @param cosmeticType the cosmetic type to store as equipped
+     * @return a {@link CompletableFuture} that completes with {@code true} if the operation succeeded,
      * or {@code false} otherwise
      */
     CompletableFuture<Boolean> saveEquippedCosmeticAsync(User user, CosmeticType<?, ?> cosmeticType);
@@ -192,24 +192,42 @@ public interface Database {
      * This method does not directly unequip the cosmetic in-game, it only removes the stored
      * "equipped" record from persistent storage.
      *
-     * @param user     The user whose equipped cosmetic should be cleared
-     * @param category The cosmetic category to clear
-     * @return A {@link CompletableFuture} that completes with {@code true} if the operation succeeded,
+     * @param user     the user whose equipped cosmetic should be cleared
+     * @param category the cosmetic category to clear
+     * @return a {@link CompletableFuture} that completes with {@code true} if the operation succeeded,
      * or {@code false} otherwise
      */
     CompletableFuture<Boolean> removeEquippedCosmeticAsync(User user, CosmeticCategory<?, ?, ?> category);
 
+    /**
+     * Sets whether a user can see their own morph, persisting the value asynchronously to the database.
+     * On success, the user's self-view morph visibility is automatically updated on the main thread.
+     *
+     * @param user    the user whose self-view morph setting will be updated
+     * @param enabled {@code true} to enable self-view, {@code false} to disable it
+     * @return {@link CompletableFuture} that completes with {@code true} if the operation succeeded,
+     * or {@code false} otherwise
+     */
     CompletableFuture<Boolean> setSelfViewMorphAsync(User user, boolean enabled);
 
+    /**
+     * Sets whether a user can see their own status, persisting the value asynchronously to the database.
+     * On success, the user's self-view status is automatically updated on the main thread.
+     *
+     * @param user    the user whose self-view status setting will be updated
+     * @param enabled {@code true} to enable self-view, {@code false} to disable it
+     * @return {@link CompletableFuture} that completes with {@code true} if the operation succeeded,
+     * or {@code false} otherwise
+     */
     CompletableFuture<Boolean> setSelfViewStatusAsync(User user, boolean enabled);
 
     /**
      * Adds coins to a user's balance asynchronously.
      * On success, the user's in-memory balance is automatically updated on the main thread.
      *
-     * @param user   The user
-     * @param amount The amount to add
-     * @return A CompletableFuture containing a pair: success status and new balance from database
+     * @param user   the user
+     * @param amount the amount to add
+     * @return a completableFuture containing a pair: success status and new balance from database
      */
     CompletableFuture<BooleanIntPair> addCoinsAsync(User user, int amount);
 
@@ -218,9 +236,9 @@ public interface Database {
      * This operation only succeeds if the user has sufficient coins.
      * On success, the user's in-memory balance is automatically updated on the main thread.
      *
-     * @param user   The user
-     * @param amount The amount to remove
-     * @return A CompletableFuture containing a pair: success status and new balance from database
+     * @param user   the user
+     * @param amount the amount to remove
+     * @return a completableFuture containing a pair: success status and new balance from database
      */
     CompletableFuture<BooleanIntPair> removeCoinsAsync(User user, int amount);
 
@@ -229,9 +247,9 @@ public interface Database {
      * This operation fails if the amount is negative.
      * On success, the user's in-memory balance is automatically updated on the main thread.
      *
-     * @param user   The user
-     * @param amount The new balance (must be non-negative)
-     * @return A CompletableFuture containing a pair: success status and new balance from database
+     * @param user   the user
+     * @param amount the new balance (must be non-negative)
+     * @return a completableFuture containing a pair: success status and new balance from database
      */
     CompletableFuture<BooleanIntPair> setCoinsAsync(User user, int amount);
 
@@ -239,10 +257,10 @@ public interface Database {
      * Adds gadget ammunition to a user's inventory asynchronously.
      * On success, the user's in-memory ammo count is automatically updated on the main thread.
      *
-     * @param user       The user
-     * @param gadgetType The gadget type
-     * @param amount     The amount to add
-     * @return A CompletableFuture containing a pair: success status and new ammo count from database
+     * @param user       the user
+     * @param gadgetType the gadget type
+     * @param amount     the amount to add
+     * @return a completableFuture containing a pair: success status and new ammo count from database
      */
     CompletableFuture<BooleanIntPair> addGadgetAmmoAsync(User user, GadgetType gadgetType, int amount);
 
@@ -251,10 +269,10 @@ public interface Database {
      * This operation only succeeds if the user has sufficient ammunition.
      * On success, the user's in-memory ammo count is automatically updated on the main thread.
      *
-     * @param user       The user
-     * @param gadgetType The gadget type
-     * @param amount     The amount to remove
-     * @return A CompletableFuture containing a pair: success status and new ammo count from database
+     * @param user       the user
+     * @param gadgetType the gadget type
+     * @param amount     the amount to remove
+     * @return a completableFuture containing a pair: success status and new ammo count from database
      */
     CompletableFuture<BooleanIntPair> removeGadgetAmmoAsync(User user, GadgetType gadgetType, int amount);
 
@@ -263,10 +281,10 @@ public interface Database {
      * This operation fails if the amount is negative.
      * On success, the user's in-memory ammo count is automatically updated on the main thread.
      *
-     * @param user       The user
-     * @param gadgetType The gadget type
-     * @param amount     The new ammo count (must be non-negative)
-     * @return A CompletableFuture containing a pair: success status and new ammo count from database
+     * @param user       the user
+     * @param gadgetType the gadget type
+     * @param amount     the new ammo count (must be non-negative)
+     * @return a completableFuture containing a pair: success status and new ammo count from database
      */
     CompletableFuture<BooleanIntPair> setGadgetAmmoAsync(User user, GadgetType gadgetType, int amount);
 
@@ -274,10 +292,10 @@ public interface Database {
      * Adds treasure chests to a user's inventory asynchronously.
      * On success, the user's in-memory key count is automatically updated on the main thread.
      *
-     * @param user          The user
-     * @param treasureChest The treasure chest type
-     * @param amount        The amount to add
-     * @return A CompletableFuture containing a pair: success status and new key count from database
+     * @param user          the user
+     * @param treasureChest the treasure chest type
+     * @param amount        the amount to add
+     * @return a completableFuture containing a pair: success status and new key count from database
      */
     CompletableFuture<BooleanIntPair> addTreasureChestsAsync(User user, TreasureChest treasureChest, int amount);
 
@@ -286,10 +304,10 @@ public interface Database {
      * This operation only succeeds if the user has sufficient keys.
      * On success, the user's in-memory key count is automatically updated on the main thread.
      *
-     * @param user          The user
-     * @param treasureChest The treasure chest type
-     * @param amount        The amount to remove
-     * @return A CompletableFuture containing a pair: success status and new key count from database
+     * @param user          the user
+     * @param treasureChest the treasure chest type
+     * @param amount        the amount to remove
+     * @return a completableFuture containing a pair: success status and new key count from database
      */
     CompletableFuture<BooleanIntPair> removeTreasureChestsAsync(User user, TreasureChest treasureChest, int amount);
 
@@ -298,10 +316,10 @@ public interface Database {
      * This operation fails if the amount is negative.
      * On success, the user's in-memory key count is automatically updated on the main thread.
      *
-     * @param user          The user
-     * @param treasureChest The treasure chest type
-     * @param amount        The new key count (must be non-negative)
-     * @return A CompletableFuture containing a pair: success status and new key count from database
+     * @param user          the user
+     * @param treasureChest the treasure chest type
+     * @param amount        the new key count (must be non-negative)
+     * @return a completableFuture containing a pair: success status and new key count from database
      */
     CompletableFuture<BooleanIntPair> setTreasureChestsAsync(User user, TreasureChest treasureChest, int amount);
 

@@ -29,7 +29,7 @@ public interface Miniature extends Cosmetic<MiniatureType, MiniatureBehavior> {
     /**
      * Gets the NMS entity representing this miniature.
      *
-     * @return the NMS entity for this miniature
+     * @return the nMS entity for this miniature
      */
     NMSEntity getNMSEntity();
 }

@@ -48,7 +48,7 @@ public interface GeneratedLoot extends ResolvableName {
     /**
      * Gets the ItemStack representing this loot.
      *
-     * @return the ItemStack
+     * @return the itemStack
      */
     ItemStack getItemStack();
 

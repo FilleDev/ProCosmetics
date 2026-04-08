@@ -51,101 +51,98 @@ public interface ProCosmetics {
     /**
      * Gets the configuration manager for accessing plugin configs.
      *
-     * @return The configuration manager
+     * @return the configuration manager
      */
     ConfigManager getConfigManager();
 
     /**
      * Gets the language manager for translations and localization.
      *
-     * @return The language manager
+     * @return the language manager
      */
     LanguageManager getLanguageManager();
 
     /**
      * Gets the user manager for retrieving and managing users.
      *
-     * @return The user manager
+     * @return the user manager
      */
     UserManager getUserManager();
 
     /**
      * Gets the menu manager for GUI operations.
      *
-     * @return The menu manager
+     * @return the menu manager
      */
     MenuManager getMenuManager();
 
     /**
      * Gets the database instance for data persistence operations.
      *
-     * @return The database instance
+     * @return the database instance
      */
     Database getDatabase();
 
     /**
      * Gets the NMS manager for version-specific entity operations.
      *
-     * @return The NMS manager
+     * @return the nMS manager
      */
     NMSManager getNMSManager();
 
     /**
      * Gets the cosmetic rarity registry.
      *
-     * @return The cosmetic rarity registry
+     * @return the cosmetic rarity registry
      */
     CosmeticRarityRegistry getCosmeticRarityRegistry();
 
     /**
      * Gets the category registries containing all cosmetic categories.
      *
-     * @return The category registries
+     * @return the category registries
      */
     CategoryRegistries getCategoryRegistries();
 
     /**
      * Gets the animation registry for treasure chests.
      *
-     * @return The treasure chest animation registry
+     * @return the treasure chest animation registry
      */
     TreasureChestAnimationRegistry getTreasureChestAnimationRegistry();
 
     /**
      * Gets the treasure chest manager for loot operations.
      *
-     * @return The treasure chest manager
+     * @return the treasure chest manager
      */
     TreasureChestManager getTreasureChestManager();
 
     /**
      * Gets the economy manager for handling currency operations.
      *
-     * @return The economy manager
+     * @return the economy manager
      */
     EconomyManager getEconomyManager();
 
     /**
      * Gets the underlying Bukkit JavaPlugin instance.
      *
-     * @return The JavaPlugin instance
+     * @return the javaPlugin instance
      */
     JavaPlugin getJavaPlugin();
 
     /**
      * Gets an executor that runs tasks on the main server thread.
-     * Use this for operations that must be performed synchronously.
      *
-     * @return The synchronous executor
+     * @return the synchronous executor
      */
     Executor getSyncExecutor();
 
     /**
      * Gets an executor that runs tasks asynchronously off the main thread.
-     * Use this for operations that can be performed asynchronously, such as
-     * database operations or file I/O.
      *
-     * @return The asynchronous executor
+     * @return the asynchronous executor
      */
     Executor getAsyncExecutor();
 }

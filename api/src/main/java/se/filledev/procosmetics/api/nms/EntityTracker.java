@@ -42,21 +42,21 @@ public interface EntityTracker {
     /**
      * Adds an entity to this tracker.
      *
-     * @param nmsEntity The entity to add
+     * @param nmsEntity the entity to add
      */
     void addEntity(NMSEntity nmsEntity);
 
     /**
      * Removes an entity from this tracker.
      *
-     * @param nmsEntity The entity to remove
+     * @param nmsEntity the entity to remove
      */
     void removeEntity(NMSEntity nmsEntity);
 
     /**
      * Gets all entities managed by this tracker.
      *
-     * @return Immutable collection of entities
+     * @return immutable collection of entities
      */
     Collection<NMSEntity> getEntities();
 
@@ -78,7 +78,7 @@ public interface EntityTracker {
     /**
      * Checks if tracking is currently active.
      *
-     * @return True if tracking is active
+     * @return true if tracking is active
      */
     boolean isTracking();
 
@@ -90,14 +90,14 @@ public interface EntityTracker {
     /**
      * Gets all players currently viewing entities from this tracker.
      *
-     * @return Immutable collection of viewing players
+     * @return immutable collection of viewing players
      */
     Collection<Player> getViewers();
 
     /**
      * Manually adds a viewer to this tracker.
      *
-     * @param player The player to add as a viewer
+     * @param player the player to add as a viewer
      */
     void addViewer(Player player);
 
@@ -112,7 +112,7 @@ public interface EntityTracker {
     /**
      * Manually removes a viewer from this tracker.
      *
-     * @param player The player to remove as a viewer
+     * @param player the player to remove as a viewer
      */
     void removeViewer(Player player);
 
@@ -127,37 +127,37 @@ public interface EntityTracker {
     /**
      * Checks if a player is currently viewing entities from this tracker.
      *
-     * @param player The player to check
-     * @return True if the player is a viewer
+     * @param player the player to check
+     * @return true if the player is a viewer
      */
     boolean isViewer(Player player);
 
     /**
      * Adds a player to the anti-viewer list (prevents them from seeing entities).
      *
-     * @param player The player to add to the anti-viewer list
+     * @param player the player to add to the anti-viewer list
      */
     void addAntiViewer(Player player);
 
     /**
      * Removes a player from the anti-viewer list.
      *
-     * @param player The player to remove from the anti-viewer list
+     * @param player the player to remove from the anti-viewer list
      */
     void removeAntiViewer(Player player);
 
     /**
      * Checks if a player is in the anti-viewer list.
      *
-     * @param player The player to check
-     * @return True if the player is an anti-viewer
+     * @param player the player to check
+     * @return true if the player is an anti-viewer
      */
     boolean isAntiViewer(Player player);
 
     /**
      * Gets all anti-viewer UUIDs.
      *
-     * @return Collection of anti-viewer UUIDs
+     * @return collection of anti-viewer UUIDs
      */
     Collection<UUID> getAntiViewers();
 
@@ -170,14 +170,14 @@ public interface EntityTracker {
      * Sets the owner of this entity group.
      * Entities will only be visible to players who can see the owner.
      *
-     * @param owner The owner player, or null to remove owner restrictions
+     * @param owner the owner player, or null to remove owner restrictions
      */
     void setOwner(@Nullable Player owner);
 
     /**
      * Gets the current owner of this entity group.
      *
-     * @return The owner player, or null if no owner is set
+     * @return the owner player, or null if no owner is set
      */
     @Nullable
     Player getOwner();
@@ -185,7 +185,7 @@ public interface EntityTracker {
     /**
      * Gets the owner's UUID.
      *
-     * @return The owner's UUID, or null if no owner is set
+     * @return the owner's UUID, or null if no owner is set
      */
     @Nullable
     UUID getOwnerUUID();
@@ -193,42 +193,42 @@ public interface EntityTracker {
     /**
      * Sets the tracking range in blocks.
      *
-     * @param range The range in blocks
+     * @param range the range in blocks
      */
     void setTrackingRange(double range);
 
     /**
      * Gets the current tracking range.
      *
-     * @return The tracking range in blocks
+     * @return the tracking range in blocks
      */
     double getTrackingRange();
 
     /**
      * Sets the update interval in ticks.
      *
-     * @param interval The interval in ticks
+     * @param interval the interval in ticks
      */
     void setUpdateInterval(long interval);
 
     /**
      * Gets the current update interval.
      *
-     * @return The update interval in ticks
+     * @return the update interval in ticks
      */
     long getUpdateInterval();
 
     /**
      * Sets the start delay in ticks.
      *
-     * @param delay The delay in ticks
+     * @param delay the delay in ticks
      */
     void setStartDelay(long delay);
 
     /**
      * Gets the current start delay.
      *
-     * @return The start delay in ticks
+     * @return the start delay in ticks
      */
     long getStartDelay();
 
@@ -236,28 +236,28 @@ public interface EntityTracker {
      * Sets a custom visibility predicate for determining if a player should see entities.
      * This is evaluated in addition to standard range and anti-viewer checks.
      *
-     * @param predicate The visibility predicate, or null to remove custom rules
+     * @param predicate the visibility predicate, or null to remove custom rules
      */
     void setVisibilityPredicate(@Nullable Predicate<Player> predicate);
 
     /**
      * Sets a custom visibility predicate that considers both the potential viewer and owner.
      *
-     * @param predicate The visibility predicate, or null to remove custom rules
+     * @param predicate the visibility predicate, or null to remove custom rules
      */
     void setOwnerVisibilityPredicate(@Nullable BiPredicate<Player, Player> predicate);
 
     /**
      * Forces all entities to respawn at a new location.
      *
-     * @param location The new location
+     * @param location the new location
      */
     void respawnAt(Location location);
 
     /**
      * Gets the current tracking location (based on entities' positions).
      *
-     * @return The tracking location, or null if no entities are present
+     * @return the tracking location, or null if no entities are present
      */
     @Nullable
     Location getTrackingLocation();
@@ -265,7 +265,7 @@ public interface EntityTracker {
     /**
      * Schedules the tracker to be destroyed after a specified delay.
      *
-     * @param ticks The delay in ticks
+     * @param ticks the delay in ticks
      */
     void destroyAfter(int ticks);
 
@@ -282,48 +282,48 @@ public interface EntityTracker {
         /**
          * Sets the tracking range in blocks.
          *
-         * @param range The range in blocks
-         * @return This builder
+         * @param range the range in blocks
+         * @return this builder
          */
         Builder trackingRange(double range);
 
         /**
          * Sets the update interval in ticks.
          *
-         * @param interval The interval in ticks
-         * @return This builder
+         * @param interval the interval in ticks
+         * @return this builder
          */
         Builder updateInterval(long interval);
 
         /**
          * Sets the start delay in ticks.
          *
-         * @param delay The delay in ticks
-         * @return This builder
+         * @param delay the delay in ticks
+         * @return this builder
          */
         Builder startDelay(long delay);
 
         /**
          * Sets the owner of the entity group.
          *
-         * @param owner The owner player
-         * @return This builder
+         * @param owner the owner player
+         * @return this builder
          */
         Builder owner(@Nullable Player owner);
 
         /**
          * Sets a custom visibility predicate.
          *
-         * @param predicate The visibility predicate
-         * @return This builder
+         * @param predicate the visibility predicate
+         * @return this builder
          */
         Builder visibilityPredicate(@Nullable Predicate<Player> predicate);
 
         /**
          * Sets a custom owner visibility predicate.
          *
-         * @param predicate The owner visibility predicate
-         * @return This builder
+         * @param predicate the owner visibility predicate
+         * @return this builder
          */
         Builder ownerVisibilityPredicate(@Nullable BiPredicate<Player, Player> predicate);
 
@@ -331,7 +331,7 @@ public interface EntityTracker {
         /**
          * Builds the EntityTracker with the configured settings.
          *
-         * @return A new EntityTracker instance
+         * @return a new EntityTracker instance
          */
         EntityTracker build();
     }

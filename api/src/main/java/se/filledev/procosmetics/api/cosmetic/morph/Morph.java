@@ -30,7 +30,7 @@ public interface Morph extends Cosmetic<MorphType, MorphBehavior> {
     /**
      * Gets the NMS entity representing the morphed appearance.
      *
-     * @return the NMS entity for this morph
+     * @return the nMS entity for this morph
      */
     NMSEntity getNMSEntity();
 }

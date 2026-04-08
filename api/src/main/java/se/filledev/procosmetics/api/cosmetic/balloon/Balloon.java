@@ -40,7 +40,7 @@ public interface Balloon extends Cosmetic<BalloonType, BalloonBehavior> {
     /**
      * Gets the NMS entity representing the balloon itself.
      *
-     * @return the NMS entity for the balloon
+     * @return the nMS entity for the balloon
      */
     NMSEntity getNMSEntity();
 
