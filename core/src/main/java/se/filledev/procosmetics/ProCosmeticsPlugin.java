@@ -49,7 +49,6 @@ import se.filledev.procosmetics.listener.hook.premiumvanish.PremiumVanishListene
 import se.filledev.procosmetics.locale.LanguageManagerImpl;
 import se.filledev.procosmetics.menu.MenuManagerImpl;
 import se.filledev.procosmetics.nms.NMSManagerImpl;
-import se.filledev.procosmetics.packet.PacketManager;
 import se.filledev.procosmetics.placeholder.PlaceholderManager;
 import se.filledev.procosmetics.redis.RedisManager;
 import se.filledev.procosmetics.storage.DatabaseTypeProvider;
@@ -88,7 +87,6 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
     private TreasureChestAnimationRegistry treasureChestAnimationRegistry;
     private TreasureChestManagerImpl treasureChestManager;
     private MenuManagerImpl menuManager;
-    private PacketManager packetManager;
     private FakeBlockManager fakeBlockManager;
     private EconomyManagerImpl economyManager;
     private PlaceholderManager placeholderManager;
@@ -121,7 +119,6 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
         treasureChestAnimationRegistry = new TreasureChestAnimationRegistryImpl();
         treasureChestManager = new TreasureChestManagerImpl(this);
         menuManager = new MenuManagerImpl(this);
-        packetManager = new PacketManager(this);
         fakeBlockManager = new FakeBlockManager(this);
         economyManager = new EconomyManagerImpl(this);
         placeholderManager = new PlaceholderManager(this);
@@ -165,7 +162,6 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
         userManager.registerListeners();
         treasureChestManager.registerListeners();
         menuManager.registerListeners();
-        packetManager.registerListeners();
 
         registerListeners(new BlockListener(),
                 new CosmeticItemListener(this),
@@ -381,10 +377,6 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
     @Override
     public MenuManagerImpl getMenuManager() {
         return menuManager;
-    }
-
-    public PacketManager getPacketManager() {
-        return packetManager;
     }
 
     public FakeBlockManager getBlockRestoreManager() {
