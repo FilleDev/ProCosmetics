@@ -17,43 +17,14 @@
  */
 package se.filledev.procosmetics.v26_1;
 
-import io.netty.channel.Channel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.Connection;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.network.ServerCommonPacketListenerImpl;
 import net.minecraft.world.level.block.Blocks;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.CraftWorld;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.entity.Player;
 import se.filledev.procosmetics.nms.NMSUtilImpl;
-import se.filledev.procosmetics.util.ReflectionUtil;
-
-import java.lang.reflect.Field;
 
 public class NMSUtil extends NMSUtilImpl {
-
-    private static final Field NETWORK_FIELD = ReflectionUtil.getDeclaredField(ServerCommonPacketListenerImpl.class,
-            "connection");
-
-    @Override
-    public Channel getChannel(Player player) {
-        ServerPlayer serverPlayer = ((CraftPlayer) player).getHandle();
-
-        try {
-            Connection connection = (Connection) (NETWORK_FIELD.get(serverPlayer.connection));
-            return connection.channel;
-        } catch (IllegalAccessException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public int getPing(Player player) {
-        return player.getPing();
-    }
 
     @Override
     public void playChestAnimation(Block block, boolean open) {

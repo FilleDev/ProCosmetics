@@ -60,7 +60,7 @@ public class PlaceholderManager {
             text = placeholder.setPlaceholders(player, text);
         }
         text = text.replace("<coins>", String.valueOf(plugin.getEconomyManager().getEconomyProvider().getCoins(plugin.getUserManager().getConnected(player))))
-                .replace("<ping>", String.valueOf(plugin.getNMSManager().getNMSUtil().getPing(player)));
+                .replace("<ping>", String.valueOf(player.getPing()));
 
         return text;
     }
