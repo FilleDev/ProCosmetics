@@ -21,9 +21,9 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public abstract class AbstractPlaceholder {
+public abstract class PlaceholderResolver {
 
-    public abstract String setPlaceholders(Player player, String text);
+    public abstract String resolve(Player player, String text);
 
-    public abstract List<String> setPlaceholders(Player player, List<String> text);
+    public abstract List<String> resolve(Player player, List<String> text);
 }

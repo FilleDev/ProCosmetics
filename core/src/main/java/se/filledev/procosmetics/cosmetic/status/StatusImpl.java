@@ -108,7 +108,7 @@ public class StatusImpl extends CosmeticImpl<StatusType, StatusBehavior> impleme
     private void refreshText(boolean sendPacket) {
         String updatedTagText = SERIALIZER.serialize(cosmeticType.getTextProvider().apply(cosmeticType, user));
         // TODO: Find a better way for placeholders like this in the future
-        updatedTagText = plugin.getPlaceholderManager().setPlaceholders(player, updatedTagText);
+        updatedTagText = plugin.getPlaceholderManager().resolve(player, updatedTagText);
 
         if (nmsEntity.getBukkitEntity() instanceof TextDisplay textDisplay) {
             // Make sure it actually changed

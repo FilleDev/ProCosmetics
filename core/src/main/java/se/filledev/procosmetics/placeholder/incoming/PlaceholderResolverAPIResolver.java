@@ -19,19 +19,19 @@ package se.filledev.procosmetics.placeholder.incoming;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
-import se.filledev.procosmetics.placeholder.AbstractPlaceholder;
+import se.filledev.procosmetics.placeholder.PlaceholderResolver;
 
 import java.util.List;
 
-public class IN_PlaceholderAPI extends AbstractPlaceholder {
+public class PlaceholderResolverAPIResolver extends PlaceholderResolver {
 
     @Override
-    public String setPlaceholders(Player player, String text) {
+    public String resolve(Player player, String text) {
         return PlaceholderAPI.setPlaceholders(player, text);
     }
 
     @Override
-    public List<String> setPlaceholders(Player player, List<String> text) {
+    public List<String> resolve(Player player, List<String> text) {
         return PlaceholderAPI.setPlaceholders(player, text);
     }
 }
