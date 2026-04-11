@@ -35,7 +35,7 @@ public interface NMSManager {
      *
      * @param world      the world where the entity should be created
      * @param entityType the type of entity to create
-     * @return the created NMS entity implementation, or null if creation failed
+     * @return the created NMS entity implementation
      */
     NMSEntity createEntity(World world, EntityType entityType);
 
@@ -44,8 +44,8 @@ public interface NMSManager {
      *
      * @param world         the world where the entity should be created
      * @param entityType    the type of entity to create
-     * @param entityTracker the entity tracker to use, or null to use default
-     * @return the created NMS entity implementation, or null if creation failed
+     * @param entityTracker the entity tracker to use, or {@code null} to use the default tracker
+     * @return the created NMS entity implementation
      */
     NMSEntity createEntity(World world, EntityType entityType, EntityTracker entityTracker);
 
@@ -55,7 +55,7 @@ public interface NMSManager {
      * @param world         the world where the falling block should be created
      * @param blockData     the block data for the falling block
      * @param entityTracker the entity tracker to use
-     * @return the created falling block NMS entity, or null if creation failed
+     * @return the created falling block NMS entity
      */
     NMSEntity createFallingBlock(World world, BlockData blockData, EntityTracker entityTracker);
 
@@ -63,14 +63,14 @@ public interface NMSManager {
      * Converts a Bukkit entity to an NMS entity implementation.
      *
      * @param entity the Bukkit entity to convert
-     * @return the nMS entity implementation, or null if conversion failed
+     * @return the NMS entity implementation
      */
     NMSEntity entityToNMSEntity(Entity entity);
 
     /**
      * Gets the version-specific NMS utility implementation.
      *
-     * @return the nMS utility instance for this server version
+     * @return the NMS utility instance for this server version
      */
     NMSUtil getNMSUtil();
 }

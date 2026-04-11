@@ -112,7 +112,7 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
 
         configManager = new ConfigManagerImpl(this);
         languageManager = new LanguageManagerImpl(this);
-        nmsManager = new NMSManagerImpl(this);
+        nmsManager = new NMSManagerImpl();
         cosmeticRarityRegistry = new CosmeticRarityRegistryImpl(this);
         categoryRegistries = new CategoryRegistriesImpl(this);
         userManager = new UserManagerImpl(this);
