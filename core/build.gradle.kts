@@ -31,7 +31,7 @@ dependencies {
     implementation("net.kyori:adventure-platform-bukkit:4.4.1")
 
     // Plugin hooks
-    compileOnly("me.clip:placeholderapi:2.12.1")
+    compileOnly("me.clip:placeholderapi:2.12.2")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
     compileOnly("net.essentialsx:EssentialsX:2.21.2")
     {
