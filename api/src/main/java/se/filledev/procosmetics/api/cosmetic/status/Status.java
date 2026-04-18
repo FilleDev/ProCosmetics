@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ public interface Status extends Cosmetic<StatusType, StatusBehavior> {
     /**
      * Gets the NMS entity used to display the status text.
      *
-     * @return the NMS entity for this status display
+     * @return the nMS entity for this status display
      */
     NMSEntity getNMSEntity();
 }

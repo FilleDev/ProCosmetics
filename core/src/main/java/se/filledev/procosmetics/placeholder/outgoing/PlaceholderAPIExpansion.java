@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,17 +29,20 @@ import se.filledev.procosmetics.api.user.User;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class OUT_PlaceHolderAPI extends PlaceholderExpansion {
+public class PlaceholderAPIExpansion extends PlaceholderExpansion {
 
     private final ProCosmeticsPlugin plugin;
 
-    public OUT_PlaceHolderAPI(ProCosmeticsPlugin plugin) {
+    public PlaceholderAPIExpansion(ProCosmeticsPlugin plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public String onRequest(OfflinePlayer offlinePlayer, String identifier) {
         if (identifier.equals("coins")) {
+            if (offlinePlayer == null) {
+                return "0";
+            }
             User user = plugin.getUserManager().getConnected(offlinePlayer.getUniqueId());
 
             if (user == null) {
@@ -49,6 +52,9 @@ public class OUT_PlaceHolderAPI extends PlaceholderExpansion {
         } else if (identifier.contains("equipped_")) {
             for (CosmeticCategory<?, ?, ?> category : plugin.getCategoryRegistries().getCategories()) {
                 if (identifier.equals("equipped_" + category.getKey())) {
+                    if (offlinePlayer == null) {
+                        return "None";
+                    }
                     User user = plugin.getUserManager().getConnected(offlinePlayer.getUniqueId());
 
                     if (user == null) {
@@ -65,17 +71,25 @@ public class OUT_PlaceHolderAPI extends PlaceholderExpansion {
         } else if (identifier.contains("unlocked_")) {
             for (CosmeticCategory<?, ?, ?> category : plugin.getCategoryRegistries().getCategories()) {
                 if (identifier.equals("unlocked_" + category.getKey())) {
+                    int total = category.getCosmeticRegistry().getEnabledTypes().size();
+
+                    if (offlinePlayer == null) {
+                        return "0/" + total;
+                    }
                     Player player = offlinePlayer.getPlayer();
 
                     if (player == null) {
-                        return "0/0";
+                        return "0/" + total;
                     }
-                    return category.getUnlockedCosmetics(player) + "/" + category.getCosmeticRegistry().getEnabledTypes().size();
+                    return category.getUnlockedCosmetics(player) + "/" + total;
                 }
             }
         } else if (identifier.contains("treasures_")) {
             for (TreasureChest treasureChest : plugin.getTreasureChestManager().getTreasureChests()) {
                 if (identifier.equals("treasures_" + treasureChest.getKey())) {
+                    if (offlinePlayer == null) {
+                        return "0";
+                    }
                     User user = plugin.getUserManager().getConnected(offlinePlayer.getUniqueId());
 
                     if (user == null) {

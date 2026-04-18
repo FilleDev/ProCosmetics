@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ public interface ConfigManager {
      * Gets a registered config by name.
      *
      * @param name the name/path of the config
-     * @return the Config instance, or null if not found
+     * @return the config instance, or null if not found
      */
     @Nullable
     Config getConfig(String name);

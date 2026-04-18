@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package se.filledev.procosmetics.v1_21_10;
+package se.filledev.procosmetics.v26_1;
 
 import com.mojang.datafixers.util.Pair;
 import net.kyori.adventure.text.Component;
@@ -26,7 +26,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.animal.equine.Horse;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -40,12 +40,12 @@ import org.bukkit.Input;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.craftbukkit.v1_21_R6.CraftWorld;
-import org.bukkit.craftbukkit.v1_21_R6.block.data.CraftBlockData;
-import org.bukkit.craftbukkit.v1_21_R6.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_21_R6.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_21_R6.inventory.CraftItemStack;
-import org.bukkit.craftbukkit.v1_21_R6.util.CraftChatMessage;
+import org.bukkit.craftbukkit.CraftWorld;
+import org.bukkit.craftbukkit.block.data.CraftBlockData;
+import org.bukkit.craftbukkit.entity.CraftEntity;
+import org.bukkit.craftbukkit.entity.CraftPlayer;
+import org.bukkit.craftbukkit.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -74,7 +74,7 @@ public class NMSEntity extends NMSEntityImpl<Packet<? super ClientGamePacketList
 
     public NMSEntity(World world, CachedEntityType cachedEntityType, EntityTracker tracker) {
         super(world, cachedEntityType, tracker);
-        entity = ((net.minecraft.world.entity.EntityType<?>) cachedEntityType.getEntityTypeObject()).create(((CraftWorld) world).getHandle(), EntitySpawnReason.COMMAND);
+        entity = ((EntityType<?>) cachedEntityType.getEntityTypeObject()).create(((CraftWorld) world).getHandle(), EntitySpawnReason.COMMAND);
     }
 
     public NMSEntity(World world, BlockData blockData, EntityTracker tracker) {

@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ public interface GeneratedLoot extends ResolvableName {
     /**
      * Gets the ItemStack representing this loot.
      *
-     * @return the ItemStack
+     * @return the itemStack
      */
     ItemStack getItemStack();
 

@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -127,11 +127,7 @@ public class UserManagerImpl implements UserManager {
                 cached.invalidate(uuid);
                 cachedIds.invalidate(user.getDatabaseId());
                 connected.put(uuid, user);
-
-                if (player.getGameMode() != GameMode.SPECTATOR) {
-                    user.equipSavedCosmetics(true);
-                    plugin.getDatabase().updateLastSeenAsync(user);
-                }
+                plugin.getDatabase().updateLastSeenAsync(user);
             }
         }
 
@@ -142,6 +138,16 @@ public class UserManagerImpl implements UserManager {
 
             if (user != null) {
                 user.clearAllCosmetics(true, false);
+            }
+        }
+
+        @EventHandler(priority = EventPriority.HIGH)
+        private void onLateJoin(PlayerJoinEvent event) {
+            Player player = event.getPlayer();
+            User user = getConnected(player);
+
+            if (user != null && player.getGameMode() != GameMode.SPECTATOR) {
+                user.equipSavedCosmetics(true);
             }
         }
     }

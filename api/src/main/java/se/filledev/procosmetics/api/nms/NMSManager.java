@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,37 +33,37 @@ public interface NMSManager {
      * Creates an NMS entity in the specified world with the given entity type.
      * Uses a default EntityTracker implementation.
      *
-     * @param world      The world where the entity should be created
-     * @param entityType The type of entity to create
-     * @return The created NMS entity implementation, or null if creation failed
+     * @param world      the world where the entity should be created
+     * @param entityType the type of entity to create
+     * @return the created NMS entity implementation
      */
     NMSEntity createEntity(World world, EntityType entityType);
 
     /**
      * Creates an NMS entity in the specified world with the given entity type and tracker.
      *
-     * @param world         The world where the entity should be created
-     * @param entityType    The type of entity to create
-     * @param entityTracker The entity tracker to use, or null to use default
-     * @return The created NMS entity implementation, or null if creation failed
+     * @param world         the world where the entity should be created
+     * @param entityType    the type of entity to create
+     * @param entityTracker the entity tracker to use, or {@code null} to use the default tracker
+     * @return the created NMS entity implementation
      */
     NMSEntity createEntity(World world, EntityType entityType, EntityTracker entityTracker);
 
     /**
      * Creates a falling block entity with the specified block data.
      *
-     * @param world         The world where the falling block should be created
-     * @param blockData     The block data for the falling block
-     * @param entityTracker The entity tracker to use
-     * @return The created falling block NMS entity, or null if creation failed
+     * @param world         the world where the falling block should be created
+     * @param blockData     the block data for the falling block
+     * @param entityTracker the entity tracker to use
+     * @return the created falling block NMS entity
      */
     NMSEntity createFallingBlock(World world, BlockData blockData, EntityTracker entityTracker);
 
     /**
      * Converts a Bukkit entity to an NMS entity implementation.
      *
-     * @param entity The Bukkit entity to convert
-     * @return The NMS entity implementation, or null if conversion failed
+     * @param entity the Bukkit entity to convert
+     * @return the NMS entity implementation
      */
     NMSEntity entityToNMSEntity(Entity entity);
 

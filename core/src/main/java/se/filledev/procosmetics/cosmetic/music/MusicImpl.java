@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ public class MusicImpl extends CosmeticImpl<MusicType, MusicBehavior> implements
 
     private final boolean discoFloor;
     private PositionSongPlayer songPlayer;
-    private final EntityTracker tracker = new EntityTrackerImpl();
+    private final EntityTracker entityTracker = new EntityTrackerImpl();
     private NMSEntity armorStand;
     private NMSEntity jukebox;
     private NMSEntity discoBall;
@@ -128,7 +128,8 @@ public class MusicImpl extends CosmeticImpl<MusicType, MusicBehavior> implements
         createJukebox(location);
         createDiscoBall(location);
         spawnFirework(location);
-        tracker.startTracking();
+        entityTracker.setOwner(player);
+        entityTracker.startTracking();
 
         songPlayer = new PositionSongPlayer(cosmeticType.getSong(), SoundCategory.RECORDS);
         songPlayer.setTargetLocation(location);
@@ -196,7 +197,7 @@ public class MusicImpl extends CosmeticImpl<MusicType, MusicBehavior> implements
             songPlayer.destroy();
             songPlayer = null;
         }
-        tracker.destroy();
+        entityTracker.destroy();
 
         if (discoFloor) {
             for (int i = 0; i < 2; i++) {
@@ -248,7 +249,7 @@ public class MusicImpl extends CosmeticImpl<MusicType, MusicBehavior> implements
     }
 
     private void createDJ(Location location) {
-        armorStand = plugin.getNMSManager().createEntity(location.getWorld(), EntityType.ARMOR_STAND, tracker);
+        armorStand = plugin.getNMSManager().createEntity(location.getWorld(), EntityType.ARMOR_STAND, entityTracker);
         armorStand.setHelmet(new ItemBuilderImpl(Material.PLAYER_HEAD).setSkullOwner(player).getItemStack());
         armorStand.setChestplate(DJ_CHESTPLATE.getItemStack());
         armorStand.setLeggings(DJ_LEGGINGS.getItemStack());
@@ -264,7 +265,7 @@ public class MusicImpl extends CosmeticImpl<MusicType, MusicBehavior> implements
     }
 
     private void createJukebox(Location location) {
-        jukebox = plugin.getNMSManager().createEntity(location.getWorld(), EntityType.BLOCK_DISPLAY, tracker);
+        jukebox = plugin.getNMSManager().createEntity(location.getWorld(), EntityType.BLOCK_DISPLAY, entityTracker);
         jukebox.setPositionRotation(location);
 
         if (jukebox.getBukkitEntity() instanceof BlockDisplay blockDisplay) {
@@ -281,7 +282,7 @@ public class MusicImpl extends CosmeticImpl<MusicType, MusicBehavior> implements
     }
 
     private void createDiscoBall(Location location) {
-        discoBall = plugin.getNMSManager().createEntity(location.getWorld(), EntityType.ITEM_DISPLAY, tracker);
+        discoBall = plugin.getNMSManager().createEntity(location.getWorld(), EntityType.ITEM_DISPLAY, entityTracker);
 
         if (discoBall.getBukkitEntity() instanceof ItemDisplay itemDisplay) {
             itemDisplay.setItemStack(DISCO_BALL);

@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ public class EconomyManagerImpl implements EconomyManager {
 
     private final ProCosmeticsPlugin plugin;
     private EconomyType type;
-    private EconomyProvider economy;
+    private static EconomyProvider economy;
     private boolean shouldHook;
 
     public EconomyManagerImpl(ProCosmeticsPlugin plugin) {
@@ -54,6 +54,7 @@ public class EconomyManagerImpl implements EconomyManager {
 
     @Override
     public void register(EconomyProvider economyProvider) {
+        type = EconomyType.CUSTOM;
         economy = economyProvider;
         plugin.getLogger().log(Level.INFO, "Successfully hooked into the " + economy.getPlugin() + " economy.");
     }

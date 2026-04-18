@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,10 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package se.filledev.procosmetics.util.mapping;
+package se.filledev.procosmetics.placeholder.incoming;
 
-public enum MappingType {
+import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.entity.Player;
+import se.filledev.procosmetics.placeholder.PlaceholderResolver;
 
-    SPIGOT,
-    MOJANG;
+import java.util.List;
+
+public class PlaceholderResolverAPIResolver extends PlaceholderResolver {
+
+    @Override
+    public String resolve(Player player, String text) {
+        return PlaceholderAPI.setPlaceholders(player, text);
+    }
+
+    @Override
+    public List<String> resolve(Player player, List<String> text) {
+        return PlaceholderAPI.setPlaceholders(player, text);
+    }
 }

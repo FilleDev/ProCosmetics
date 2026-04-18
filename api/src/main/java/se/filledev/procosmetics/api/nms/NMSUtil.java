@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,30 +17,12 @@
  */
 package se.filledev.procosmetics.api.nms;
 
-import io.netty.channel.Channel;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 
 /**
  * Provides version-specific NMS utility methods.
  */
 public interface NMSUtil {
-
-    /**
-     * Gets the netty channel for the given player's connection.
-     *
-     * @param player the player
-     * @return the channel, or null if unavailable
-     */
-    Channel getChannel(Player player);
-
-    /**
-     * Gets the ping of the given player in milliseconds.
-     *
-     * @param player the player
-     * @return the ping in milliseconds
-     */
-    int getPing(Player player);
 
     /**
      * Plays a chest animation at the given block.

@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ public interface Miniature extends Cosmetic<MiniatureType, MiniatureBehavior> {
     /**
      * Gets the NMS entity representing this miniature.
      *
-     * @return the NMS entity for this miniature
+     * @return the nMS entity for this miniature
      */
     NMSEntity getNMSEntity();
 }

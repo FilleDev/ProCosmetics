@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,7 @@ import java.util.List;
 
 public enum BukkitVersion {
 
-    v1_21_10("1.21.9", "1.21.10"),
-    v1_21_11("1.21.11");
+    v26_1("26.1", "26.1.1");
 
     private final List<String> supportedMinorVersions;
 

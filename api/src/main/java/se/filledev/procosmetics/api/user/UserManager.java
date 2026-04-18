@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,15 +40,15 @@ public interface UserManager {
     /**
      * Gets all currently connected users.
      *
-     * @return An immutable collection of all online users
+     * @return an immutable collection of all online users
      */
     Collection<? extends User> getAllConnected();
 
     /**
      * Gets a connected user by their UUID.
      *
-     * @param uuid The user's UUID
-     * @return The connected user, or null if not online
+     * @param uuid the user's UUID
+     * @return the connected user, or null if not online
      */
     @Nullable
     User getConnected(@Nullable UUID uuid);
@@ -56,8 +56,8 @@ public interface UserManager {
     /**
      * Gets a connected user by their Player object.
      *
-     * @param player The player
-     * @return The connected user, or null if player is null or not online
+     * @param player the player
+     * @return the connected user, or null if player is null or not online
      */
     @Nullable
     default User getConnected(@Nullable Player player) {
@@ -71,8 +71,8 @@ public interface UserManager {
      * Gets a connected user by their name (case-insensitive).
      * This method iterates through all connected users.
      *
-     * @param name The user's name
-     * @return The connected user, or null if name is null or user is not online
+     * @param name the user's name
+     * @return the connected user, or null if name is null or user is not online
      */
     @Nullable
     default User getConnected(@Nullable String name) {
@@ -92,8 +92,8 @@ public interface UserManager {
      * Gets a connected user by their internal database ID.
      * This method iterates through all connected users.
      *
-     * @param id The user's database ID
-     * @return The connected user, or null if not online
+     * @param id the user's database ID
+     * @return the connected user, or null if not online
      */
     @Nullable
     default User getConnected(int id) {
@@ -109,8 +109,8 @@ public interface UserManager {
      * Gets a user by their UUID from connected users or cache.
      * This checks online users first, then falls back to recently cached offline users.
      *
-     * @param uuid The user's UUID
-     * @return The user if connected or cached, or null otherwise
+     * @param uuid the user's UUID
+     * @return the user if connected or cached, or null otherwise
      */
     @Nullable
     User getConnectedOrCached(@Nullable UUID uuid);
@@ -118,8 +118,8 @@ public interface UserManager {
     /**
      * Gets a user by their Player object from connected users or cache.
      *
-     * @param player The player
-     * @return The user if connected or cached, or null if player is null or user not found
+     * @param player the player
+     * @return the user if connected or cached, or null if player is null or user not found
      */
     @Nullable
     default User getConnectedOrCached(@Nullable Player player) {
@@ -132,8 +132,8 @@ public interface UserManager {
     /**
      * Gets a user by their name from connected users or cache.
      *
-     * @param name The user's name
-     * @return The user if connected or cached, or null otherwise
+     * @param name the user's name
+     * @return the user if connected or cached, or null otherwise
      */
     @Nullable
     User getConnectedOrCached(@Nullable String name);
@@ -141,8 +141,8 @@ public interface UserManager {
     /**
      * Gets a user by their database ID from connected users or cache.
      *
-     * @param id The user's database ID
-     * @return The user if connected or cached, or null otherwise
+     * @param id the user's database ID
+     * @return the user if connected or cached, or null otherwise
      */
     @Nullable
     User getConnectedOrCached(int id);
@@ -152,8 +152,8 @@ public interface UserManager {
      * This checks memory first, then loads from the database if not found.
      * <b>Warning:</b> This method blocks the current thread during database access.
      *
-     * @param uuid The user's UUID
-     * @return The user, or null if not found in database
+     * @param uuid the user's UUID
+     * @return the user, or null if not found in database
      */
     @Nullable
     User get(@Nullable UUID uuid);
@@ -163,8 +163,8 @@ public interface UserManager {
      * This checks memory first, then loads from the database if not found.
      * <b>Warning:</b> This method blocks the current thread during database access.
      *
-     * @param name The user's name
-     * @return The user, or null if not found in database
+     * @param name the user's name
+     * @return the user, or null if not found in database
      */
     @Nullable
     User get(@Nullable String name);
@@ -174,8 +174,8 @@ public interface UserManager {
      * This checks memory first, then loads from the database if not found.
      * <b>Warning:</b> This method blocks the current thread during database access.
      *
-     * @param id The user's database ID
-     * @return The user, or null if not found in database
+     * @param id the user's database ID
+     * @return the user, or null if not found in database
      */
     @Nullable
     User get(int id);
@@ -184,8 +184,8 @@ public interface UserManager {
      * Gets a user by their UUID asynchronously, loading from database if necessary.
      * This checks memory first, then loads from the database if not found.
      *
-     * @param uuid The user's UUID
-     * @return A CompletableFuture containing the user, or null if not found in database
+     * @param uuid the user's UUID
+     * @return a completableFuture containing the user, or null if not found in database
      */
     CompletableFuture<@Nullable User> getAsync(@Nullable UUID uuid);
 
@@ -193,8 +193,8 @@ public interface UserManager {
      * Gets a user by their name asynchronously, loading from database if necessary.
      * This checks memory first, then loads from the database if not found.
      *
-     * @param name The user's name
-     * @return A CompletableFuture containing the user, or null if not found in database
+     * @param name the user's name
+     * @return a completableFuture containing the user, or null if not found in database
      */
     CompletableFuture<@Nullable User> getAsync(@Nullable String name);
 
@@ -202,8 +202,8 @@ public interface UserManager {
      * Gets a user by their database ID asynchronously, loading from database if necessary.
      * This checks memory first, then loads from the database if not found.
      *
-     * @param id The user's database ID
-     * @return A CompletableFuture containing the user, or null if not found in database
+     * @param id the user's database ID
+     * @return a completableFuture containing the user, or null if not found in database
      */
     CompletableFuture<@Nullable User> getAsync(int id);
 }

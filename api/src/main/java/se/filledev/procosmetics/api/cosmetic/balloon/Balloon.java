@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ public interface Balloon extends Cosmetic<BalloonType, BalloonBehavior> {
     /**
      * Gets the NMS entity representing the balloon itself.
      *
-     * @return the NMS entity for the balloon
+     * @return the nMS entity for the balloon
      */
     NMSEntity getNMSEntity();
 
