@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,17 +44,17 @@ public interface Menu {
     /**
      * Sets an item in the specified slot with a click handler.
      *
-     * @param slot      The inventory slot (0-based)
-     * @param itemStack The item to place in the slot
-     * @param clickable The click handler for this item
+     * @param slot      the inventory slot (0-based)
+     * @param itemStack the item to place in the slot
+     * @param clickable the click handler for this item
      */
     void setItem(int slot, ItemStack itemStack, ClickableItem clickable);
 
     /**
      * Gets the click handler for a specific slot.
      *
-     * @param slot The inventory slot to check
-     * @return The clickable handler, or null if no handler exists
+     * @param slot the inventory slot to check
+     * @return the clickable handler, or null if no handler exists
      */
     @Nullable
     ClickableItem getClickableSlot(int slot);
@@ -62,7 +62,7 @@ public interface Menu {
     /**
      * Removes an item from the specified slot.
      *
-     * @param slot The inventory slot to clear
+     * @param slot the inventory slot to clear
      */
     void removeItem(int slot);
 
@@ -82,8 +82,8 @@ public interface Menu {
     /**
      * Fills empty slots in the inventory with a specific item.
      *
-     * @param inventory The inventory to fill
-     * @param itemStack The item to use for filling
+     * @param inventory the inventory to fill
+     * @param itemStack the item to use for filling
      */
     void fillEmptySlots(Inventory inventory, ItemStack itemStack);
 
@@ -105,35 +105,35 @@ public interface Menu {
     /**
      * Gets the user associated with this menu.
      *
-     * @return The user object
+     * @return the user object
      */
     User getUser();
 
     /**
      * Gets the player associated with this menu.
      *
-     * @return The player object
+     * @return the player object
      */
     Player getPlayer();
 
     /**
      * Gets the title of the menu.
      *
-     * @return The menu title
+     * @return the menu title
      */
     Component getTitle();
 
     /**
      * Gets the number of rows in the menu.
      *
-     * @return The number of rows (1-6)
+     * @return the number of rows (1-6)
      */
     int getRows();
 
     /**
      * Gets the total size of the menu (rows * 9).
      *
-     * @return The total number of slots
+     * @return the total number of slots
      */
     int getSize();
 
@@ -152,14 +152,14 @@ public interface Menu {
     /**
      * Sets the previous menu for navigation purposes.
      *
-     * @param previousMenu The menu to return to
+     * @param previousMenu the menu to return to
      */
     void setPreviousMenu(Menu previousMenu);
 
     /**
      * Gets the previous menu, if any.
      *
-     * @return The previous menu, or null if none exists
+     * @return the previous menu, or null if none exists
      */
     @Nullable
     Menu getPreviousMenu();
@@ -168,8 +168,8 @@ public interface Menu {
      * Attempts to set a "back" button item that opens the previous menu.
      * If no previous menu exists, this method does nothing.
      *
-     * @param slot      The slot to place the back button
-     * @param itemStack The item to use as the back button
+     * @param slot      the slot to place the back button
+     * @param itemStack the item to use as the back button
      */
     void trySetPreviousMenuItem(int slot, ItemStack itemStack);
 }

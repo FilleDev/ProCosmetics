@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ public class StatusTypeImpl extends CosmeticTypeImpl<StatusType, StatusBehavior>
         public StatusType.Builder readFromConfig() {
             super.readFromConfig();
 
-            refreshInterval = category.getConfig().getInt("refresh_interval");
+            refreshInterval = category.getConfig().getInt(getPath() + "refresh_interval");
             textProvider = (statusType, user) -> user.translate(
                     "cosmetic." + category.getKey() + "." + key + ".tag",
                     Placeholder.unparsed("name", statusType.getName(user))

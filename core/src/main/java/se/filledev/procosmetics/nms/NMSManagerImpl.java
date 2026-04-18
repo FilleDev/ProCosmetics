@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,23 +28,21 @@ import se.filledev.procosmetics.api.nms.NMSManager;
 import se.filledev.procosmetics.nms.entitytype.CachedEntityType;
 import se.filledev.procosmetics.nms.entitytype.EntityTypeRegistry;
 import se.filledev.procosmetics.util.ReflectionUtil;
+import se.filledev.procosmetics.util.version.VersionUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
 
 public class NMSManagerImpl implements NMSManager {
 
-    private final ProCosmeticsPlugin plugin;
     private final Constructor<?> nmsEntityConstructor;
     private final Constructor<?> nmsFallingBlockConstructor;
     private final Constructor<?> realEntityConstructor;
     private final Constructor<?> nmsEquipmentConstructor;
-    private NMSUtilImpl nmsUtil;
+    private final NMSUtilImpl nmsUtil;
 
-    public NMSManagerImpl(ProCosmeticsPlugin plugin) {
-        this.plugin = plugin;
-        String path = ReflectionUtil.VERSION_CLASS_PATH;
+    public NMSManagerImpl() {
+        String path = ProCosmeticsPlugin.class.getPackage().getName() + "." + VersionUtil.VERSION.toString() + ".";
         Class<?> packetEntityClass = ReflectionUtil.getClass(path + "NMSEntity");
         Class<?> equipmentClass = ReflectionUtil.getClass(path + "NMSEquipment");
 
@@ -57,57 +55,60 @@ public class NMSManagerImpl implements NMSManager {
             nmsUtil = (NMSUtilImpl) ReflectionUtil.getClass(path + "NMSUtil").getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
                  InvocationTargetException e) {
-            plugin.getLogger().log(Level.SEVERE, "Failed to instantiate NMSUtil. ", e);
+            throw new IllegalStateException("Failed to instantiate NMSUtil.", e);
+        }
+
+        if (nmsEntityConstructor == null
+                || nmsFallingBlockConstructor == null
+                || realEntityConstructor == null
+                || nmsEquipmentConstructor == null) {
+            throw new IllegalStateException("Could not find constructors for NMS classes.");
         }
     }
 
     @Override
-    public NMSEntityImpl createEntity(World world, EntityType entityType) {
+    public NMSEntityImpl<?> createEntity(World world, EntityType entityType) {
         return createEntity(world, entityType, null);
     }
 
     @Override
-    public NMSEntityImpl createEntity(World world, EntityType entityType, EntityTracker entityTracker) {
+    public NMSEntityImpl<?> createEntity(World world, EntityType entityType, EntityTracker entityTracker) {
         if (entityTracker == null) {
             entityTracker = new EntityTrackerImpl();
         }
         CachedEntityType nmsEntityType = EntityTypeRegistry.getCachedEntityType(entityType);
 
         try {
-            return (NMSEntityImpl) nmsEntityConstructor.newInstance(world, nmsEntityType, entityTracker);
+            return (NMSEntityImpl<?>) nmsEntityConstructor.newInstance(world, nmsEntityType, entityTracker);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            plugin.getLogger().log(Level.WARNING, "Failed to create NMS entity for type " + entityType.name() + ".", e);
+            throw new RuntimeException("Failed to create NMS entity for type " + entityType.name(), e);
         }
-        return null;
     }
 
     @Override
-    public NMSEntityImpl createFallingBlock(World world, BlockData blockData, EntityTracker entityTracker) {
+    public NMSEntityImpl<?> createFallingBlock(World world, BlockData blockData, EntityTracker entityTracker) {
         try {
-            return (NMSEntityImpl) nmsFallingBlockConstructor.newInstance(world, blockData, entityTracker);
+            return (NMSEntityImpl<?>) nmsFallingBlockConstructor.newInstance(world, blockData, entityTracker);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            plugin.getLogger().log(Level.WARNING, "Failed to create NMS falling block entity.", e);
+            throw new RuntimeException("Failed to create NMS falling block entity.", e);
         }
-        return null;
     }
 
     @Override
-    public NMSEntityImpl entityToNMSEntity(Entity entity) {
+    public NMSEntityImpl<?> entityToNMSEntity(Entity entity) {
         try {
-            return (NMSEntityImpl) realEntityConstructor.newInstance(entity);
+            return (NMSEntityImpl<?>) realEntityConstructor.newInstance(entity);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            plugin.getLogger().log(Level.WARNING, "Failed to convert entity " + entity.getType().name() + " to NMS entity.", e);
+            throw new RuntimeException("Failed to convert entity " + entity.getType().name() + " to NMS entity.", e);
         }
-        return null;
     }
 
     public AbstractNMSEquipment<?> createEquipment(Player player, boolean tracker) {
         try {
             return (AbstractNMSEquipment<?>) nmsEquipmentConstructor.newInstance(player, tracker);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            plugin.getLogger().log(Level.WARNING, "Failed to setup NMS equipment for player " + player.getName() + ".", e);
+            throw new RuntimeException("Failed to setup NMS equipment for player " + player.getName() + ".", e);
         }
-        return null;
     }
 
     @Override

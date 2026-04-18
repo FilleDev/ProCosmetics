@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,6 +69,7 @@ public class MorphImpl extends CosmeticImpl<MorphType, MorphBehavior> implements
         }
         nmsEntity.setPositionRotation(player.getLocation(location));
         behavior.setupEntity(this, nmsEntity);
+        nmsEntity.getTracker().setOwner(player);
         nmsEntity.getTracker().startTracking();
 
         player.setInvisible(true);

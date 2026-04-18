@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -147,13 +147,7 @@ public class EntityTrackerImpl extends AbstractRunnable implements EntityTracker
 
     @Override
     public void removeViewer(Player player) {
-        if (viewers.remove(player)) {
-            Collection<Player> players = Collections.singleton(player);
-
-            for (NMSEntity entity : entities) {
-                entity.despawn(players);
-            }
-        }
+        removeViewers(Collections.singleton(player));
     }
 
     @Override
@@ -161,12 +155,11 @@ public class EntityTrackerImpl extends AbstractRunnable implements EntityTracker
         if (players.isEmpty()) {
             return;
         }
-        viewers.removeAll(players);
-
         // Despawn all entities for these viewers in batch
         for (NMSEntity entity : entities) {
             entity.despawn(players);
         }
+        viewers.removeAll(players);
     }
 
     @Override

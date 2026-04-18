@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ public final class ProCosmeticsProvider {
     /**
      * Gets the ProCosmetics API instance.
      *
-     * @return The ProCosmetics instance
+     * @return the ProCosmetics instance
      * @throws IllegalStateException if ProCosmetics has not been registered yet
      */
     public static ProCosmetics get() {

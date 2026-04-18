@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -281,7 +281,8 @@ public class UserImpl implements User {
 
     @Override
     public void equipSavedCosmetics(boolean silent) {
-        for (Cosmetic<?, ?> cosmeticCategory : cosmetics.values()) {
+        // We want to make a copy of the list as some cosmetics onEquip can unequip other categories
+        for (Cosmetic<?, ?> cosmeticCategory : List.copyOf(cosmetics.values())) {
             if (!cosmeticCategory.isEquipped()) {
                 cosmeticCategory.equip(silent, false);
             }
@@ -299,7 +300,7 @@ public class UserImpl implements User {
 
     @Override
     public void unequipCosmetics(boolean silent, boolean saveToDatabase) {
-        for (CosmeticCategory<?, ?, ?> cosmeticCategory : cosmetics.keySet()) {
+        for (CosmeticCategory<?, ?, ?> cosmeticCategory : List.copyOf(cosmetics.keySet())) {
             unequipCosmetic(cosmeticCategory, silent, saveToDatabase);
         }
     }

@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -129,7 +129,7 @@ public class CosmeticMenuImpl<T extends CosmeticType<T, ?>> extends PaginatedMen
         }
 
         // Add go back button
-        if (goBackItem != null && getPreviousMenu() != null) {
+        if (goBackItem != null) {
             String path = "menu.items.go_back.on_click.";
             String command = category.getConfig().getString(path + "command")
                     .replace("<player>", player.getName())
@@ -139,7 +139,7 @@ public class CosmeticMenuImpl<T extends CosmeticType<T, ?>> extends PaginatedMen
             goBackItem.setDisplayName(user.translate("menu." + category.getKey() + ".go_back.name"));
             goBackItem.setLore(user.translateList(
                     "menu." + category.getKey() + ".go_back.desc",
-                    Placeholder.component("menu", getPreviousMenu().getTitle())
+                    Placeholder.component("menu", getPreviousMenu() == null ? Component.empty() : getPreviousMenu().getTitle())
             ));
 
             if (command.isEmpty()) {

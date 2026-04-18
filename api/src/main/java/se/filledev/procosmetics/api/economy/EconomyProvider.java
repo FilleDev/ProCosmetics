@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -109,7 +109,7 @@ public interface EconomyProvider {
      *
      * @param user   the user to add coins to
      * @param amount the amount of coins to add
-     * @return a CompletableFuture containing true if the operation was successful
+     * @return a completableFuture containing true if the operation was successful
      */
     CompletableFuture<Boolean> addCoinsAsync(User user, int amount);
 

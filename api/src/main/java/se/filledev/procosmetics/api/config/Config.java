@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ public interface Config {
     /**
      * Checks if a configuration key exists.
      *
-     * @param key The configuration key to check
+     * @param key the configuration key to check
      * @return true if the key exists, false otherwise
      */
     boolean hasKey(String key);
@@ -38,80 +38,80 @@ public interface Config {
     /**
      * Gets a boolean value from the configuration.
      *
-     * @param key The configuration key
-     * @return The boolean value from config or false if not found
+     * @param key the configuration key
+     * @return the boolean value from config or false if not found
      */
     boolean getBoolean(String key);
 
     /**
      * Gets a string value from the configuration.
      *
-     * @param key The configuration key
-     * @return The processed string value from config or "missing-string" if not found
+     * @param key the configuration key
+     * @return the processed string value from config or "missing-string" if not found
      */
     String getString(String key);
 
     /**
      * Gets an integer value from the configuration.
      *
-     * @param key The configuration key
-     * @return The integer value from config or 1 if not found
+     * @param key the configuration key
+     * @return the integer value from config or 1 if not found
      */
     int getInt(String key);
 
     /**
      * Gets a double value from the configuration.
      *
-     * @param key The configuration key
-     * @return The double value from config or 1.0 if not found
+     * @param key the configuration key
+     * @return the double value from config or 1.0 if not found
      */
     double getDouble(String key);
 
     /**
      * Gets a list of strings from the configuration.
      *
-     * @param key The configuration key
-     * @return The string list from config or empty list if not found
+     * @param key the configuration key
+     * @return the string list from config or empty list if not found
      */
     List<String> getStringList(String key);
 
     /**
      * Gets a generic list from the configuration.
      *
-     * @param key The configuration key
-     * @return The generic list from config or default config if not found
+     * @param key the configuration key
+     * @return the generic list from config or default config if not found
      */
     List<?> getGenericList(String key);
 
     /**
      * Gets a list of maps from the configuration.
      *
-     * @param key The configuration key
-     * @return The list of maps from config or empty list if not found
+     * @param key the configuration key
+     * @return the list of maps from config or empty list if not found
      */
     List<Map<?, ?>> getMapList(String key);
 
     /**
      * Gets the keys of a configuration section.
      *
-     * @param key The configuration key
-     * @return The configuration section keys from config or empty set if not found
+     * @param key the configuration key
+     * @return the configuration section keys from config or empty set if not found
      */
     Set<String> getSectionKeys(String key);
 
     /**
      * Gets the values of a configuration section as a map.
      *
-     * @param key The configuration key
-     * @return The configuration section values from config or empty map if not found
+     * @param key the configuration key
+     * @return the configuration section values from config or empty map if not found
      */
     Map<String, Object> getSectionValues(String key);
 
     /**
      * Sets a configuration value.
      *
-     * @param key   The configuration key
-     * @param value The value to set
+     * @param key   the configuration key
+     * @param value the value to set
      */
     void set(String key, Object value);
 
@@ -126,14 +126,14 @@ public interface Config {
     /**
      * Gets the configuration file.
      *
-     * @return The file of the config instance
+     * @return the file of the config instance
      */
     File getFile();
 
     /**
      * Gets the configuration version.
      *
-     * @return The version number
+     * @return the version number
      */
     int getVersion();
 

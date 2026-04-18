@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ public class MiniatureImpl extends CosmeticImpl<MiniatureType, MiniatureBehavior
     @Override
     protected void onEquip() {
         spawnEntity();
-        runTaskTimerAsynchronously(plugin, 0L, 1L);
+        runTaskTimer(plugin, 0L, 1L);
     }
 
     @Override
@@ -132,6 +132,7 @@ public class MiniatureImpl extends CosmeticImpl<MiniatureType, MiniatureBehavior
             configureDisplayEntity(display);
         }
         behavior.setupEntity(this, entity);
+        entity.getTracker().setOwner(player);
         entity.getTracker().startTracking();
     }
 

@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,12 +79,16 @@ public class HypeTrain implements MountBehavior, Listener {
 
         if (entity instanceof BlockDisplay blockDisplay) {
             setProperties(blockDisplay, BLOCK_DATA);
-            entity.addPassenger(player);
 
             carriagesByPlayers.put(player, new TrainData(nmsEntity, player));
             carriages.add(blockDisplay);
         }
         train = entity;
+    }
+
+    @Override
+    public void postSetupEntity(CosmeticContext<MountType> context, Entity entity, NMSEntity nmsEntity) {
+        entity.addPassenger(context.getPlayer());
     }
 
     @Override

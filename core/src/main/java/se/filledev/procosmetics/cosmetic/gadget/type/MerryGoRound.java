@@ -1,6 +1,6 @@
 /*
  * This file is part of ProCosmetics - https://github.com/FilleDev/ProCosmetics
- * Copyright (C) 2025 FilleDev and contributors
+ * Copyright (C) 2025-2026 FilleDev and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
@@ -43,13 +43,11 @@ import se.filledev.procosmetics.util.MetadataUtil;
 import se.filledev.procosmetics.util.RGBFade;
 import se.filledev.procosmetics.util.structure.type.BlockStructureImpl;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Map;
 
 public class MerryGoRound implements GadgetBehavior, Listener {
-
-    public static final List<CoasterHorse> COASTER_HORSES = new CopyOnWriteArrayList<>();
 
     private static final ItemStack SADDLE_ITEM = new ItemStack(Material.SADDLE);
     private static final List<Horse.Color> HORSE_COLORS = List.of(Horse.Color.values());
@@ -63,7 +61,7 @@ public class MerryGoRound implements GadgetBehavior, Listener {
     private BlockStructure structure;
     private float tick;
     private final EntityTracker tracker = new EntityTrackerImpl();
-    private final List<CoasterHorse> coasterHorses = new ArrayList<>();
+    private final Map<Horse, CoasterHorse> coasterHorses = new LinkedHashMap<>();
     private final RGBFade rgbFade = new RGBFade();
     private Location center;
     private float speed;
@@ -89,19 +87,25 @@ public class MerryGoRound implements GadgetBehavior, Listener {
             Location leashLoc = location.clone().add(0.0d, LEASH_Y_OFFSET, 0.0d);
             location.setY(getYOffset(i));
 
-            ArmorStand armorStand = location.getWorld().spawn(location, ArmorStand.class, entity -> {
+            ItemDisplay itemDisplay = location.getWorld().spawn(location, ItemDisplay.class, entity -> {
                 entity.setGravity(false);
-                entity.setVisible(false);
-
+                entity.setTeleportDuration(2);
                 MetadataUtil.setCustomEntity(entity);
             });
-            NMSEntity nmsEntityArmorStand = context.getPlugin().getNMSManager().entityToNMSEntity(armorStand);
 
-            NMSEntity nmsEntityHorse = context.getPlugin().getNMSManager().createEntity(world, EntityType.HORSE, tracker);
-            Horse horse = ((Horse) nmsEntityHorse.getBukkitEntity());
-            horse.getInventory().setSaddle(SADDLE_ITEM);
-            horse.setColor(HORSE_COLORS.get(i % HORSE_COLORS.size()));
-            nmsEntityHorse.setPositionRotation(location);
+            // Note: The preferred approach would be to use PlayerInteractUnknownEntityEvent and keep the horses client-sided.
+            // Since this event is not available in Spigot (Paper-only), the horses must remain server-sided for now.
+            int finalI = i;
+            Horse horse = location.getWorld().spawn(location, Horse.class, entity -> {
+                entity.setColor(HORSE_COLORS.get(finalI % HORSE_COLORS.size()));
+                entity.setAI(false);
+                entity.setInvulnerable(true);
+                entity.getInventory().setSaddle(SADDLE_ITEM);
+                MetadataUtil.setCustomEntity(entity);
+            });
+            horse.addPassenger(itemDisplay);
+            NMSEntity nmsEntityHorse = context.getPlugin().getNMSManager().entityToNMSEntity(horse);
+            NMSEntity nmsEntityItemDisplay = context.getPlugin().getNMSManager().entityToNMSEntity(itemDisplay);
 
             NMSEntity nmsEntityLeash = context.getPlugin().getNMSManager().createEntity(world, EntityType.BAT, tracker);
             nmsEntityLeash.setPositionRotation(leashLoc);
@@ -109,9 +113,8 @@ public class MerryGoRound implements GadgetBehavior, Listener {
             if (nmsEntityLeash.getBukkitEntity() instanceof LivingEntity livingEntity) {
                 livingEntity.setInvisible(true);
             }
-            CoasterHorse coasterHorse = new CoasterHorse(nmsEntityHorse, nmsEntityArmorStand, nmsEntityLeash);
-            coasterHorses.add(coasterHorse);
-            COASTER_HORSES.add(coasterHorse);
+            CoasterHorse coasterHorse = new CoasterHorse(nmsEntityHorse, nmsEntityItemDisplay, nmsEntityLeash);
+            coasterHorses.put(horse, coasterHorse);
         }
         tracker.startTracking();
 
@@ -148,11 +151,10 @@ public class MerryGoRound implements GadgetBehavior, Listener {
         if (center == null) {
             return;
         }
-
-        for (int i = 0; i < coasterHorses.size(); i++) {
-            CoasterHorse coasterHorse = coasterHorses.get(i);
+        int i = 0;
+        for (Map.Entry<?, CoasterHorse> entry : coasterHorses.entrySet()) {
+            CoasterHorse coasterHorse = entry.getValue();
             NMSEntity nmsHorse = coasterHorse.horse();
-            NMSEntity nmsArmorStand = coasterHorse.armorStand();
             NMSEntity nmsLeash = coasterHorse.leash();
 
             float angle = FastMathUtil.toRadians(ANGLE_PER_HORSE * i + tick);
@@ -164,12 +166,11 @@ public class MerryGoRound implements GadgetBehavior, Listener {
 
             location.setY(getYOffset(angle));
             nmsHorse.sendPositionRotationPacket(location);
-            location.setY(location.getY() - 0.3d);
-            nmsArmorStand.setPositionRotation(location);
 
             location.getWorld().spawnParticle(Particle.DUST, location.add(0.0d, 1.0d, 0.0d), 5, 0, 0, 0, 0.0d,
                     new Particle.DustOptions(org.bukkit.Color.fromRGB(rgbFade.getR(), rgbFade.getG(), rgbFade.getB()), 1)
             );
+            i++;
         }
 
         if (speed < MAX_SPEED) {
@@ -177,10 +178,11 @@ public class MerryGoRound implements GadgetBehavior, Listener {
         }
         rgbFade.nextRGB();
 
-        if (tick >= 360) {
+        tick += speed;
+
+        if (tick > 360) {
             tick = 0;
         }
-        tick += speed;
     }
 
     @Override
@@ -189,16 +191,16 @@ public class MerryGoRound implements GadgetBehavior, Listener {
 
         tracker.destroy();
 
-        for (CoasterHorse coasterHorse : coasterHorses) {
-            coasterHorse.armorStand().getBukkitEntity().remove();
-            COASTER_HORSES.remove(coasterHorse);
+        for (CoasterHorse coasterHorse : coasterHorses.values()) {
+            coasterHorse.display().getBukkitEntity().remove();
+            coasterHorse.horse().getBukkitEntity().remove();
         }
         coasterHorses.clear();
     }
 
     @Override
     public boolean requiresGroundOnUse() {
-        return false;
+        return true;
     }
 
     @Override
@@ -212,19 +214,20 @@ public class MerryGoRound implements GadgetBehavior, Listener {
     }
 
     @EventHandler
-    public void onQuit(PlayerQuitEvent event) {
-        if (event.getPlayer().getVehicle() instanceof ArmorStand vehicle) {
-            for (CoasterHorse coasterHorse : coasterHorses) {
-                Entity armorStand = coasterHorse.armorStand().getBukkitEntity();
+    public void onInteract(PlayerInteractEntityEvent event) {
+        if (event.getRightClicked() instanceof Horse horse) {
+            CoasterHorse coasterHorse = coasterHorses.get(horse);
 
-                if (vehicle == armorStand) {
-                    armorStand.eject();
-                    break;
+            if (coasterHorse != null) {
+                Entity display = coasterHorse.display().getBukkitEntity();
+
+                if (display.getPassengers().isEmpty()) {
+                    display.addPassenger(event.getPlayer());
                 }
             }
         }
     }
 
-    public record CoasterHorse(NMSEntity horse, NMSEntity armorStand, NMSEntity leash) {
+    public record CoasterHorse(NMSEntity horse, NMSEntity display, NMSEntity leash) {
     }
 }

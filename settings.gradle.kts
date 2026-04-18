@@ -1,6 +1,5 @@
 rootProject.name = "ProCosmetics"
 
-include("v1_21_11")
-include("v1_21_10")
+include("v26_1")
 include("core")
 include("api")
