@@ -31,16 +31,16 @@ tasks.processResources {
 // Configure shadow jar
 tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set("")
+
+    // Relocate libs that are not exposed in the API module
     val basePackage = "se.filledev.procosmetics.libs"
 
     val relocations = mapOf(
         "dev.dejvokep.boostedyaml" to "boostedyaml",
-        "com.xxmicloxx.NoteBlockAPI" to "noteblockapi",
         "com.zaxxer.hikari" to "hikari",
         "com.mongodb" to "mongodb",
         "redis.clients" to "jedis",
-        "org.bstats" to "bstats",
-        "net.kyori" to "adventure"
+        "org.bstats" to "bstats"
     )
     relocations.forEach { (from, to) -> relocate(from, "$basePackage.$to") }
 }
