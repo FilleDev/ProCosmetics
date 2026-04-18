@@ -1,5 +1,5 @@
 plugins {
-    id("java")
+    id("java-library")
     id("signing")
     id("com.vanniktech.maven.publish") version "0.36.0"
 }
@@ -7,10 +7,8 @@ plugins {
 group = "se.filledev"
 version = "2.0.0"
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(25))
-    }
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
 }
 
 repositories {
@@ -21,20 +19,34 @@ dependencies {
     // Spigot API
     compileOnly("org.spigotmc:spigot-api:26.1.1-R0.1-SNAPSHOT")
 
-    compileOnly("net.kyori:adventure-api:4.26.1")
-    compileOnly("net.kyori:adventure-text-minimessage:4.26.1")
-    compileOnly("it.unimi.dsi:fastutil:8.5.18")
-    compileOnly("io.netty:netty-handler:4.2.10.Final")
+    compileOnlyApi("net.kyori:adventure-api:4.26.1")
+    compileOnlyApi("net.kyori:adventure-text-minimessage:4.26.1")
+    compileOnlyApi("it.unimi.dsi:fastutil:8.5.18")
 
     // Annotations
-    compileOnly("org.jetbrains:annotations:26.0.2-1")
+    compileOnlyApi("org.jetbrains:annotations:26.0.2-1")
 
     // NoteBlockAPI
     compileOnly("com.github.FilleDev:NoteBlockAPI:1c5500b038")
+
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "reposilite"
+            url = uri("https://repo.filledev.se/releases")
+
+            credentials {
+                username = providers.gradleProperty("reposiliteUsername").get()
+                password = providers.gradleProperty("reposiliteToken").get()
+            }
+        }
+    }
 }
 
 mavenPublishing {
-    publishToMavenCentral()
+    //publishToMavenCentral()
 
     signAllPublications()
 
@@ -46,7 +58,7 @@ mavenPublishing {
 
     pom {
         name.set("ProCosmetics API")
-        description.set("A cosmetics plugin for Minecraft servers.")
+        description.set("Public API for the ProCosmetics Minecraft plugin.")
         url.set("https://github.com/FilleDev/ProCosmetics")
 
         licenses {
