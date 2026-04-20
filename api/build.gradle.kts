@@ -24,7 +24,7 @@ dependencies {
     compileOnlyApi("it.unimi.dsi:fastutil:8.5.18")
 
     // Annotations
-    compileOnlyApi("org.jetbrains:annotations:26.0.2-1")
+    compileOnlyApi("org.jetbrains:annotations:26.1.0")
 
     // NoteBlockAPI
     compileOnly("com.github.FilleDev:NoteBlockAPI:1c5500b038")
