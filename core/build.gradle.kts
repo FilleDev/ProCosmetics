@@ -15,7 +15,7 @@ dependencies {
 
     // Project dependencies
     implementation(project(":api"))
-    compileOnly("org.jetbrains:annotations:26.0.2-1")
+    compileOnly("org.jetbrains:annotations:26.1.0")
 
     // Runtime libraries (will be shaded)
     implementation("dev.dejvokep:boosted-yaml:1.3.7")
