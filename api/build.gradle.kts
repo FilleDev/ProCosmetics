@@ -19,8 +19,8 @@ dependencies {
     // Spigot API
     compileOnly("org.spigotmc:spigot-api:26.1.1-R0.1-SNAPSHOT")
 
-    compileOnlyApi("net.kyori:adventure-api:4.26.1")
-    compileOnlyApi("net.kyori:adventure-text-minimessage:4.26.1")
+    compileOnlyApi("net.kyori:adventure-api:5.0.1")
+    compileOnlyApi("net.kyori:adventure-text-minimessage:5.0.1")
     compileOnlyApi("it.unimi.dsi:fastutil:8.5.18")
 
     // Annotations
