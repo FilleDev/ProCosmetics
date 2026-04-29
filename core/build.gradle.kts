@@ -24,7 +24,7 @@ dependencies {
     implementation("com.zaxxer:HikariCP:7.0.2")
     implementation("redis.clients:jedis:7.2.1")
     implementation("org.bstats:bstats-bukkit:3.2.1")
-    compileOnly("org.xerial:sqlite-jdbc:3.50.3.0") // Included in Spigot
+    compileOnly("org.xerial:sqlite-jdbc:3.53.0.0") // Included in Spigot
 
     implementation("net.kyori:adventure-api:5.0.1")
     implementation("net.kyori:adventure-text-minimessage:5.0.1")
