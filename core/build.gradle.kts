@@ -22,7 +22,7 @@ dependencies {
     implementation("com.github.FilleDev:NoteBlockAPI:1c5500b038")
     implementation("org.mongodb:mongodb-driver-sync:5.6.3")
     implementation("com.zaxxer:HikariCP:7.0.2")
-    implementation("redis.clients:jedis:7.2.1")
+    implementation("redis.clients:jedis:7.5.0")
     implementation("org.bstats:bstats-bukkit:3.2.1")
     compileOnly("org.xerial:sqlite-jdbc:3.50.3.0") // Included in Spigot
 
