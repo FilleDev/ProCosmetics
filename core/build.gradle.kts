@@ -20,7 +20,7 @@ dependencies {
     // Runtime libraries (will be shaded)
     implementation("dev.dejvokep:boosted-yaml:1.3.7")
     implementation("com.github.FilleDev:NoteBlockAPI:1c5500b038")
-    implementation("org.mongodb:mongodb-driver-sync:5.6.3")
+    implementation("org.mongodb:mongodb-driver-sync:5.6.5")
     implementation("com.zaxxer:HikariCP:7.0.2")
     implementation("redis.clients:jedis:7.2.1")
     implementation("org.bstats:bstats-bukkit:3.2.1")
