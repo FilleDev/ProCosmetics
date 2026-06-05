@@ -61,8 +61,8 @@ public class TreasureChestPlatformImpl implements TreasureChestPlatform {
 
         // We need to do this because the center can have a yaw set
         Location chestLocation = center.clone();
-        chestLocation.setPitch(0.0f);
         chestLocation.setYaw(0.0f);
+        chestLocation.setPitch(0.0f);
 
         addChestLocations(
                 chestLocation.clone().add(-1.0d, 0.0d, -3.0d),

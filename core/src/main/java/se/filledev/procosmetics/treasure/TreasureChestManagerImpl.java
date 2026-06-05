@@ -114,7 +114,7 @@ public class TreasureChestManagerImpl implements TreasureChestManager {
                 plugin.getLogger().log(Level.WARNING, "Invalid or missing location for treasure chest platform " + id + ". Skipping.");
                 continue;
             }
-            platforms.put(id, new TreasureChestPlatformImpl(plugin, id, location, namedStructureData));
+            platforms.put(id, new TreasureChestPlatformImpl(plugin, id, LocationUtil.center(location), namedStructureData));
         }
     }
 
