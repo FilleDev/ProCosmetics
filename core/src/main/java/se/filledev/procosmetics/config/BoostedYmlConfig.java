@@ -61,26 +61,38 @@ public class BoostedYmlConfig implements Config {
             // Get resource from plugin jar
             String resourceName = resourcePath.endsWith(".yml") ? resourcePath : resourcePath + ".yml";
 
+            // Defaults must not be used here. Example:
+            // If the default config defines treasure_chests.legendary, but a server owner
+            // removes "legendary" from their config file, enabling defaults would cause
+            // it to still appear as if the chest exists.
+            GeneralSettings settings = GeneralSettings.builder()
+                    .setUseDefaults(false)
+                    .setDefaultBoolean(false)
+                    .setDefaultString("missing-string")
+                    .setDefaultNumber(0)
+                    .setDefaultList(ArrayList::new)
+                    .setDefaultSet(LinkedHashSet::new)
+                    .setDefaultMap(LinkedHashMap::new)
+                    .build();
+
             try (InputStream defaultResource = plugin.getResource(resourceName)) {
                 if (defaultResource == null) {
-                    plugin.getLogger().log(Level.SEVERE, "Default resource not found: " + resourceName);
+                    // Load existing file without default resource
+                    if (file.exists()) {
+                        document = YamlDocument.create(
+                                file,
+                                settings,
+                                LoaderSettings.builder()
+                                        .setAutoUpdate(false)
+                                        .build(),
+                                DumperSettings.DEFAULT
+                        );
+                    } else {
+                        plugin.getLogger().log(Level.SEVERE, "Cannot load config: default resource missing and file does not exist: " + resourceName);
+                    }
                     return;
                 }
-                // Defaults must not be used here. Example:
-                // If the default config defines treasure_chests.legendary, but a server owner
-                // removes "legendary" from their config file, enabling defaults would cause
-                // it to still appear as if the chest exists.
-                GeneralSettings settings = GeneralSettings.builder()
-                        .setUseDefaults(false)
-                        .setDefaultBoolean(false)
-                        .setDefaultString("missing-string")
-                        .setDefaultNumber(0)
-                        .setDefaultList(ArrayList::new)
-                        .setDefaultSet(LinkedHashSet::new)
-                        .setDefaultMap(LinkedHashMap::new)
-                        .build();
-
-                // Create document
+                // Create document with default resource
                 document = YamlDocument.create(
                         file,
                         defaultResource,
