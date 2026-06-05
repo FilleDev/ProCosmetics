@@ -22,7 +22,7 @@ import java.util.List;
 
 public enum BukkitVersion {
 
-    v26_1("26.1", "26.1.1");
+    v26_1("26.1", "26.1.1", "26.1.2");
 
     private final List<String> supportedMinorVersions;
 
