@@ -37,7 +37,7 @@ dependencies {
     {
         exclude(group = "io.papermc.paper")
     }
-    compileOnly("com.github.Zrips:CMI-API:9.7.14.3")
+    compileOnly("com.github.Zrips:CMI-API:9.8.6.4")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.17-SNAPSHOT")
     compileOnly("org.black_ixx:playerpoints:3.3.3")
     compileOnly("com.github.LeonMangler:SuperVanish:6.2.19")
