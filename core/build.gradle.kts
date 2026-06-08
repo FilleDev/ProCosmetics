@@ -26,8 +26,8 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.2.1")
     compileOnly("org.xerial:sqlite-jdbc:3.53.1.0") // Included in Spigot
 
-    implementation("net.kyori:adventure-api:5.0.1")
-    implementation("net.kyori:adventure-text-minimessage:5.0.1")
+    implementation("net.kyori:adventure-api:5.1.1")
+    implementation("net.kyori:adventure-text-minimessage:5.1.1")
     implementation("net.kyori:adventure-platform-bukkit:4.4.1")
 
     // Plugin hooks
