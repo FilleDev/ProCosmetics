@@ -3,7 +3,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     java
-    id("com.gradleup.shadow") version "9.3.1"
+    id("com.gradleup.shadow") version "9.4.2"
     id("com.diffplug.spotless") version "8.6.0"
 }
 
