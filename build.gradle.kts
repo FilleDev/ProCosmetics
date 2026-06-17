@@ -4,7 +4,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 plugins {
     java
     id("com.gradleup.shadow") version "9.4.2"
-    id("com.diffplug.spotless") version "8.6.0"
+    id("com.diffplug.spotless") version "8.7.0"
 }
 
 group = "se.filledev"
