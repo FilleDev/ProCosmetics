@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "se.filledev"
-version = "2.0.0"
+version = "2.0.1"
 
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
