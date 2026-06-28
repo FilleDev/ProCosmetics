@@ -47,6 +47,12 @@ public interface PlatformAdapter {
      */
     Audience audience(CommandSender commandSender);
 
+    /**
+     * Sets the text of a text display entity.
+     *
+     * @param textDisplay the text display to set the text on
+     * @param component   the text to set
+     */
     void setText(TextDisplay textDisplay, Component component);
 
     /**

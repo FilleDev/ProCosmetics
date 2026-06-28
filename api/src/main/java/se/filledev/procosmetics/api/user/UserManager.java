@@ -29,7 +29,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * <p>Access patterns:
  * <ul>
- *   <li><b>Connecting</b> - Only returns users currently in the process of connecting (pre-login)</li
+ *   <li><b>Connecting</b> - Only returns users currently in the process of connecting (pre-login)</li>
  *   <li><b>Connected</b> - Only returns users currently online</li>
  *   <li><b>ConnectedOrCached</b> - Returns online users or recently cached offline users</li>
  *   <li><b>Get</b> - Loads from database if not found in memory (synchronous)</li>
