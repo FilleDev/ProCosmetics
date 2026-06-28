@@ -29,6 +29,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/**
+ * Platform abstraction layer for Adventure component operations across different server implementations.
+ *
+ * @see Audience
+ * @see Component
+ */
 public interface PlatformAdapter {
 
     /**
