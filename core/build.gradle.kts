@@ -27,12 +27,12 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.2.1")
     compileOnly("org.xerial:sqlite-jdbc:3.53.2.0") // Included in Spigot
 
-    implementation("net.kyori:adventure-api:4.26.1")
-    implementation("net.kyori:adventure-text-minimessage:4.26.1")
-    implementation("net.kyori:adventure-text-serializer-json:4.26.1")
-    implementation("net.kyori:adventure-text-serializer-gson:4.26.1")
-    implementation("net.kyori:adventure-text-serializer-legacy:4.26.1")
-    implementation("net.kyori:adventure-text-serializer-plain:4.26.1")
+    implementation("net.kyori:adventure-api:5.2.0")
+    implementation("net.kyori:adventure-text-minimessage:5.2.0")
+    implementation("net.kyori:adventure-text-serializer-json:5.2.0")
+    implementation("net.kyori:adventure-text-serializer-gson:5.2.0")
+    implementation("net.kyori:adventure-text-serializer-legacy:5.2.0")
+    implementation("net.kyori:adventure-text-serializer-plain:5.2.0")
 
     // Plugin hooks
     compileOnly("me.clip:placeholderapi:2.12.2")
