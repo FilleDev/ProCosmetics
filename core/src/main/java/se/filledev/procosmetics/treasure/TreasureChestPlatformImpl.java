@@ -21,7 +21,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import se.filledev.procosmetics.ProCosmeticsPlugin;
-import se.filledev.procosmetics.api.locale.LanguageManager;
 import se.filledev.procosmetics.api.treasure.TreasureChestPlatform;
 import se.filledev.procosmetics.api.user.User;
 import se.filledev.procosmetics.api.util.structure.type.BlockStructure;
@@ -85,7 +84,7 @@ public class TreasureChestPlatformImpl implements TreasureChestPlatform {
         if (hologram == null) {
             hologram = new Hologram(center.clone().add(0.0d, -0.2d, 0.0d));
             hologram.addLines(
-                    plugin.getLanguageManager().renderList("treasure_chest.platform.hologram", LanguageManager.DEFAULT_LOCALE), // use default for now
+                    plugin.getLanguageManager().renderList("treasure_chest.platform.hologram", plugin.getLanguageManager().getLocale()), // use default for now
                     Spacing.SMALL
             );
         }
