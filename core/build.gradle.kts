@@ -6,6 +6,7 @@ repositories {
     maven("https://ci.ender.zone/plugin/repository/everything/")
     maven("https://repo.rosewooddev.io/repository/public/")
     maven("https://maven.enginehub.org/repo/") // WorldGuard
+    maven("https://jitpack.io") // SuperVanish
 }
 
 dependencies {
@@ -20,7 +21,7 @@ dependencies {
 
     // Runtime libraries (will be shaded)
     implementation("dev.dejvokep:boosted-yaml:1.3.7")
-    implementation("com.github.FilleDev:NoteBlockAPI:1c5500b038")
+    implementation("com.github.FilleDev:NoteBlockAPI:1.7.0")
     implementation("org.mongodb:mongodb-driver-sync:5.8.0")
     implementation("com.zaxxer:HikariCP:7.1.0")
     implementation("redis.clients:jedis:7.5.2")

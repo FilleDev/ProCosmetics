@@ -58,7 +58,7 @@ tasks.named<Jar>("jar") {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven("https://jitpack.io")
+    maven("https://repo.filledev.se/releases")
 }
 
 dependencies {
@@ -74,7 +74,7 @@ subprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven("https://jitpack.io")
+        maven("https://repo.filledev.se/releases")
 
         // Spigot
         maven("https://oss.sonatype.org/content/repositories/snapshots")

@@ -27,8 +27,7 @@ dependencies {
     compileOnlyApi("org.jetbrains:annotations:26.1.0")
 
     // NoteBlockAPI
-    compileOnly("com.github.FilleDev:NoteBlockAPI:1c5500b038")
-
+    compileOnly("com.github.FilleDev:NoteBlockAPI:1.7.0")
 }
 
 publishing {
