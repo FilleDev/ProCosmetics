@@ -40,7 +40,7 @@ public class CoinsLootImpl extends LootEntryImpl<RangedIntProvider> implements C
     }
 
     @Override
-    public GeneratedLoot generate() {
+    public GeneratedLoot generate(Player player) {
         return new GeneratedCoinsLoot(this, intProvider.get());
     }
 

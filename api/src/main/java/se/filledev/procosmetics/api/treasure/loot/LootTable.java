@@ -17,6 +17,7 @@
  */
 package se.filledev.procosmetics.api.treasure.loot;
 
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 import se.filledev.procosmetics.api.cosmetic.CosmeticRarity;
 
@@ -30,11 +31,15 @@ public interface LootTable {
 
     /**
      * Rolls for a random loot entry based on weighted random selection.
+     * <p>
+     * Cosmetics the player already owns are excluded from the roll when
+     * {@link DuplicateHandling#PREVENT} is configured.
      *
+     * @param player the player the loot is rolled for, or {@code null} to roll without a player
      * @return a randomly selected loot entry, or null if no entries are available
      */
     @Nullable
-    LootEntry rollLoot();
+    LootEntry rollLoot(@Nullable Player player);
 
     /**
      * Calculates the percentage chance of obtaining a specific loot entry.

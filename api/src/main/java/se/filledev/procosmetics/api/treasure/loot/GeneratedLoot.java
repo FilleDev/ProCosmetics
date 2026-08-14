@@ -17,6 +17,7 @@
  */
 package se.filledev.procosmetics.api.treasure.loot;
 
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import se.filledev.procosmetics.api.cosmetic.CosmeticRarity;
@@ -27,7 +28,6 @@ import se.filledev.procosmetics.api.util.ResolvableName;
  * Represents a generated instance of loot from a {@link LootEntry}.
  *
  * @see LootEntry
- * @see LootEntry#generate()
  */
 public interface GeneratedLoot extends ResolvableName {
 
@@ -65,6 +65,29 @@ public interface GeneratedLoot extends ResolvableName {
      * @return the loot category
      */
     LootCategory getCategory();
+
+    /**
+     * Gets the translation key used for the hologram shown above the opened chest.
+     *
+     * @return the hologram translation key
+     */
+    default String getHologramTranslationKey() {
+        return "treasure_chest.open.hologram";
+    }
+
+    /**
+     * Gets additional resolvers for the hologram shown above the opened chest.
+     * <p>
+     * These are applied on top of the resolvers the animation always provides
+     * ({@code loot}, {@code category} and the rarity resolvers) and must not
+     * redefine them.
+     *
+     * @param user the user the hologram is rendered for
+     * @return the additional {@link TagResolver}, empty by default
+     */
+    default TagResolver getHologramResolvers(User user) {
+        return TagResolver.empty();
+    }
 
     /**
      * Gives this generated loot to the player.

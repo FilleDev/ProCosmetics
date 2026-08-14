@@ -20,6 +20,7 @@ package se.filledev.procosmetics.api.treasure;
 import org.bukkit.Location;
 import org.jetbrains.annotations.Nullable;
 import se.filledev.procosmetics.api.config.Config;
+import se.filledev.procosmetics.api.treasure.loot.DuplicateHandler;
 import se.filledev.procosmetics.api.util.broadcaster.Broadcaster;
 import se.filledev.procosmetics.api.util.broadcaster.LootBroadcaster;
 
@@ -91,6 +92,13 @@ public interface TreasureChestManager {
      * @return the {@link LootBroadcaster} for treasure chest loot announcements
      */
     LootBroadcaster getLootBroadcaster();
+
+    /**
+     * Gets the handler deciding what happens when a player rolls a cosmetic they already own.
+     *
+     * @return the {@link DuplicateHandler}
+     */
+    DuplicateHandler getDuplicateHandler();
 
     /**
      * Gets a list of all treasure chest platforms.

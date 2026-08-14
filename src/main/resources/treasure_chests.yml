@@ -29,12 +29,32 @@
 
 # Duplicate handling
 # What happens when a player receives a cosmetic they already own?
+# Only cosmetics can be duplicates - coins, gadget ammo and custom loot are never affected.
 #
 # Modes:
-#   ALLOW              - Give the duplicate anyway
-#   CONVERT_TO_COINS   - Convert duplicate to coins
-#   PREVENT            - Reroll until they get something they don't own
+#   ALLOW              - Give the duplicate anyway. The roll is wasted.
+#   CONVERT_TO_COINS   - Pay out coins instead of the duplicate cosmetic.
+#   PREVENT            - Owned cosmetics are removed from the roll, so a duplicate can never
+#                        happen. If every cosmetic of the rolled rarity is already owned,
+#                        another rarity is picked instead. Once a player owns everything the
+#                        chest can give, the roll falls back to CONVERT_TO_COINS.
 duplicate_handling: CONVERT_TO_COINS
+
+# Settings for CONVERT_TO_COINS (also used by the PREVENT fallback).
+#
+#   payout = cosmetic cost * (percentage / 100), clamped within minimum_amount to maximum_amount
+#
+# Cosmetic costs already scale with rarity, so an expensive legendary duplicate pays out
+# more than a cheap common one without any extra configuration.
+convert_to_coins:
+  # Percentage of the cosmetic's purchase cost paid out as coins.
+  percentage: 10.0
+  # The payout is never lower than this. This is what cosmetics that cannot be bought
+  # with coins (purchasable disabled, or cost 0) pay out.
+  minimum_amount: 100
+  # The payout is never higher than this. Keeps very expensive cosmetics from paying out
+  # more than a chest costs to open.
+  maximum_amount: 2500
 
 # Control who sees chest opening and loot messages
 #
@@ -294,4 +314,4 @@ treasure_chests:
             - "pc add coins <player> 5000"
 
 # Do not edit this!
-config_version: 1
+config_version: 2

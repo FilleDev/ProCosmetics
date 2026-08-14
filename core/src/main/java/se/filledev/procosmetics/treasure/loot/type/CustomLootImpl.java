@@ -53,7 +53,7 @@ public class CustomLootImpl extends LootEntryImpl<IntProvider> implements Custom
     }
 
     @Override
-    public GeneratedLoot generate() {
+    public GeneratedLoot generate(Player player) {
         return new GeneratedCustomLoot(this, intProvider.get());
     }
 

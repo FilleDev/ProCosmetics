@@ -34,10 +34,12 @@ import se.filledev.procosmetics.api.event.PluginReloadEvent;
 import se.filledev.procosmetics.api.treasure.TreasureChest;
 import se.filledev.procosmetics.api.treasure.TreasureChestManager;
 import se.filledev.procosmetics.api.treasure.TreasureChestPlatform;
+import se.filledev.procosmetics.api.treasure.loot.DuplicateHandler;
 import se.filledev.procosmetics.api.user.User;
 import se.filledev.procosmetics.api.util.broadcaster.Broadcaster;
 import se.filledev.procosmetics.api.util.broadcaster.LootBroadcaster;
 import se.filledev.procosmetics.menu.menus.TreasureChestMenu;
+import se.filledev.procosmetics.treasure.loot.DuplicateHandlerImpl;
 import se.filledev.procosmetics.util.LocationUtil;
 import se.filledev.procosmetics.util.broadcaster.BroadcasterImpl;
 import se.filledev.procosmetics.util.broadcaster.LootBroadcasterImpl;
@@ -57,6 +59,7 @@ public class TreasureChestManagerImpl implements TreasureChestManager {
     private final Config platformsConfig;
     private final Broadcaster openingBroadcaster;
     private final LootBroadcaster lootBroadcaster;
+    private final DuplicateHandler duplicateHandler;
     private final Map<String, TreasureChest> treasuresChests = new HashMap<>();
     private final Map<Integer, TreasureChestPlatform> platforms = new Int2ObjectOpenHashMap<>();
 
@@ -67,6 +70,7 @@ public class TreasureChestManagerImpl implements TreasureChestManager {
         this.platformsConfig = plugin.getConfigManager().register("data/treasure_chest_platforms");
         this.openingBroadcaster = new BroadcasterImpl(treasureChestsConfig, "broadcast_opening_treasure");
         this.lootBroadcaster = new LootBroadcasterImpl(plugin, treasureChestsConfig, "broadcast_loot");
+        this.duplicateHandler = new DuplicateHandlerImpl(treasureChestsConfig);
 
         loadTreasureChests();
     }
@@ -235,6 +239,11 @@ public class TreasureChestManagerImpl implements TreasureChestManager {
     @Override
     public LootBroadcaster getLootBroadcaster() {
         return lootBroadcaster;
+    }
+
+    @Override
+    public DuplicateHandler getDuplicateHandler() {
+        return duplicateHandler;
     }
 
     @Override

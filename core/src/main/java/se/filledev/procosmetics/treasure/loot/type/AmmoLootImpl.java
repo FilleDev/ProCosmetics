@@ -61,7 +61,7 @@ public class AmmoLootImpl extends LootEntryImpl<IntProvider> implements AmmoLoot
     }
 
     @Override
-    public GeneratedLoot generate() {
+    public GeneratedLoot generate(Player player) {
         return new GeneratedAmmoLoot(this, intProvider.get());
     }
 

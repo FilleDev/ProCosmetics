@@ -17,6 +17,7 @@
  */
 package se.filledev.procosmetics.api.treasure.loot;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import se.filledev.procosmetics.api.cosmetic.CosmeticRarity;
 import se.filledev.procosmetics.api.treasure.TreasureChest;
@@ -41,9 +42,10 @@ public interface LootEntry extends ResolvableName {
      * This method creates a {@link GeneratedLoot} instance which contains
      * the specific quantity and details of the reward to be given to the player.
      *
+     * @param player the player the loot is generated for
      * @return the generated loot instance
      */
-    GeneratedLoot generate();
+    GeneratedLoot generate(Player player);
 
     /**
      * Gets the {@link IntProvider} that determines the quantity of this loot.

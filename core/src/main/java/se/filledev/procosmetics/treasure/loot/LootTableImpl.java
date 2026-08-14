@@ -17,14 +17,14 @@
  */
 package se.filledev.procosmetics.treasure.loot;
 
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 import se.filledev.procosmetics.ProCosmeticsPlugin;
 import se.filledev.procosmetics.api.cosmetic.CosmeticRarity;
-import se.filledev.procosmetics.api.treasure.loot.LootCategory;
-import se.filledev.procosmetics.api.treasure.loot.LootEntry;
-import se.filledev.procosmetics.api.treasure.loot.LootTable;
+import se.filledev.procosmetics.api.treasure.loot.*;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class LootTableImpl implements LootTable {
@@ -68,32 +68,66 @@ public class LootTableImpl implements LootTable {
 
     @Override
     @Nullable
-    public LootEntry rollLoot() {
-        if (entries.isEmpty() || totalWeight == 0) {
-            return null;
-        }
-        // Roll a random rarity based on weights
-        CosmeticRarity selectedRarity = null;
-        int randomValue = RANDOM.nextInt(totalWeight);
-        int currentWeight = 0;
+    public LootEntry rollLoot(@Nullable Player player) {
+        if (player != null) {
+            DuplicateHandler duplicateHandler = PLUGIN.getTreasureChestManager().getDuplicateHandler();
 
-        for (Map.Entry<CosmeticRarity, Integer> entry : rarityWeights.entrySet()) {
-            currentWeight += entry.getValue();
+            if (duplicateHandler.getMode() == DuplicateHandling.PREVENT) {
+                LootEntry entry = roll(lootEntry -> !duplicateHandler.isDuplicate(player, lootEntry));
 
-            if (randomValue < currentWeight) {
-                selectedRarity = entry.getKey();
-                break;
+                if (entry != null) {
+                    return entry;
+                }
+                // The player owns everything this chest has to offer. Fall through to a normal
+                // roll and let the duplicate be paid out as coins instead of giving nothing.
             }
         }
-        if (selectedRarity == null) {
-            return null;
-        }
-        List<LootEntry> rarityEntries = entriesByRarity.get(selectedRarity);
+        return roll(null);
+    }
 
-        if (rarityEntries == null || rarityEntries.isEmpty()) {
+    /**
+     * Rolls a rarity among those that still have loot matching the filter, then picks a
+     * random matching entry from it. Rarities without any matching entry are skipped, so
+     * the relative weights of the remaining rarities are kept intact.
+     *
+     * @param filter the filter the loot has to match, or {@code null} to roll the whole table
+     */
+    @Nullable
+    private LootEntry roll(@Nullable Predicate<LootEntry> filter) {
+        Map<CosmeticRarity, List<LootEntry>> availableByRarity = new HashMap<>();
+        int availableWeight = 0;
+
+        for (Map.Entry<CosmeticRarity, Integer> entry : rarityWeights.entrySet()) {
+            List<LootEntry> rarityEntries = entriesByRarity.get(entry.getKey());
+
+            if (rarityEntries == null) {
+                continue;
+            }
+            List<LootEntry> availableEntries = filter == null
+                    ? rarityEntries
+                    : rarityEntries.stream().filter(filter).toList();
+
+            if (availableEntries.isEmpty()) {
+                continue;
+            }
+            availableByRarity.put(entry.getKey(), availableEntries);
+            availableWeight += entry.getValue();
+        }
+        if (availableWeight <= 0) {
             return null;
         }
-        return rarityEntries.get(RANDOM.nextInt(rarityEntries.size()));
+        int randomValue = RANDOM.nextInt(availableWeight);
+        int currentWeight = 0;
+
+        for (Map.Entry<CosmeticRarity, List<LootEntry>> entry : availableByRarity.entrySet()) {
+            currentWeight += rarityWeights.get(entry.getKey());
+
+            if (randomValue < currentWeight) {
+                List<LootEntry> availableEntries = entry.getValue();
+                return availableEntries.get(RANDOM.nextInt(availableEntries.size()));
+            }
+        }
+        return null;
     }
 
     @Override

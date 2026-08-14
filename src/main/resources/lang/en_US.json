@@ -202,6 +202,7 @@
   "treasure_chest.loot.pets.broadcast": "<yellow><player></yellow> <gray>found a <rarity_primary_color><rarity> <loot></rarity_primary_color> (<rarity_secondary_color><category></rarity_secondary_color>)!</gray>",
   "treasure_chest.loot.statuses.broadcast": "<yellow><player></yellow> <gray>found a <rarity_primary_color><rarity> <loot></rarity_primary_color> (<rarity_secondary_color><category></rarity_secondary_color>)!</gray>",
   "treasure_chest.loot.custom.broadcast": "<yellow><player></yellow> <gray>found a <rarity_primary_color><rarity> <loot></rarity_primary_color> (<rarity_secondary_color><category></rarity_secondary_color>)!</gray>",
+  "treasure_chest.loot.duplicate.broadcast": "<yellow><player></yellow> <gray>found a duplicate <rarity_primary_color><rarity> <loot></rarity_primary_color> and got <yellow><amount> <currency></yellow>!</gray>",
 
   "treasure_chest.platform.hologram": [
     "<yellow>More treasure chests available on our store!</yellow>",
@@ -211,6 +212,11 @@
   "treasure_chest.open.hologram": [
     "<rarity_secondary_color><rarity> <category></rarity_secondary_color>",
     "<rarity_primary_color><loot></rarity_primary_color>"
+  ],
+  "treasure_chest.open.hologram_duplicate": [
+    "<rarity_secondary_color><rarity> <category></rarity_secondary_color>",
+    "<rarity_primary_color><loot></rarity_primary_color>",
+    "<gray>Duplicate</gray> <dark_gray>»</dark_gray> <yellow><amount> <currency></yellow>"
   ],
 
   "treasure_chest.common": "Common Chest",
