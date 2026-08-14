@@ -82,7 +82,7 @@ public abstract class HikariConnectionProvider implements ConnectionProvider {
     private void configurePoolSettings(HikariConfig hikariConfig, Config config) {
         hikariConfig.setMaximumPoolSize(config.getInt("storage.hikari.maximum_pool_size"));
         hikariConfig.setMinimumIdle(config.getInt("storage.hikari.minimum_idle"));
-        hikariConfig.setMinimumIdle(config.getInt("storage.hikari.idle_timeout"));
+        hikariConfig.setIdleTimeout(config.getInt("storage.hikari.idle_timeout"));
         hikariConfig.setMaxLifetime(config.getInt("storage.hikari.maximum_lifetime"));
         hikariConfig.setKeepaliveTime(config.getInt("storage.hikari.keepalive_time"));
         hikariConfig.setConnectionTimeout(config.getInt("storage.hikari.connection_timeout"));
