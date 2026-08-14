@@ -49,7 +49,9 @@ public class CreateCommand extends SubCommand<CommandSender> {
             audience(sender).sendMessage(translator(sender).translate("generic.error.player_data"));
             return;
         }
-        Location location = LocationUtil.center(player.getLocation().getBlock().getLocation());
+        Location location = player.getLocation();
+        location.setY(location.getBlockY());
+        LocationUtil.center(location);
 
         if (location.getBlock().getType() != Material.CHEST) {
             user.sendMessage(user.translate("command.platform.create.not_on_chest"));
