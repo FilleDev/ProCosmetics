@@ -272,6 +272,14 @@
   ],
 
   "menu.treasure_chests.title": "Treasure Chests",
+  "menu.treasure_chests.next_page.name": "<green>Next Page</green>",
+  "menu.treasure_chests.next_page.desc": [
+    "<gray>Page <page>/<pages></gray>"
+  ],
+  "menu.treasure_chests.previous_page.name": "<green>Previous Page</green>",
+  "menu.treasure_chests.previous_page.desc": [
+    "<gray>Page <page>/<pages></gray>"
+  ],
   "menu.treasure_chests.common.purchasable.name": "<green><name></green>",
   "menu.treasure_chests.common.purchasable.desc": [
     "<gray>You own: <green><current></green></gray>",

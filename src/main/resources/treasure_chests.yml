@@ -97,6 +97,16 @@ menu:
       item: "minecraft:gray_stained_glass_pane[tooltip_display={hide_tooltip:true}]"
       count: 1
 
+    next_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -3
+
+    previous_page:
+      item: "minecraft:arrow"
+      count: 1
+      slot: -7
+
 # Menu showing different categories of loot (cosmetics, coins, custom items)
 loot_categories:
   enabled: true
@@ -182,6 +192,7 @@ treasure_chests:
     item: "minecraft:chest"
     count: 1
     slot: 10
+    page: 1
     # Rarity weights (integers) determine the chance of getting each rarity tier
     # Higher weight = higher chance
     # After rarity is determined, a random item from that rarity pool is chosen
@@ -231,6 +242,7 @@ treasure_chests:
     item: "minecraft:chest"
     count: 1
     slot: 13
+    page: 1
     # Rarity weights (integers) determine the chance of getting each rarity tier
     # Higher weight = higher chance
     # After rarity is determined, a random item from that rarity pool is chosen
@@ -280,6 +292,7 @@ treasure_chests:
     item: "minecraft:ender_chest"
     count: 1
     slot: 16
+    page: 1
     # Rarity weights (integers) determine the chance of getting each rarity tier
     # Higher weight = higher chance
     # After rarity is determined, a random item from that rarity pool is chosen

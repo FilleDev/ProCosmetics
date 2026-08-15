@@ -90,6 +90,13 @@ public interface TreasureChest {
     int getPriority();
 
     /**
+     * Gets the page of the treasure chest menu this chest is displayed on.
+     *
+     * @return the menu page
+     */
+    int getPage();
+
+    /**
      * Checks whether this treasure chest can be purchased.
      *
      * @return {@code true} if purchasable, otherwise {@code false}

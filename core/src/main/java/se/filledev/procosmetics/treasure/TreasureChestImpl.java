@@ -70,6 +70,7 @@ public class TreasureChestImpl implements TreasureChest {
     private final TreasureChestAnimationRegistry.AnimationFactory animationFactory;
     private final boolean openingBroadcast;
     private final ItemBuilder itemBuilder;
+    private final int page;
     private final List<StructureData> structures = new ArrayList<>();
     private final LootTable lootTable;
 
@@ -87,6 +88,7 @@ public class TreasureChestImpl implements TreasureChest {
         animationFactory = plugin.getTreasureChestAnimationRegistry().get(config.getString(path + ".chest_animation"));
         openingBroadcast = config.getBoolean(path + ".opening_broadcast");
         itemBuilder = new ItemBuilderImpl(config, path);
+        page = Math.max(1, config.getInt(path + ".page"));
 
         for (String layout : config.getStringList(path + ".animation_layouts")) {
             StructureDataImpl structureData = StructureReader.loadStructure(layout);
@@ -264,6 +266,11 @@ public class TreasureChestImpl implements TreasureChest {
     @Override
     public int getPriority() {
         return priority;
+    }
+
+    @Override
+    public int getPage() {
+        return page;
     }
 
     @Override
