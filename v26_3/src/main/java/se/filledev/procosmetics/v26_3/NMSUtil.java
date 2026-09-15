@@ -15,33 +15,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package se.filledev.procosmetics.util.version;
+package se.filledev.procosmetics.v26_3;
 
-import java.util.Arrays;
-import java.util.List;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Blocks;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.CraftWorld;
+import se.filledev.procosmetics.nms.NMSUtilImpl;
 
-public enum BukkitVersion {
+public class NMSUtil extends NMSUtilImpl {
 
-    v26_1("26.1", "26.1.1", "26.1.2"),
-    v26_2("26.2"),
-    v26_3("26.3");
+    @Override
+    public void playChestAnimation(Block block, boolean open) {
+        BlockPos blockPos = new BlockPos(block.getX(), block.getY(), block.getZ());
 
-    private final List<String> supportedMinorVersions;
-
-    BukkitVersion(String... supportedVersions) {
-        this.supportedMinorVersions = Arrays.asList(supportedVersions);
-    }
-
-    public boolean isSupported(String minorVersion) {
-        for (String version : supportedMinorVersions) {
-            if (minorVersion.startsWith(version)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public List<String> getSupportedMinorVersions() {
-        return supportedMinorVersions;
+        ((CraftWorld) block.getWorld()).getHandle().blockEvent(blockPos,
+                block.getType() == Material.CHEST ? Blocks.CHEST : Blocks.ENDER_CHEST,
+                1,
+                open ? 1 : 0
+        );
     }
 }
