@@ -144,6 +144,21 @@ public interface NMSEntity {
     void sendAnimatePacket(int actionId);
 
     /**
+     * Sends an arm-swing animation packet to the specified players.
+     *
+     * @param players  the collection of players to send the animation to
+     * @param mainHand {@code true} to swing the main hand, or {@code false} to swing the offhand
+     */
+    void sendSwingAnimationPacket(Collection<Player> players, boolean mainHand);
+
+    /**
+     * Sends an arm-swing animation packet to all players tracking the entity.
+     *
+     * @param mainHand {@code true} to swing the main hand, or {@code false} to swing the offhand
+     */
+    void sendSwingAnimationPacket(boolean mainHand);
+
+    /**
      * Sends velocity update packet to specific players.
      * This applies the current velocity vector to the entity on client side.
      *

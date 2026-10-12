@@ -24,6 +24,7 @@ import net.minecraft.core.Rotations;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.animal.equine.AbstractHorse;
@@ -32,6 +33,7 @@ import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Guardian;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -227,6 +229,11 @@ public class NMSEntity extends NMSEntityImpl<Packet<? super ClientGamePacketList
     @Override
     public ClientboundAnimatePacket getAnimatePacket(int actionId) {
         return new ClientboundAnimatePacket(entity, actionId);
+    }
+
+    @Override
+    public ClientboundSwingAnimationPacket getSwingAnimationPacket(boolean mainHand) {
+        return new ClientboundSwingAnimationPacket(entity, mainHand ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND, SwingAnimation.DEFAULT);
     }
 
     @Override

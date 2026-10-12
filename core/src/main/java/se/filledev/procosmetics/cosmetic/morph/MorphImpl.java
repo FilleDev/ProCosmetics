@@ -134,7 +134,7 @@ public class MorphImpl extends CosmeticImpl<MorphType, MorphBehavior> implements
         if (event.getPlayer() == player) {
             if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
                 if (behavior.hasAttackAnimation()) {
-                    nmsEntity.sendAnimatePacket(0);
+                    nmsEntity.sendSwingAnimationPacket(true);
                 }
             }
 

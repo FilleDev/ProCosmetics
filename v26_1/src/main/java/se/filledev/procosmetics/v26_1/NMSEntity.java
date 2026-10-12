@@ -229,6 +229,12 @@ public class NMSEntity extends NMSEntityImpl<Packet<? super ClientGamePacketList
         return new ClientboundAnimatePacket(entity, actionId);
     }
 
+    // ClientboundSwingAnimationPacket does not exist on this version, fallback to the previous packet.
+    @Override
+    public ClientboundAnimatePacket getSwingAnimationPacket(boolean mainHand) {
+        return new ClientboundAnimatePacket(entity, mainHand ? 0 : 1);
+    }
+
     @Override
     public ClientboundSetEntityMotionPacket getVelocityPacket() {
         if (entity.getDeltaMovement().lengthSqr() == 0) {

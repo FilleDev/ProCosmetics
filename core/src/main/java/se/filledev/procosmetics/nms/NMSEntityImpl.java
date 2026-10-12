@@ -159,6 +159,18 @@ public abstract class NMSEntityImpl<T> implements NMSEntity {
         sendPacketToViewers(getAnimatePacket(actionId));
     }
 
+    public abstract T getSwingAnimationPacket(boolean mainHand);
+
+    @Override
+    public void sendSwingAnimationPacket(Collection<Player> players, boolean mainHand) {
+        sendPacketToPlayers(players, getSwingAnimationPacket(mainHand));
+    }
+
+    @Override
+    public void sendSwingAnimationPacket(boolean mainHand) {
+        sendPacketToViewers(getSwingAnimationPacket(mainHand));
+    }
+
     public abstract T getVelocityPacket();
 
     @Override
