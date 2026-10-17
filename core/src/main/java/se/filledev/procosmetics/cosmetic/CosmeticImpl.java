@@ -88,6 +88,13 @@ public abstract class CosmeticImpl<T extends CosmeticType<T, B>,
             }
             return;
         }
+
+        if (plugin.getVanishManager().isVanished(player)) {
+            if (!silent) {
+                user.sendMessage(user.translate("cosmetic.equip.deny.vanish"));
+            }
+            return;
+        }
         CosmeticCategory<T, B, ?> category = cosmeticType.getCategory();
 
         if (plugin.getWorldGuardManager() != null && !plugin.getWorldGuardManager().isCosmeticAllow(player, category)) {

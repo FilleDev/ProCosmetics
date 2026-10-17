@@ -57,6 +57,7 @@
   "cosmetic.unequip.region": "<red>You entered a region where some cosmetics are not allowed!</red>",
   "cosmetic.equip.deny.region": "<red>You cannot equip that cosmetic in this region!</red>",
   "cosmetic.equip.deny.world": "<red>Cosmetics are not allowed in this world!</red>",
+  "cosmetic.equip.deny.vanish": "<red>You cannot equip cosmetics while vanished!</red>",
   "cosmetic.equip.deny.space": "<red>There is not enough space to use this cosmetic here!</red>",
   "cosmetic.equip.deny.ground": "<red>You must stand on the ground to use this cosmetic!</red>",
 

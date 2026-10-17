@@ -61,6 +61,8 @@ import se.filledev.procosmetics.util.LogUtil;
 import se.filledev.procosmetics.util.ResourceExporter;
 import se.filledev.procosmetics.util.block.FakeBlockManager;
 import se.filledev.procosmetics.util.version.VersionUtil;
+import se.filledev.procosmetics.vanish.VanishHook;
+import se.filledev.procosmetics.vanish.VanishManager;
 import se.filledev.procosmetics.worldguard.WorldGuardManager;
 
 import java.io.BufferedReader;
@@ -85,6 +87,7 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
     private CosmeticRarityRegistryImpl cosmeticRarityRegistry;
     private CategoryRegistriesImpl categoryRegistries;
     private UserManagerImpl userManager;
+    private VanishManager vanishManager;
     private TreasureChestAnimationRegistry treasureChestAnimationRegistry;
     private TreasureChestManagerImpl treasureChestManager;
     private MenuManagerImpl menuManager;
@@ -118,6 +121,7 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
         cosmeticRarityRegistry = new CosmeticRarityRegistryImpl(this);
         categoryRegistries = new CategoryRegistriesImpl(this);
         userManager = new UserManagerImpl(this);
+        vanishManager = new VanishManager(this);
         treasureChestAnimationRegistry = new TreasureChestAnimationRegistryImpl();
         treasureChestManager = new TreasureChestManagerImpl(this);
         menuManager = new MenuManagerImpl(this);
@@ -161,6 +165,7 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
 
     private void registerListeners() {
         userManager.registerListeners();
+        vanishManager.registerListeners();
         treasureChestManager.registerListeners();
         menuManager.registerListeners();
 
@@ -247,19 +252,18 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
 
         if (pluginManager.getPlugin("Essentials") != null) {
             logger.info("Hooking into Essentials...");
-            registerListeners(new EssentialsVanishListener(this));
+            registerVanishHook(new EssentialsVanishListener(this));
         }
         if (pluginManager.getPlugin("CMI") != null) {
             logger.info("Hooking into CMI...");
-            registerListeners(new CMIVanishListener(this));
+            registerVanishHook(new CMIVanishListener(this));
         }
         if (pluginManager.getPlugin("PremiumVanish") != null) {
             logger.info("Hooking into PremiumVanish...");
-            registerListeners(new PremiumVanishListener(this));
-        }
-        if (pluginManager.getPlugin("SuperVanish") != null) {
+            registerVanishHook(new PremiumVanishListener(this));
+        } else if (pluginManager.getPlugin("SuperVanish") != null) {
             logger.info("Hooking into SuperVanish...");
-            registerListeners(new PremiumVanishListener(this));
+            registerVanishHook(new PremiumVanishListener(this));
         }
 
         if (worldGuardManager != null) {
@@ -308,6 +312,11 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
                 pluginManager.registerEvents(listener, this);
             }
         }
+    }
+
+    private <T extends Listener & VanishHook> void registerVanishHook(T hook) {
+        registerListeners(hook);
+        vanishManager.registerHook(hook);
     }
 
     @SafeVarargs
@@ -410,6 +419,10 @@ public class ProCosmeticsPlugin extends JavaPlugin implements ProCosmetics {
     @Override
     public Database getDatabase() {
         return database;
+    }
+
+    public VanishManager getVanishManager() {
+        return vanishManager;
     }
 
     public WorldGuardManager getWorldGuardManager() {
