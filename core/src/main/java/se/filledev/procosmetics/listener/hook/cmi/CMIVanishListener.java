@@ -17,15 +17,18 @@
  */
 package se.filledev.procosmetics.listener.hook.cmi;
 
+import com.Zrips.CMI.CMI;
+import com.Zrips.CMI.Containers.CMIUser;
 import com.Zrips.CMI.events.CMIPlayerUnVanishEvent;
 import com.Zrips.CMI.events.CMIPlayerVanishEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import se.filledev.procosmetics.ProCosmeticsPlugin;
-import se.filledev.procosmetics.api.user.User;
+import se.filledev.procosmetics.vanish.VanishHook;
 
-public class CMIVanishListener implements Listener {
+public class CMIVanishListener implements Listener, VanishHook {
 
     private final ProCosmeticsPlugin plugin;
 
@@ -33,31 +36,19 @@ public class CMIVanishListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onVanish(CMIPlayerVanishEvent event) {
-        Player player = event.getPlayer();
-
-        if (!player.isOnline()) {
-            return;
-        }
-        User user = plugin.getUserManager().getConnected(player);
-
-        if (user == null) {
-            return;
-        }
-        user.unequipCosmetics(true, false);
+        plugin.getVanishManager().hideCosmetics(event.getPlayer());
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onUnVanish(CMIPlayerUnVanishEvent event) {
-        Player player = event.getPlayer();
+        plugin.getVanishManager().updateCosmeticsLater(event.getPlayer());
+    }
 
-        if (player.isOnline()) {
-            User user = plugin.getUserManager().getConnected(player);
-
-            if (user != null) {
-                user.equipSavedCosmetics(true);
-            }
-        }
+    @Override
+    public boolean isVanished(Player player) {
+        CMIUser user = CMI.getInstance().getPlayerManager().getUser(player);
+        return user != null && user.isVanished();
     }
 }

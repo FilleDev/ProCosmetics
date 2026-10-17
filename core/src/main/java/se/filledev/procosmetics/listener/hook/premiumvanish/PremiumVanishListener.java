@@ -19,13 +19,16 @@ package se.filledev.procosmetics.listener.hook.premiumvanish;
 
 import de.myzelyam.api.vanish.PlayerHideEvent;
 import de.myzelyam.api.vanish.PlayerShowEvent;
+import de.myzelyam.api.vanish.VanishAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import se.filledev.procosmetics.ProCosmeticsPlugin;
-import se.filledev.procosmetics.api.user.User;
+import se.filledev.procosmetics.vanish.VanishHook;
 
-public class PremiumVanishListener implements Listener {
+// Used for both PremiumVanish and SuperVanish as they share the same API
+public class PremiumVanishListener implements Listener, VanishHook {
 
     private final ProCosmeticsPlugin plugin;
 
@@ -33,33 +36,18 @@ public class PremiumVanishListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onVanish(PlayerHideEvent event) {
-        Player player = event.getPlayer();
-
-        if (!player.isOnline()) {
-            return;
-        }
-        User user = plugin.getUserManager().getConnected(player);
-
-        if (user == null) {
-            return;
-        }
-        user.unequipCosmetics(true, false);
+        plugin.getVanishManager().hideCosmetics(event.getPlayer());
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onUnVanish(PlayerShowEvent event) {
-        Player player = event.getPlayer();
+        plugin.getVanishManager().updateCosmeticsLater(event.getPlayer());
+    }
 
-        if (!player.isOnline()) {
-            return;
-        }
-        User user = plugin.getUserManager().getConnected(player);
-
-        if (user == null) {
-            return;
-        }
-        user.equipSavedCosmetics(true);
+    @Override
+    public boolean isVanished(Player player) {
+        return VanishAPI.isInvisible(player);
     }
 }
